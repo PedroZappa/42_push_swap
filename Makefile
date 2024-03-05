@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/03/05 20:33:09 by passunca         ###   ########.fr        #
+#    Updated: 2024/03/05 20:36:15 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,10 +142,6 @@ valgrind: all			## Run Server w/ Valgrind
 	./scripts/get-valgrind-pid.sh > server.pid
 
 
-
-
-
-
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
@@ -180,7 +176,8 @@ help: 			## Display this help page
 		/^##@/ { \
 			printf "\n=> %s\n", substr($$0, 5) } ' Makefile
 
-.PHONY: deps get_libft update_modules clean fclean libclean re \
+.PHONY: bonus deps get_libft update_modules clean fclean libclean re \
+		norm valgrind
 	
 
 #==============================================================================#

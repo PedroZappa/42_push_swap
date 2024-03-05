@@ -35,6 +35,7 @@
 *.i*86
 *.x86_64
 *.hex
+push_swap
 
 # Debug files
 *.dSYM/
@@ -54,3 +55,7 @@ dkms.conf
 #folders
 .build
 lib
+
+# temp
+norm.txt
+norm_ls.txt
