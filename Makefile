@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/03/05 20:36:15 by passunca         ###   ########.fr        #
+#    Updated: 2024/03/05 21:11:29 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,12 +106,12 @@ deps: 			## Download/Update libft
 
 -include $(DEPS)
 
-get_libft:		## Get Libft module
+get_libft:
 	@echo "* $(CYA)Getting Libft submodule$(D)]"
 	git clone git@github.com:PedroZappa/42_libft.git $(LIBFT_PATH)
 	@echo "* $(GRN)Libft submodule download$(D): $(_SUCCESS)"
 
-update_modules:	## Update modules
+update_modules:
 	@echo "* $(CYA)Updating submodules$(D)]"
 	git submodule init
 	git submodule update --recursive --remote
@@ -124,7 +124,10 @@ norm: 		## Run norminette test
 	@ls $(SRC_PATH) | wc -l > norm_ls.txt
 	@printf "$(_NORM_INFO) $$(cat norm_ls.txt)\n"
 	@printf "$(_NORM_SUCCESS) "
-	@norminette $(SRC_PATH) | grep -wc "OK" > norm.txt
+	@norminette $(SRC_PATH) | grep -wc "OK" > norm.txt; \
+	if [ $$? -eq 1 ]; then \
+		echo "0" > norm.txt; \
+	fi
 	@printf "$$(cat norm.txt)\n"
 	@if ! diff -q norm_ls.txt norm.txt > /dev/null; then \
 		printf "$(_NORM_ERR) "; \

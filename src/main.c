@@ -6,11 +6,14 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:21:18 by passunca          #+#    #+#             */
-/*   Updated: 2024/03/05 20:21:31 by passunca         ###   ########.fr       */
+/*   Updated: 2024/03/05 21:14:04 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int main(void)
+#include "push_swap.h"
+
+int	main(void)
 {
+	ft_printf("Hello, World!\n");
 	return (0);
 }
