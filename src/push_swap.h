@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:01:22 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/09 15:35:23 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:37:25 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,8 @@ typedef struct s_elem {
 
 /* ft_stack.c */
 t_elem	*ft_create_stack(int argc, char **argv, int stack);
+
+/* ft_errors.c */
+
 
 #endif
