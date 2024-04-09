@@ -14,7 +14,7 @@
 
 static char	**ft_get_elems(int *argc, char **argv, int *must_free);
 static int	ft_argv_count(char **argv);
-static void	ft_free_list(t_elem *stack_a, t_elem *stack_b,
+static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 				char **input_list, int must_free);
 
 /*	PUSH_SWAP
@@ -30,9 +30,9 @@ static void	ft_free_list(t_elem *stack_a, t_elem *stack_b,
  * */
 int	main(int argc, char **argv)
 {
+	char	**input_list;
 	t_elem	*stack_a;
 	t_elem	*stack_b;
-	char	**input_list;
 	int		must_free;
 	int		error;
 
@@ -44,14 +44,14 @@ int	main(int argc, char **argv)
 	error = ft_errors(argc, input_list);
 	if (error <= 0)
 	{
-		ft_free_list(NULL, NULL, input_list, must_free);
+		ft_free(NULL, NULL, input_list, must_free);
 		return (0);
 	}
 	stack_a = ft_create_stack(argc, input_list, 1);
 	stack_b = ft_create_stack(argc, input_list, 0);
 	if (ft_is_sorted(stack_a) == -1)
 		ft_sort(stack_a, stack_b, argc);
-	ft_free_list(stack_a, stack_b, input_list, must_free);
+	ft_free(stack_a, stack_b, input_list, must_free);
 	return (0);
 }
 
@@ -75,8 +75,26 @@ static int	ft_argv_count(char **argv)
 	return (n);
 }
 
-static void	ft_free_list(t_elem *stack_a, t_elem *stack_b,
+static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 				char **input_list, int must_free)
 {
+	int i;
+
+	i = 0;	
+	if (must_free)
+	{
+		while (input_list[i] != 0)
+		{
+			free(input_list[i]);
+			++i;
+		}
+		free(input_list[i]);
+		free(input_list);
+	}
+	if (stack_a != NULL)
+		free(stack_a);
+	if (stack_b != NULL)
+		free(stack_b);
+
 	return ;
 }
