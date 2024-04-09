@@ -13,6 +13,9 @@
 #include "push_swap.h"
 
 static char	**ft_get_elems(int *argc, char **argv, int *must_free);
+static int	ft_argv_count(char **argv);
+static void	ft_free_list(t_elem *stack_a, t_elem *stack_b,
+				char **input_list, int must_free);
 
 /*	PUSH_SWAP
  *	- Set flag to signal if alloced memory needs freeing;
@@ -60,4 +63,20 @@ static char	**ft_get_elems(int *argc, char **argv, int *must_free)
 	*argc = ft_argv_count(split_list) + 1;
 	*must_free = 1;
 	return (split_list);
+}
+
+static int	ft_argv_count(char **argv)
+{
+	int	n;
+
+	n = 0;
+	while (argv[n])
+		++n;
+	return (n);
+}
+
+static void	ft_free_list(t_elem *stack_a, t_elem *stack_b,
+				char **input_list, int must_free)
+{
+	return ;
 }
