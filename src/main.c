@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:21:18 by passunca          #+#    #+#             */
-/*   Updated: 2024/03/05 21:14:04 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:47:10 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static char	**ft_get_elems(int *argc, char **argv, int *must_free);
 static int	ft_argv_count(char **argv);
 static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 				char **input_list, int must_free);
+static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc);
 
 /*	PUSH_SWAP
  *	- Set flag to signal if alloced memory needs freeing;
@@ -78,9 +79,9 @@ static int	ft_argv_count(char **argv)
 static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 				char **input_list, int must_free)
 {
-	int i;
+	int	i;
 
-	i = 0;	
+	i = 0;
 	if (must_free)
 	{
 		while (input_list[i] != 0)
@@ -95,6 +96,9 @@ static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 		free(stack_a);
 	if (stack_b != NULL)
 		free(stack_b);
-
 	return ;
+}
+
+static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc)
+{
 }
