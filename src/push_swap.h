@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:01:22 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/09 15:37:25 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/09 15:40:46 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 typedef struct s_elem {
 	int	num;
 	int	index;
-	int filled;
-} t_elem;
+	int	filled;
+}	t_elem;
 
 //=============================================================================/
 //							Function Prototypes                                /
@@ -43,6 +43,6 @@ typedef struct s_elem {
 t_elem	*ft_create_stack(int argc, char **argv, int stack);
 
 /* ft_errors.c */
-
+int		ft_errors(int argc, char **argv);
 
 #endif
