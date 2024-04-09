@@ -12,6 +12,8 @@
 
 #include "push_swap.h"
 
+static char	**ft_get_elems(int *argc, char **argv, int *must_free);
+
 /*	PUSH_SWAP
  *	- Set flag to signal if alloced memory needs freeing;
  *	- Increment argv to skip program name;
@@ -48,4 +50,14 @@ int	main(int argc, char **argv)
 		ft_sort(stack_a, stack_b, argc);
 	ft_free_list(stack_a, stack_b, input_list, must_free);
 	return (0);
+}
+
+static char	**ft_get_elems(int *argc, char **argv, int *must_free)
+{
+	char	**split_list;
+
+	split_list = ft_split(argv[0], ' ');
+	*argc = ft_argv_count(split_list) + 1;
+	*must_free = 1;
+	return (split_list);
 }
