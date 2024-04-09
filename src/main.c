@@ -12,8 +12,22 @@
 
 #include "push_swap.h"
 
-int	main(void)
+/*	Set flag to signal if alloced memory needs freeing;
+ *	Increment argv to skip program name;
+ *	Assign argv to input_list;
+ *
+ * */
+int	main(int argc, char **argv)
 {
-	ft_printf("Hello, World!\n");
+	t_elem	*stack_a;
+	t_elem	*stack_b;
+	char	**input_list;
+	int		must_free;
+	int		error;
+
+	must_free = 0;
+	++argv;
+	input_list = argv;
+
 	return (0);
 }
