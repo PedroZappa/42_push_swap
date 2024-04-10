@@ -14,5 +14,19 @@
 
 int	ft_errors(int argc, char **argv)
 {
+	(void) argc;
+	(void) argv;
+	// if (argc == 1)
+	// 	return (0);
+	// if ()
+	// {
+	// 	
+	// 	return (-1);
+	// }
+	// if ()
+	// {
+	//
+	// 	return (-1);
+	// }
 	return (1);
 }

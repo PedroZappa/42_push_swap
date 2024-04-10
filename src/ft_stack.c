@@ -14,10 +14,14 @@
 
 t_elem	*ft_create_stack(int argc, char **argv, int stack)
 {
+	(void) argc;
+	(void) argv;
+	(void) stack;
 	return (0);
 }
 
 int	ft_is_sorted(t_elem *stack)
 {
+	(void) stack;
 	return (0);
 }

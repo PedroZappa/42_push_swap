@@ -115,4 +115,7 @@ static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 
 static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc)
 {
+	(void) stack_a;
+	(void) stack_b;
+	(void) argc;
 }

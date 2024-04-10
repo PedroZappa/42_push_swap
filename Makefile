@@ -40,7 +40,7 @@ SRC_PATH	= src
 LIBS_PATH	= lib
 BUILD_PATH	= .build
 
-SRC			= $(addprefix $(SRC_PATH)/, main.c)
+SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_stack.c)
 
 OBJS		= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 DEPS		= $(OBJS:.o=.d)
@@ -75,7 +75,7 @@ MAKE		= make -C
 
 ##@ push_swap Compilation Rules 🏗
 
-all: $(BUILD_PATH) deps $(NAME)		## Compile push_swap
+all: deps $(NAME)		## Compile push_swap
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
@@ -85,9 +85,8 @@ $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)
 	@echo "* $(YEL)Creating $(BUILD_PATH) folder:$(D) $(_SUCCESS)"
 
-$(NAME): $(LIBFT_ARC) $(OBJS)
+$(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(OBJS)
 	@echo "[$(YEL)Compiling push_swap$(D)]"
-	@echo -n "$(GRN)█$(D)"
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
 	@echo "[$(_SUCCESS) compiling $(MAG)push_swap!$(D) $(YEL)🖔$(D)]"
 
