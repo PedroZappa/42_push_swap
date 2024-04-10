@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <limits.h>
 
 static int	ft_are_args_nbr(int argc, char **argv);
 static int	ft_is_duplicate(int argc, char **argv);
@@ -57,7 +58,25 @@ static int	ft_are_args_nbr(int argc, char **argv)
 
 static int	ft_is_duplicate(int argc, char **argv)
 {
-	(void) argc;
-	(void) argv;
+	int	i;
+	int	j;
+
+	if (argc == 2)
+		if (ft_atoi(argv[0]) == INT_MAX)
+			return (-1);
+	i = 0;
+	while (i < argc)
+	{
+		j = (i + 1);
+		while (j < (argc - 1))
+		{
+			if ((ft_atoi(argv[i]) == INT_MAX) || (ft_atoi(argv[j]) == INT_MAX))
+				return (-1);
+			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+				return (-1);
+			++j;
+		}
+		++i;
+	}
 	return (0);
 }
