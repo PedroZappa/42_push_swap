@@ -19,15 +19,16 @@ static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc);
 
 /*	PUSH_SWAP
- *	- Set flag to signal if alloced memory needs freeing;
  *	- Increment argv to skip program name;
  *	- Assign argv to input_list;
+ *	- Set flag to signal if alloced memory needs freeing;
+ *	- Handle input arguments;
  *	- Check for errors;
  *		- If there is an error free allocated memory;,
  *	- Create stack_a and stack_b;
  *	- if stack_a is not sorted
  *		- sort it
- *	- free allocated memory
+ *	- Free allocated memory
  * */
 int	main(int argc, char **argv)
 {
@@ -56,6 +57,12 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
+/*	ft_get_elems()
+ *	- Get args by splitting input list;
+ *	- Count args in input list;
+ *	- Set flag to signal that alloced memory needs freeing;
+ *	- Return list of args
+ *	*/
 static char	**ft_get_elems(int *argc, char **argv, int *must_free)
 {
 	char	**split_list;
@@ -66,6 +73,10 @@ static char	**ft_get_elems(int *argc, char **argv, int *must_free)
 	return (split_list);
 }
 
+/* ft_argv_count() 
+ *	- Count args in input list;
+ *	- Return count;
+ *	*/
 static int	ft_argv_count(char **argv)
 {
 	int	n;
@@ -76,6 +87,9 @@ static int	ft_argv_count(char **argv)
 	return (n);
 }
 
+/*	ft_free()
+*	- Free allocated memory;
+*	*/
 static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 				char **input_list, int must_free)
 {
