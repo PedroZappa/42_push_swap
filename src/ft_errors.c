@@ -15,10 +15,14 @@
 static int	ft_are_args_nbr(int argc, char **argv);
 static int	ft_is_duplicate(int argc, char **argv);
 
+/*	ft_errors()
+ *	- If there are no input arguments return 0;
+ *	- if args are not numbers return -1;
+ *	- if there are duplicate numbers return -1;
+ *
+ * */
 int	ft_errors(int argc, char **argv)
 {
-	(void) argc;
-	(void) argv;
 	if (argc == 1)
 		return (0);
 	if (ft_are_args_nbr(argc, argv) == -1)
@@ -34,6 +38,11 @@ int	ft_errors(int argc, char **argv)
 	return (1);
 }
 
+/*	ft_are_args_nbr()
+ *	- Loop through arguments
+ *		- if NOT a digit
+ *			- if NOT the first character AND NOT a '-'
+ * */
 static int	ft_are_args_nbr(int argc, char **argv)
 {
 	int	i;
@@ -55,6 +64,13 @@ static int	ft_are_args_nbr(int argc, char **argv)
 	return (1);
 }
 
+/*	ft_is_duplicate()
+ *	- If argc == 2
+ *		- if arg is the max int return -1
+ *	- Loop through arguments comparing them 
+ *		- if either is the max int return -1
+ *		- check for duplicates
+ *	*/
 static int	ft_is_duplicate(int argc, char **argv)
 {
 	int	i;
