@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
 
 static int	ft_are_args_nbr(int argc, char **argv);
 static int	ft_is_duplicate(int argc, char **argv);
