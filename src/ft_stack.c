@@ -54,8 +54,25 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 	return (stack);
 }
 
+/*	ft_is_sorted()
+ *		- Initialize counter i to 0;
+ *		- Loop through stack until the sentinel value (-1) is found;
+ *			- If curr element is greater than next element
+ *				- Return -1, indicating that the stack is NOT sorted in 
+ *					ascending order;
+ *			- Increment i;
+ *		- Return 1, indicating that the stack is sorted in ascending order;
+ * */
 int	ft_is_sorted(t_elem *stack)
 {
-	(void) stack;
-	return (0);
+	int	i;
+
+	i = 0;
+	while (stack[(i + 1)].index != -1)
+	{
+		if (stack[i].num > stack[(i + 1)].num)
+			return (-1);
+		++i;
+	}
+	return (1);
 }
