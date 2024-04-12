@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:33:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 15:01:56 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:05:13 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,16 @@ int	ft_get_stack_end(t_elem *stack)
 	return (end);
 }
 
+/*	ft_get_stack_min()
+ *	- Get the start of the stack;
+ *	- Get the end of the stack;
+ *	- Initialize min_idx to the index of the first filled element;
+ *	- Loop through the stack from start to end;
+ *		- If the current element is less than the element at current min_idx
+ *			- Set min_idx to the index of the current element;
+ *		- Increment start;
+ *	- Return the element at min_idx;
+ * */
 t_elem	ft_get_stack_min(t_elem *stack)
 {
 	int	start;
