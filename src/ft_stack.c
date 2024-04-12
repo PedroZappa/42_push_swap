@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:33:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 14:49:12 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:54:57 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,16 @@ int	ft_get_stack_end(t_elem *stack)
 		++end;
 	--end;
 	return (end);
+}
+
+int	ft_get_stack_min(t_elem *stack)
+{
+	(void)stack;
+	return (0);
+}
+
+int	ft_get_stack_max(t_elem *stack)
+{
+	(void)stack;
+	return (0);
 }
