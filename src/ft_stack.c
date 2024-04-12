@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:33:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 14:42:13 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:46:22 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,18 @@ int	ft_get_stack_start(t_elem *stack)
 	return (start);
 }
 
+/*	ft_get_stack_end()
+*	- Loops through stack until the sentinel value (-1) is found;
+*	- Decrement end by 1 to select the value before the sentinel value;	
+*	- Returns the index of the last filled element;
+*	*/
 int	ft_get_stack_end(t_elem *stack)
 {
-	(void) stack;
-	return (0);
+	int	end;
+
+	end = 0;
+	while (stack[end].index != -1)
+		++end;
+	--end;
+	return (end);
 }
