@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:33:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 15:05:13 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:31:26 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,35 @@ t_elem	ft_get_stack_min(t_elem *stack)
 	return (stack[min_idx]);
 }
 
-t_elem	ft_get_stack_max(t_elem *stack)
+/*	ft_get_stack_max()
+ *	- Get the start of the stack;
+ *	- Get the end of the stack;
+ *	- Initialize to -1;
+ *	- Loop through the stack from start to end;
+ *		- check if max_idx is -1
+ *		- OR if the curr element is greater than the element at max_idx
+ *		- OR if the threshhold is -1 or the curr element is less than threshold
+ *		- AND if the current element is not filled
+ *			- Set max_idx to the index of the current element;
+ *		- Increment start;
+ *	- Return the element at max_idx;
+ * */
+t_elem	ft_get_stack_max(t_elem *stack, int threshold)
 {
-	(void)stack;
-	return (stack[0]);
+	int	start;
+	int	end;
+	int	max_idx;
+
+	start = ft_get_stack_start(stack);
+	end = ft_get_stack_end(stack);
+	max_idx = -1;
+	while (start <= end)
+	{
+		if ((max_idx == -1) || (((stack[start].num > stack[max_idx].num)
+					|| ((threshold == -1) || (stack[start].num < threshold))
+					&& (stack[max_idx].filled == -1))))
+			max_idx = stack[start].index;
+		++start;
+	}
+	return (stack[max_idx]);
 }
