@@ -6,12 +6,11 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:47:20 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 14:48:38 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:02:13 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 /*	ft_create_stack()
  *		- Allocated memory for stack (+1 for sentinel value);
