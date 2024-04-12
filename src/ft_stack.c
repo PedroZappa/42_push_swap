@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:33:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/09 15:42:06 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:53:53 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,23 @@ int	ft_is_sorted(t_elem *stack)
 		++i;
 	}
 	return (1);
+}
+
+/*	ft_get_stack_start()
+ *	- i keeps track of the index of the first filled stack element;
+ *	- Loop from bottom to the top element of the stack;
+ *	- After finding the first filled element decrement start by 1;
+ *		(to account for the sentinel value);
+ *	- Return start, the index of the first filled element;
+ * */
+int	ft_get_stack_start(t_elem *stack)
+{
+	int	start;
+
+	start = 0;
+	while (stack[start].filled != 1)
+		++start;
+	if (stack[start].index == -1)
+		--start;
+	return (start);
 }
