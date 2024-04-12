@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:33:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 10:53:53 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:42:13 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,10 @@ int	ft_get_stack_start(t_elem *stack)
 	if (stack[start].index == -1)
 		--start;
 	return (start);
+}
+
+int	ft_get_stack_end(t_elem *stack)
+{
+	(void) stack;
+	return (0);
 }
