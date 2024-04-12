@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 09:54:54 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 11:01:08 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:43:35 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,16 @@ void	ft_swap_elem(t_elem *stack, char *msg)
 	stack[start].num = stack[(start + 1)].num;
 	stack[(start + 1)].num = temp;
 	ft_putstr_fd(msg, 1);
+}
+
+void	ft_rotate(t_elem *stack, char *msg)
+{
+	(void) stack;
+	(void) msg;
+}
+
+void	ft_rev_rotate(t_elem *stack, char *msg)
+{
+	(void) stack;
+	(void) msg;
 }

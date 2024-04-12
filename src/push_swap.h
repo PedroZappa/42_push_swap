@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:01:22 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 15:08:26 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:43:10 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int		ft_errors(int argc, char **argv);
 
 /* ft_ops.c */
 void	ft_swap_elem(t_elem *stack, char *msg);
+void	ft_rotate(t_elem *stack, char *msg);
+void	ft_rev_rotate(t_elem *stack, char *msg);
 
 /* ft_sort_three.c */
 void	ft_sort_three(t_elem *stack);
