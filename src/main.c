@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:21:18 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 09:57:26 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:01:37 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ static void	ft_free(t_elem *stack_a, t_elem *stack_b,
 
 static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc)
 {
+	(void) stack_a;
+	(void) stack_b;
 	if (argc == 3)
 	{
 		if (ft_is_sorted(stack_a) == -1)
