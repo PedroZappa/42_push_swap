@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:31:41 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 17:44:37 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:46:46 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@
 *		- swap;
 *	- if the min value is at the end
 *		- reverse rotate;
-*
 *	*/
 void	ft_sort_three(t_elem *stack)
 {
-	int start;
-	int end;
-	
+	int	start;
+	int	end;
+
 	start = ft_get_stack_start(stack);
 	end = ft_get_stack_end(stack);
 	if ((ft_get_stack_min(stack).index == start)

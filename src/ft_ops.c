@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 09:54:54 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 17:12:22 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:47:33 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ void	ft_swap_elem(t_elem *stack, char *msg)
  * */
 void	ft_rotate(t_elem *stack, char *msg)
 {
-	int start;
-	int end;
-	int temp;
-	int temp2;
-	int i;
-	
+	int	start;
+	int	end;
+	int	temp;
+	int	temp2;
+	int	i;
+
 	start = 0;
 	while ((stack[start].index != -1) && (stack[start].filled != 1))
 		++start;
@@ -90,11 +90,11 @@ void	ft_rotate(t_elem *stack, char *msg)
  * */
 void	ft_rev_rotate(t_elem *stack, char *msg)
 {
-	int start;
-	int end;
-	int temp;
-	int temp2;
-	int i;
+	int	start;
+	int	end;
+	int	temp;
+	int	temp2;
+	int	i;
 
 	start = 0;
 	while ((stack[start].index != -1) && (stack[start].filled != 1))
