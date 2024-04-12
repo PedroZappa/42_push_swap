@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:33:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 15:31:26 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:45:54 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,8 +123,8 @@ t_elem	ft_get_stack_max(t_elem *stack, int threshold)
 	while (start <= end)
 	{
 		if ((max_idx == -1) || (((stack[start].num > stack[max_idx].num)
-					|| ((threshold == -1) || (stack[start].num < threshold))
-					&& (stack[max_idx].filled == -1))))
+					|| (((threshold == -1) || (stack[start].num < threshold))
+						&& (stack[max_idx].filled == -1)))))
 			max_idx = stack[start].index;
 		++start;
 	}
