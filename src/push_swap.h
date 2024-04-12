@@ -46,4 +46,7 @@ int		ft_is_sorted(t_elem *stack);
 /* ft_errors.c */
 int		ft_errors(int argc, char **argv);
 
+/* ft_ops.c */
+void	ft_swap_elem(t_elem *stack, char *msg);
+
 #endif
