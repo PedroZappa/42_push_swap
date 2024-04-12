@@ -27,12 +27,12 @@ int	ft_errors(int argc, char **argv)
 		return (0);
 	if (ft_are_args_nbr(argc, argv) == -1)
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
 	if (ft_is_duplicate(argc, argv) == -1)
 	{
-		ft_putstr_fd("Error\n", 1);
+		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
 	return (1);
@@ -55,7 +55,7 @@ static int	ft_are_args_nbr(int argc, char **argv)
 		while (argv[i][j] != '\0')
 		{
 			if (ft_isdigit(argv[i][j]) == 0)
-				if ((j != 0) && (argv[i][j] != '-'))
+				if (!((j == 0) && (argv[i][j] == '-')))
 					return (-1);
 			++j;
 		}
