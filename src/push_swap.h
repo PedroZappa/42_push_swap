@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:01:22 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 14:55:57 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:01:15 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ t_elem	*ft_create_stack(int argc, char **argv, int stack);
 int		ft_is_sorted(t_elem *stack);
 int		ft_get_stack_start(t_elem *stack);
 int		ft_get_stack_end(t_elem *stack);
-int		ft_get_stack_min(t_elem *stack);
-int		ft_get_stack_max(t_elem *stack);
+t_elem	ft_get_stack_min(t_elem *stack);
+t_elem	ft_get_stack_max(t_elem *stack);
 
 /* ft_errors.c */
 int		ft_errors(int argc, char **argv);

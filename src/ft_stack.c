@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 15:33:19 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 14:54:57 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/12 15:01:56 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,26 @@ int	ft_get_stack_end(t_elem *stack)
 	return (end);
 }
 
-int	ft_get_stack_min(t_elem *stack)
+t_elem	ft_get_stack_min(t_elem *stack)
 {
-	(void)stack;
-	return (0);
+	int	start;
+	int	end;
+	int	min_idx;
+
+	start = ft_get_stack_start(stack);
+	end = ft_get_stack_end(stack);
+	min_idx = stack[start].index;
+	while (start <= end)
+	{
+		if (stack[start].num < stack[min_idx].num)
+			min_idx = stack[start].index;
+		++start;
+	}
+	return (stack[min_idx]);
 }
 
-int	ft_get_stack_max(t_elem *stack)
+t_elem	ft_get_stack_max(t_elem *stack)
 {
 	(void)stack;
-	return (0);
+	return (stack[0]);
 }
