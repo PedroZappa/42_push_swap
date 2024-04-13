@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:14:45 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/13 12:42:47 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/13 16:46:56 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,21 @@ static int	ft_is_median(t_elem *stack, int num)
 
 t_elem	ft_min_above_thresh(t_elem *stack, int threshold)
 {
-	(void)	stack;
-	(void)	threshold;
-	return (stack[0]);
+	int	start;
+	int	end;
+	int	min;
+
+	start = ft_get_stack_start(stack);
+	end = ft_get_stack_end(stack);
+	min = -1;
+	while (start <= end)
+	{
+		if ((stack[start].num > threshold)
+			&& ((min == -1) || (stack[start].num < stack[min].num)))
+			min = stack[start].index;
+		++start;
+	}
+	if (min == -1)
+		return (ft_get_stack_min(stack));
+	return (stack[min]);
 }
