@@ -6,11 +6,16 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 08:36:28 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/13 12:21:15 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/13 12:42:16 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
+						 int idx, int stack_len);
+static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
+static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr);
 
 void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
 {
@@ -31,12 +36,38 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	i = ft_get_stack_start(stack_b);
 	while (i < ft_get_stack_end(stack_b))
 	{
-		resolve_nun(stack_b, stack_a, \
-			get_best_op_index(stack_b, stack_a, stack_len), stack_len);
+		ft_calc_move(stack_b, stack_a, \
+			ft_best_op_idx(stack_b, stack_a, stack_len), stack_len);
 		++i;
 	}
-	r_top(stack_a, get_min_above_thresh(stack_a, stack_b[i].num).index, \
+	ft_rotate_top(stack_a, ft_min_above_thresh(stack_a, stack_b[i].num).index, \
 	"ra\n", "rra\n");
 	ft_push_elem(stack_b, stack_a, "pa\n");
-	r_top(stack_a, ft_get_stack_min(stack_a).index, "ra\n", "rra\n");
+	ft_rotate_top(stack_a, ft_get_stack_min(stack_a).index, "ra\n", "rra\n");
+}
+
+static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
+						 int idx, int stack_len)
+{
+	(void) stack_a;
+	(void) stack_b;
+	(void) idx;
+	(void) stack_len;
+}
+
+static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
+{
+	(void) stack_a;
+	(void) stack_b;
+	(void) stack_len;
+	return (0);
+}
+
+static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr)
+{
+	(void) stack_a;
+	(void) index;
+	(void) r;
+	(void) rr;
+	return (0);
 }
