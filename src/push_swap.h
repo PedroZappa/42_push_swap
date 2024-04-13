@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:01:22 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/13 11:14:26 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/13 11:35:16 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		ft_errors(int argc, char **argv);
 void	ft_swap_elem(t_elem *stack, char *msg);
 void	ft_rotate(t_elem *stack, char *msg);
 void	ft_rev_rotate(t_elem *stack, char *msg);
-// void	ft_push_elem(t_elem *stack_a, t_elem *stack_b, char *msg);
+void	ft_push_elem(t_elem *stack_a, t_elem *stack_b, char *msg);
 
 /* ft_median.c */
 int		ft_get_median(t_elem *stack);
