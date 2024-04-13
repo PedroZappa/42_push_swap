@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 11:14:45 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/13 11:22:27 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/13 11:33:44 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 static int	ft_is_median(t_elem *stack, int num);
 
 /* ft_get_median() 
- *
+ *	- Get the start of the stack;
+ *	- Get the end of the stack;
+ *	- Loop through the stack from start to end;
+ *		- Check if the current element is the median;
+ *			- If yes, return the current element;
+ *		- Increment start;
+ *	- Return -1 if no median is found;
  * */
 int	ft_get_median(t_elem *stack)
 {
@@ -33,8 +39,19 @@ int	ft_get_median(t_elem *stack)
 	return (-1);
 }
 
-/*	ft_is_median()
- *
+/* ft_is_median()
+ *	- Get the start of the stack;
+ *	- Get the end of the stack;
+ *	- Initialize max and min to 0;
+ *	- Loop through the stack from start to end;
+ *		- Check if the current element is greater than num;
+ *			- If yes, increment max;
+ *		- Check if the current element is lesser than num;
+ *			- If yes, increment min;
+ *		- Increment start;
+ *	- Calculate the difference between max and min;
+ *	- If diff is within the range of -1 and 1, return 1;
+ *		(meaning the current element is the median);
  *	*/
 static int	ft_is_median(t_elem *stack, int num)
 {
