@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 08:36:28 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/13 12:42:16 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/13 16:38:41 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,29 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
 static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr);
 
+/* ft_sort_stack():
+ * 	Sorts a stack of integers by repeatedly partitioning the stack around
+ * 	a median value, pushing elements less than the median to a second stack, \
+ * 	and then merging the two stacks back together in sorted order.
+ *	
+ *	- Initialize i to the start of the stack;
+ *	- Initialize median to the median value of the stack;
+ *	- Loop through the stack_a pushing elements to stack_b until there are only
+ *		three elements left in stack_a;
+ *		- If the current element in stack_b is greater than the median AND
+ *			the number of elements in stack_a is greater than 3, 
+ *			rotate stack_b;
+ *		- Increment i;
+ *	- Sort the three elements in stack_a;
+ *	- Reset i to the start of the stack_a;
+ *	- Loop through the stack_b:
+ *		- Calculate the best move for the current element in stack_b;
+ *		- Increment i;
+ *	- Rotate stack_a until the smallest number greater than the value at
+ *		the top of stack_b is at the top of stack_a;
+ *	- Pushes the top of stack_b to stack_a;
+ *	- Rotate stack_a until its smallest element is at the top;
+ * */
 void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
 {
 	int	i;
