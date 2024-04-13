@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:01:22 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 16:43:10 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/13 08:38:34 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void	ft_rev_rotate(t_elem *stack, char *msg);
 
 /* ft_sort_three.c */
 void	ft_sort_three(t_elem *stack);
+
+/* ft_sort_stack.c */
+void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len);
 
 #endif
