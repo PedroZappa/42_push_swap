@@ -69,13 +69,51 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	ft_rotate_top(stack_a, ft_get_stack_min(stack_a).index, "ra\n", "rra\n");
 }
 
+/* ft_calc_move():
+ *	- Get the start of the stack_a;
+ *	- Get number of elements in stack_a & stack_b that are in the right order
+ *		relative to eachother;
+ *	- Moves the ordered elements from stack_b to stack_a;
+ *	- If ordered elements were found, their indexes are adjusted accordingly;
+ *	- Checks if the index is near the end if the stack or before the start 
+ *		of the stack, adjusting indexes if necessary;
+ *	- Rotates stack_a so that the element at idx is at the top;
+ *	- Again, checks if the index is near the end of the stack or before the
+ *		start of the stack, adjusting indexes if necessary;
+ *	- Checks if the smallest element in stack_b is greater than the top of 
+ *		stack_a OR if the largest element in stack_b is less than the top of
+ *		stack_a;
+ *		- If either conditions is true, rotates the stack_b so that it's 
+ *			smallest element is at the top, 
+ *	- Else, rotates stack_b so that it's smallest element greater than the top
+ *		of stack_a is at the top;
+ *	- Pushes the element in the top of stack_b to stack_a;
+ * */
 static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 						 int idx, int stack_len)
 {
-	(void) stack_a;
-	(void) stack_b;
-	(void) idx;
-	(void) stack_len;
+	int start;
+	int same;
+
+	start = ft_get_stack_start(stack_a);
+	same = get_coherences(stack_a, stack_b, idx);
+	resolve_coherences(stack_a, stack_b, idx);
+	if (same != 0)
+		idx -= same;
+	if (idx >= (stack_len - 2))
+		idx = (start + (idx - (stack_len - 1)));
+	else if (idx < start)
+		idx = (ft_get_stack_end(stack_a) + idx);
+	idx -= ft_rotate_top(stack_a, idx, "rb\n", "rrb\n");
+	if (idx >= (stack_len - 2))
+		idx = (start + (idx - (stack_len - 1)));
+	if ((ft_get_stack_min(stack_b).num > stack_a[idx].num)
+		|| (ft_get_stack_max(stack_b, -1).num < stack_a[idx].num))
+		ft_rotate_top(stack_b, ft_get_stack_min(stack_b).index, "ra\n", "rra\n");
+	else
+		ft_rotate_top(stack_b, \
+		ft_min_above_thresh(stack_b, stack_a[idx].num).index, "ra\n", "rra\n");
+	ft_push_elem(stack_a, stack_b, "pa\n");
 }
 
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
