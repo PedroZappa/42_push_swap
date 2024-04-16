@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 08:36:28 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/16 16:05:25 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:30:52 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 						 int idx, int stack_len);
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
-static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx);
+// static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx);
 static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr);
 
 /* ft_sort_stack():
@@ -125,13 +125,13 @@ static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	return (0);
 }
 
-static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx)
-{
-	(void) stack_a;
-	(void) stack_b;
-	(void) idx;
-	return (0);
-}
+// static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx)
+// {
+// 	(void) stack_a;
+// 	(void) stack_b;
+// 	(void) idx;
+// 	return (0);
+// }
 
 static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr)
 {

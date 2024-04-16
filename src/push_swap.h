@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 21:01:22 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/16 15:51:41 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/16 16:34:02 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len);
 /* ft_order.c */
 int		ft_check_order(t_elem *stack_a, t_elem *stack_b, int idx);
 void	ft_order(t_elem *stack_a, t_elem *stack_b, int idx);
+int		get_op_for_topplace(t_elem *stack_a, int idx, int sign);
 
 #endif
