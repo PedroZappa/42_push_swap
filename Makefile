@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/13 11:21:50 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/16 15:47:17 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,8 @@ LIBS_PATH	= lib
 BUILD_PATH	= .build
 
 SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_stack.c ft_ops.c \
-			  ft_create_stack.c ft_sort_three.c ft_sort_stack.c ft_median.c)
+			  ft_create_stack.c ft_sort_three.c ft_sort_stack.c ft_median.c \
+			  ft_order.c)
 
 OBJS		= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 DEPS		= $(OBJS:.o=.d)

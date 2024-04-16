@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 08:36:28 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/13 16:38:41 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/16 15:47:54 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 	int same;
 
 	start = ft_get_stack_start(stack_a);
-	same = get_coherences(stack_a, stack_b, idx);
-	resolve_coherences(stack_a, stack_b, idx);
+	same = ft_check_order(stack_a, stack_b, idx);
+	ft_order(stack_a, stack_b, idx);
 	if (same != 0)
 		idx -= same;
 	if (idx >= (stack_len - 2))
