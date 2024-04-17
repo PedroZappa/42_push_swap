@@ -123,7 +123,7 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
  *	- Initialize min_ops to -1 to keep track of the smallest cost;
  *	- Loop from i till (stack_len - 1):
  *		- Calculate the cost of moving the element at i of stack_a to the top
- *			and align it with the corresponding element at in stack_b;
+	 *			and align it with the corresponding element at in stack_b;
  *			- If the cost is less than the current min_ops, 
  *				- update min_ops;
  *		- Increment i;
@@ -152,12 +152,46 @@ static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	return (min_ops.index);
 }
 
+/* get_op_for_gplace():
+ *	- Initialize n_ops to 0 to keep count of the number of operations;
+ *	- Calculate the cost of moving the element at idx of stack_a to the top
+ *		and add it to n_ops;
+ *	- Check if the smallest element in stack_b is greater than the element at
+ *		idx in stack_a OR if the largest element in stack_b is less than the
+ *		element at idx in stack_a;
+ *		- Calculate the number of operations needed to move the smallest element
+ *			in stack_b to the top, and adds this number to n_ops.
+ *	- Else 
+ *		- Calculate the index of the smallest element in stack_b greater than
+ *			the element at idx in stack_a;;
+ *		- Calculate the number of operations needed to move the current element
+ *			in stack_b to the top, and adds this number to n_ops;
+ *	- Calculate the number of operations needed to align the two stacks;
+ *	- If order is negative we take its absolute value;
+ *	- Subtract order from n_ops to get the total number of operations;
+ *	- Return (n_ops + 1);
+ * */
 static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx)
 {
-	(void) stack_a;
-	(void) stack_b;
-	(void) idx;
-	return (0);
+	int		n_ops;
+	int		order;
+	t_elem	min_n_behind;
+
+	n_ops = 0;
+	n_ops += get_op_for_topplace(stack_a, idx, 0);
+	if ((ft_get_stack_min(stack_b).num > stack_a[idx].num) \
+	|| (ft_get_stack_max(stack_b, -1).num < stack_a[idx].num))
+		n_ops += get_op_for_topplace(stack_b, ft_get_stack_min(stack_b).index, 0);
+	else
+	{
+		min_n_behind = ft_min_above_thresh(stack_b, stack_a[idx].num);
+		n_ops += get_op_for_topplace(stack_b, stack_b[min_n_behind.index].index, 0);
+	}
+	order = ft_check_order(stack_a, stack_b, idx);
+	if (order < 0)
+		order = -order;
+	n_ops = (n_ops - order);
+	return (n_ops + 1);
 }
 
 static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr)
