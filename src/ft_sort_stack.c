@@ -15,7 +15,7 @@
 static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 						 int idx, int stack_len);
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
-// static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx);
+static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx);
 static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr);
 
 /* ft_sort_stack():
@@ -117,21 +117,48 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 	ft_push_elem(stack_a, stack_b, "pa\n");
 }
 
+/* ft_best_op_idx():
+ *	- Get the start of the stack_a;
+ *	- Initialize i to the start of the stack;
+ *	- Initialize min_ops to -1 to keep track of the smallest cost;
+ *	- Loop from i till (stack_len - 1):
+ *		- Calculate the cost of moving the element at i of stack_a to the top
+ *			and align it with the corresponding element at in stack_b;
+ *			- If the cost is less than the current min_ops, 
+ *				- update min_ops;
+ *		- Increment i;
+ *	- Return the index of the best move;
+ * */
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
+{
+	int		i;
+	int		cost;
+	int		start;
+	t_elem	min_ops;
+
+	start = ft_get_stack_start(stack_a);
+	i = start;
+	min_ops.num = -1;
+	while (i < (stack_len - 1))
+	{
+		cost = get_op_for_gplace(stack_a, stack_b, i);
+		if ((cost < min_ops.num) || (min_ops.num == -1))
+		{
+			min_ops.num = cost;
+			min_ops.index = i;
+		}
+		++i;
+	}
+	return (min_ops.index);
+}
+
+static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx)
 {
 	(void) stack_a;
 	(void) stack_b;
-	(void) stack_len;
+	(void) idx;
 	return (0);
 }
-
-// static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx)
-// {
-// 	(void) stack_a;
-// 	(void) stack_b;
-// 	(void) idx;
-// 	return (0);
-// }
 
 static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr)
 {
