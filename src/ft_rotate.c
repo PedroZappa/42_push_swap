@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 09:05:52 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/18 09:14:18 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:05:02 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,13 +96,55 @@ void	ft_rev_rotate(t_elem *stack, char *msg)
 	ft_putstr_fd(msg, 1);
 }
 
-int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr)
+/*	ft_rotate_top()
+ *	## Rotates a stack to a specific index position.
+ *	
+ *	- Calculate the cost of moving the element at given idx to the top of the stack;
+ *	- Backup n_ops to teh variable sign;
+ *	- If n_ops is negative (meaning the fastest way to get the element to the 
+ *	top is by reverse rotating the stack):
+ *		- Set it to its absolute value;
+ *	- Backup n_ops to the variable op;
+ *	- If n_ops is not 0:
+ *		- While n_ops is greater than 0:
+ *			- If sign is positive:
+ *				- Rotate the stack;
+ *			- Else:
+ *				- Reverse rotate the stack;
+ *			- Decrement n_ops;
+ *	- If sign is positive:
+ *		- Set sign to 1;
+ *	- Else:
+ *		- Set sign to -1;
+ *	- Return the operation cost (sign * op);
+ * */
+int	ft_rotate_top(t_elem *stack_a, int idx, char *r, char *rr)
 {
-	(void) stack_a;
-	(void) index;
-	(void) r;
-	(void) rr;
-	return (0);
+	int	op;
+	int	n_ops;
+	int	sign;
+
+	n_ops = get_op_for_topplace(stack_a, idx, 1);
+	sign = n_ops;
+	if (n_ops < 0)
+		n_ops = -n_ops;
+	op = n_ops;
+	if (n_ops != 0)
+	{
+		while (n_ops > 0)
+		{
+			if (sign > 0)
+				ft_rotate(stack_a, r);
+			else
+				ft_rev_rotate(stack_a, rr);
+			--n_ops;
+		}
+	}
+	if (sign > 0)
+		sign = 1;
+	else
+		sign = -1;
+	return (sign * op);
 }
 
 void	ft_rotate_both(t_elem *stack_a, t_elem *stack_b, int direction)
