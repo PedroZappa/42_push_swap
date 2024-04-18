@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 09:05:52 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/18 12:05:02 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/18 12:08:28 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,10 +147,21 @@ int	ft_rotate_top(t_elem *stack_a, int idx, char *r, char *rr)
 	return (sign * op);
 }
 
+/*	ft_rotate_both()
+*	## Rotates both stacks in a given direction.
+*	*/
 void	ft_rotate_both(t_elem *stack_a, t_elem *stack_b, int direction)
 {
-	(void) stack_a;
-	(void) stack_b;
-	(void) direction;
+	if (direction == 0)
+	{
+		ft_rotate(stack_a, "");
+		ft_rotate(stack_b, "");
+		ft_putstr_fd("rr\n", 1);
+	}
+	else
+	{
+		ft_rev_rotate(stack_a, "");
+		ft_rev_rotate(stack_b, "");
+		ft_putstr_fd("rrr\n", 1);
+	}
 }
-
