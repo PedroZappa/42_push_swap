@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/18 12:32:38 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/18 12:41:00 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -143,13 +143,11 @@ norm: 		## Run norminette test
 	fi
 
 valgrind: all			## Run Server w/ Valgrind
-	tmux split-window -h "valgrind --leak-check=full --show-leak-kinds=all ./server"
-	sleep 0.5
-	./scripts/get-valgrind-pid.sh > server.pid
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 visual: 	## Run push_swap Visualizer 
 	@if test ! -d "$(VISUALIZER_PATH)"; then make get_visual; \
-		else echo "$(YEL)[push_swap Visualizer]$(D) folder found 🖔"; \
+	else echo "$(YEL)[push_swap Visualizer]$(D) folder found 🖔"; \
 	./$(VISUALIZER_PATH)/build/bin/visualizer; fi
 
 get_visual:
