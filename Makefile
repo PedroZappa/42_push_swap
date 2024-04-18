@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/18 09:07:19 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/18 12:32:38 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,8 @@ DEPS		= $(OBJS:.o=.d)
 
 LIBFT_PATH	= $(LIBS_PATH)/libft
 LIBFT_ARC	= $(LIBFT_PATH)/libft.a
+
+VISUALIZER_PATH	= $(LIBS_PATH)/visualizer
 
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
@@ -145,6 +147,18 @@ valgrind: all			## Run Server w/ Valgrind
 	sleep 0.5
 	./scripts/get-valgrind-pid.sh > server.pid
 
+visual: 	## Run push_swap Visualizer 
+	@if test ! -d "$(VISUALIZER_PATH)"; then make get_visual; \
+		else echo "$(YEL)[push_swap Visualizer]$(D) folder found 🖔"; \
+	./$(VISUALIZER_PATH)/build/bin/visualizer; fi
+
+get_visual:
+	@echo "* $(CYA)Getting push_swap Visualizer$(D)]"
+	git clone https://github.com/o-reo/push_swap_visualizer.git $(VISUALIZER_PATH)
+	@echo "* $(GRN)Visualizer download$(D): $(_SUCCESS)"
+	@echo "[$(YEL)Building push_swap Visualizer$(D)]"
+	cd $(VISUALIZER_PATH) && mkdir build && cd build && cmake .. && make
+	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
 
 ##@ Clean-up Rules 󰃢
 
