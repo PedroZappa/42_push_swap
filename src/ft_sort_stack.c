@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 08:36:28 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/16 16:30:52 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/18 09:09:47 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 						 int idx, int stack_len);
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
 static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx);
-static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr);
 
 /* ft_sort_stack():
  * 	Sorts a stack of integers by repeatedly partitioning the stack around
@@ -192,13 +191,4 @@ static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx)
 		order = -order;
 	n_ops = (n_ops - order);
 	return (n_ops + 1);
-}
-
-static int	ft_rotate_top(t_elem *stack_a, int index, char *r, char *rr)
-{
-	(void) stack_a;
-	(void) index;
-	(void) r;
-	(void) rr;
-	return (0);
 }
