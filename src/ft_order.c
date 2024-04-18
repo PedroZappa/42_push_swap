@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:46:10 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/16 16:33:50 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/18 09:24:40 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,41 @@ int	ft_check_order(t_elem *stack_a, t_elem *stack_b, int idx)
 		n_ops = ft_max(n_op_a, n_op_b);
 	return (n_ops);
 }
-
+/* ft_order()
+ * ## Aligns two stacks maintaining the relative order of their elements.
+ *
+ *	- Calculate the number of operations needed to align the two stacks;
+ *	- If the number of operations is positive (means that the element at idx of
+ *		stack_a and the corresponding element in stack_b need to be moved upwards):
+ *		- Rotate both stacks;
+ *		- Decrement the number of operations;
+ *	- Else if the number of operations is negative (means that the element at idx
+ *		of stack_a and the corresponding element in stack_b need to be moved downwards):
+ *		- Reverse rotate both stacks;
+ *		- Increment the number of operations;
+ * */
 void	ft_order(t_elem *stack_a, t_elem *stack_b, int idx)
 {
-	(void) stack_a;
-	(void) stack_b;
-	(void) idx;
+	int	n_ops;
+
+	n_ops = ft_check_order(stack_a, stack_b, idx);
+	if (n_ops > 0)
+	{
+		while (n_ops > 0)
+		{
+			ft_rotate_both(stack_a, stack_b, 0);
+			--n_ops;
+		}
+	}
+	else if (n_ops < 0)
+	{
+		n_ops = -n_ops;
+		while (n_ops > 0)
+		{
+			ft_rotate_both(stack_a, stack_b, 1);
+			--n_ops;
+		}
+	}
 	return ;
 }
 
