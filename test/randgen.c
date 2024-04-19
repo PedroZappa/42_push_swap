@@ -24,7 +24,7 @@ int main(int argc, char **argv)
         seed = time(NULL); // If no seed is provided, generate one based on the current time
 	else
         seed = strtoull(argv[2], NULL, 10); // Convert seed to uint64_t
-    n_randnum = atoi(argv[1]);
+    n_randnum = ft_atoi(argv[1]);
     if (n_randnum <= 0)
 	{
         ft_printf("Error: The number of random numbers must be greater than 0.\n");
