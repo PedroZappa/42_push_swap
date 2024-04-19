@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/19 11:25:27 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/19 11:35:18 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -159,7 +159,7 @@ get_visual:
 	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
 
 test_three:			## Test with 3 element stack
-	@ARG="2 4 5 6 1 3"; ./$(NAME) $$ARG | ./checker_linux $$ARG
+	@ARG="2 1 3"; ./$(NAME) $$ARG | ./checker_linux $$ARG
 	
 
 ##@ Clean-up Rules 󰃢
