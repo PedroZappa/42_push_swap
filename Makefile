@@ -164,7 +164,7 @@ get_visual:
 	cd $(VISUALIZER_PATH) && mkdir build && cd build && cmake .. && make
 	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
 
-build_randgen:	## Get & Build Random Number Generator
+build_randgen:
 	@if test ! -d "$(PCG_C_PATH)"; then make get_pcgc; \
 	else echo "[$(CYA)pcg-c$(D)] folder found $(YEL)🖔$(D)"; \
 	fi
@@ -182,7 +182,7 @@ get_pcgc:
 
 randgen: build_randgen	## Generate list of random values
 	@echo "* [$(YEL)Generating list of random values$(D)]"
-	./test/randgen $(n) $(seed)
+	./test/randgen $(n) $(seed) | tee rand.txt
 	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
 
 test_three:			## Test with 3 element stack
