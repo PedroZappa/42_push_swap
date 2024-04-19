@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/18 12:41:00 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/19 11:25:27 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -142,7 +142,7 @@ norm: 		## Run norminette test
 		printf "[$(YEL)Everything is OK$(D)]\n"; \
 	fi
 
-valgrind: all			## Run Server w/ Valgrind
+valgrind: all			## Run push_swap w/ Valgrind
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
 
 visual: 	## Run push_swap Visualizer 
@@ -157,6 +157,10 @@ get_visual:
 	@echo "[$(YEL)Building push_swap Visualizer$(D)]"
 	cd $(VISUALIZER_PATH) && mkdir build && cd build && cmake .. && make
 	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
+
+test_three:			## Test with 3 element stack
+	@ARG="2 4 5 6 1 3"; ./$(NAME) $$ARG | ./checker_linux $$ARG
+	
 
 ##@ Clean-up Rules 󰃢
 
