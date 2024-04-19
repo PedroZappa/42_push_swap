@@ -13,6 +13,8 @@
 #ifndef RANDGEN_H
 # define RANDGEN_H
 
+# include <time.h>
+
 # include "../lib/libft/libft/libft.h"
 # include "../lib/libft/ft_printf/ft_printf.h"
 

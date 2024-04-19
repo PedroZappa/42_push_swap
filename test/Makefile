@@ -24,6 +24,8 @@ USER			= passunca
 NAME			= randgen
 UNAME 			= $(shell uname)
 
+_SUCCESS 		= [$(GRN)SUCCESS$(D)]
+
 #==============================================================================#
 #                                    PATHS                                     #
 #==============================================================================#
@@ -80,20 +82,6 @@ $(NAME): $(BUILD_PATH) $(PCG_C_ARC) $(OBJS)
 	@echo "[$(YEL)Compiling Random Number Generator$(D)]"
 	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS) $(LIBFT_ARC) $(PCG_C_ARC) -o $(NAME)
 	@echo "[$(_SUCCESS) compiling $(MAG)Random Number Generator!$(D) $(YEL)🖔$(D)]"
-
-##@ Help 󰛵
-
-.PHONY: help
-help: 			## Display this help page
-	@awk 'BEGIN {FS = ":.*##"; \
-			printf "\n=> Usage:\n\tmake $(GRN)<target>$(D)\n"} \
-		/^[a-zA-Z_0-9-]+:.*?##/ { \
-			printf "\t$(GRN)%-15s$(D) %s\n", $$1, $$2 } \
-		/^##@/ { \
-			printf "\n=> %s\n", substr($$0, 5) } ' Makefile
-## Tweaked from source:
-### https://www.padok.fr/en/blog/beautiful-makefile-awk
-
 
 #==============================================================================#
 #                                  UTILS                                       #

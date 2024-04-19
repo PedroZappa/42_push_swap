@@ -53,7 +53,6 @@ LIBFT_ARC	= $(LIBFT_PATH)/libft.a
 VISUALIZER_PATH	= $(LIBS_PATH)/visualizer
 
 RANDGEN_PATH	= ./test/
-PCG_NAME		= randgen
 PCG_C_PATH		= $(LIBS_PATH)/pcg-c
 PCG_C_SRC		= $(PCG_C_PATH)/src
 PCG_C_OBJS		= $(PCG_C_SRC:$(PCG_C_PATH)/%.c=$(BUILD_PATH)/%.o)
@@ -166,15 +165,15 @@ get_visual:
 	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
 
 build_randgen:	## Get & Build Random Number Generator
-	@if test ! -d "$(PCG_C_PATH)"; then make get_randgen; \
+	@if test ! -d "$(PCG_C_PATH)"; then make get_pcgc; \
 	else echo "[$(CYA)pcg-c$(D)] folder found $(YEL)🖔$(D)"; \
 	fi
 	@echo "[$(YEL)Compiling $(MAG)pcg-c$(D) Random Number Generator$(D)]"
 	$(MAKE) $(RANDGEN_PATH)
-	@echo "[$(_SUCCESS) compiling $(MAG)push_swap!$(D) $(YEL)🖔$(D)]"
+	@echo "[$(_SUCCESS) compiling $(MAG)randgen!$(D) $(YEL)🖔$(D)]"
 
-get_randgen:
-	@echo "[$(CYA)Downloading Random Number Generator$(D) $(MAG)pcg-c$(D)]"
+get_pcgc:
+	@echo "[Downloading $(CYA)Random Number Generator$(D) $(MAG)pcg-c$(D)]"
 	git clone git@github.com:imneme/pcg-c.git $(PCG_C_PATH)
 	@echo "* $(MAG)pcg-c$(D) download: $(_SUCCESS)"
 	@echo "[$(YEL)Building $(MAG)pcg-c$(D) Random Number Generator$(D)]"
@@ -183,8 +182,8 @@ get_randgen:
 
 randgen: build_randgen	## Generate list of random values
 	@echo "* [$(YEL)Generating list of random values$(D)]"
-	./test/run
-	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)"]"
+	./test/randgen $(n) $(seed)
+	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
 
 test_three:			## Test with 3 element stack
 	@ARG="2 1 3"; ./$(NAME) $$ARG | ./checker_linux $$ARG
