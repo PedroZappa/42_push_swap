@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/19 11:35:18 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/19 15:43:22 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,13 @@ LIBFT_ARC	= $(LIBFT_PATH)/libft.a
 
 VISUALIZER_PATH	= $(LIBS_PATH)/visualizer
 
+RANDGEN_PATH	= ./test/
+PCG_NAME		= randgen
+PCG_C_PATH		= $(LIBS_PATH)/pcg-c
+PCG_C_SRC		= $(PCG_C_PATH)/src
+PCG_C_OBJS		= $(PCG_C_SRC:$(PCG_C_PATH)/%.c=$(BUILD_PATH)/%.o)
+PCG_ARC			= $(PCG_C_PATH)/libpcg-c.a
+
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
 #==============================================================================#
@@ -59,7 +66,7 @@ VISUALIZER_PATH	= $(LIBS_PATH)/visualizer
 CC		= cc
 
 CFLAGS		= -Wall -Werror -Wextra
-CFLAGS		+= -g
+DFLAGS		= -g
 
 INC			= -I
 
@@ -91,7 +98,7 @@ $(BUILD_PATH):
 
 $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(OBJS)
 	@echo "[$(YEL)Compiling push_swap$(D)]"
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
+	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
 	@echo "[$(_SUCCESS) compiling $(MAG)push_swap!$(D) $(YEL)🖔$(D)]"
 
 $(LIBFT_ARC):
@@ -151,16 +158,36 @@ visual: 	## Run push_swap Visualizer
 	./$(VISUALIZER_PATH)/build/bin/visualizer; fi
 
 get_visual:
-	@echo "* $(CYA)Getting push_swap Visualizer$(D)]"
+	@echo "* [$(CYA)Getting push_swap Visualizer$(D)]"
 	git clone https://github.com/o-reo/push_swap_visualizer.git $(VISUALIZER_PATH)
 	@echo "* $(GRN)Visualizer download$(D): $(_SUCCESS)"
 	@echo "[$(YEL)Building push_swap Visualizer$(D)]"
 	cd $(VISUALIZER_PATH) && mkdir build && cd build && cmake .. && make
 	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
 
+build_randgen:	## Get & Build Random Number Generator
+	@if test ! -d "$(PCG_C_PATH)"; then make get_randgen; \
+	else echo "[$(CYA)pcg-c$(D)] folder found $(YEL)🖔$(D)"; \
+	fi
+	@echo "[$(YEL)Compiling $(MAG)pcg-c$(D) Random Number Generator$(D)]"
+	$(MAKE) $(RANDGEN_PATH)
+	@echo "[$(_SUCCESS) compiling $(MAG)push_swap!$(D) $(YEL)🖔$(D)]"
+
+get_randgen:
+	@echo "[$(CYA)Downloading Random Number Generator$(D) $(MAG)pcg-c$(D)]"
+	git clone git@github.com:imneme/pcg-c.git $(PCG_C_PATH)
+	@echo "* $(MAG)pcg-c$(D) download: $(_SUCCESS)"
+	@echo "[$(YEL)Building $(MAG)pcg-c$(D) Random Number Generator$(D)]"
+	$(MAKE) $(PCG_C_PATH)
+	@echo "[$(_SUCCESS) building $(MAG)pcg-c$(D) $(CYA)Random Number Generator!$(D) $(YEL)🖔$(D)]"
+
+randgen: build_randgen	## Generate list of random values
+	@echo "* [$(YEL)Generating list of random values$(D)]"
+	./test/run
+	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)"]"
+
 test_three:			## Test with 3 element stack
 	@ARG="2 1 3"; ./$(NAME) $$ARG | ./checker_linux $$ARG
-	
 
 ##@ Clean-up Rules 󰃢
 
