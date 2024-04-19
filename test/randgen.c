@@ -35,7 +35,8 @@ int main(int argc, char **argv)
     for (int i = 0; i < n_randnum; i++)
 	{
         random_number = pcg32_random_r(&rng);
-        ft_printf("%d\n",random_number);
+        ft_printf("%d ",random_number);
     }
+	ft_printf("\n");
     return (0);
 }
