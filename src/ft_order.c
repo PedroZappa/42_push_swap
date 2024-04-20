@@ -12,6 +12,10 @@
 
 #include "push_swap.h"
 
+/*	ft_check_order()
+ *	## Checks the order of two stacks at given index idx;
+ *
+ * */
 int	ft_check_order(t_elem *stack_a, t_elem *stack_b, int idx)
 {
 	int n_op_a;
