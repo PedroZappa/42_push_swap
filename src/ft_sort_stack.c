@@ -122,35 +122,35 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
  * corresponding element in stack_b.
  *
  *	- Get the start of the stack_a;
- *	- Initialize i to the start of the stack;
+ *	- Initialize idx to the start of the stack;
  *	- Initialize min_ops to -1 to keep track of the smallest cost;
- *	- Loop from i till (stack_len - 1):
- *		- Calculate the cost of moving the element at i of stack_a to the top
+ *	- Loop from idx till (stack_len - 1):
+ *		- Calculate the cost of moving the element at idx of stack_a to the top
 	 *			and align it with the corresponding element at in stack_b;
  *			- If the cost is less than the current min_ops, 
  *				- update min_ops;
- *		- Increment i;
+ *		- Increment idx;
  *	- Return the index of the best move;
  * */
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
 {
-	int		i;
+	int		idx;
 	int		cost;
 	int		start;
 	t_elem	min_ops;
 
 	start = ft_get_stack_start(stack_a);
-	i = start;
+	idx = start;
 	min_ops.num = -1;
-	while (i < (stack_len - 1))
+	while (idx < (stack_len - 1))
 	{
-		cost = get_op_for_gplace(stack_a, stack_b, i);
+		cost = get_op_for_gplace(stack_a, stack_b, idx);
 		if ((cost < min_ops.num) || (min_ops.num == -1))
 		{
 			min_ops.num = cost;
-			min_ops.index = i;
+			min_ops.index = idx;
 		}
-		++i;
+		++idx;
 	}
 	return (min_ops.index);
 }
