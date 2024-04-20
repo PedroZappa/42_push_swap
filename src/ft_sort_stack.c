@@ -117,6 +117,10 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 }
 
 /* ft_best_op_idx():
+ * ## Find the index of the element in stack_a that requires the least number
+ * of operations to be moved to the top of the stack and aligned with a
+ * corresponding element in stack_b.
+ *
  *	- Get the start of the stack_a;
  *	- Initialize i to the start of the stack;
  *	- Initialize min_ops to -1 to keep track of the smallest cost;
@@ -152,6 +156,10 @@ static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
 }
 
 /* get_op_for_gplace():
+ *	## Calculate the total number of operations needed to move an element at a
+ *	given index in stack_a to the top, and to align a corresponding element in
+ *	stack_b with it.
+ *
  *	- Initialize n_ops to 0 to keep count of the number of operations;
  *	- Calculate the cost of moving the element at idx of stack_a to the top
  *		and add it to n_ops;
