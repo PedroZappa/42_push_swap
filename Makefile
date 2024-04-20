@@ -52,7 +52,7 @@ LIBFT_ARC	= $(LIBFT_PATH)/libft.a
 
 VISUALIZER_PATH	= $(LIBS_PATH)/visualizer
 
-RANDGEN_PATH	= ./test/
+RANDGEN_PATH	= ./randgen/
 PCG_C_PATH		= $(LIBS_PATH)/pcg-c
 PCG_C_SRC		= $(PCG_C_PATH)/src
 PCG_C_OBJS		= $(PCG_C_SRC:$(PCG_C_PATH)/%.c=$(BUILD_PATH)/%.o)
@@ -167,10 +167,10 @@ get_visual:
 build_randgen:
 	@if test ! -d "$(PCG_C_PATH)"; then make get_pcgc; \
 	else echo "[$(CYA)pcg-c$(D)] folder found $(YEL)🖔$(D)"; \
+	echo "[$(_SUCCESS) compiling $(MAG)randgen!$(D) $(YEL)🖔$(D)]"; \
 	fi
 	@echo "[$(YEL)Compiling $(MAG)pcg-c$(D) Random Number Generator$(D)]"
 	$(MAKE) $(RANDGEN_PATH)
-	@echo "[$(_SUCCESS) compiling $(MAG)randgen!$(D) $(YEL)🖔$(D)]"
 
 get_pcgc:
 	@echo "[Downloading $(CYA)Random Number Generator$(D) $(MAG)pcg-c$(D)]"
@@ -180,9 +180,9 @@ get_pcgc:
 	$(MAKE) $(PCG_C_PATH)
 	@echo "[$(_SUCCESS) building $(MAG)pcg-c$(D) $(CYA)Random Number Generator!$(D) $(YEL)🖔$(D)]"
 
-randgen: build_randgen	## Generate list of random values
+randgen: all build_randgen	## Generate list of n random values w/ given seed
 	@echo "* [$(YEL)Generating list of random values$(D)]"
-	./test/randgen $(n) $(seed) | tee rand.txt
+	./randgen/randgen $(n) $(seed) | tee rand.txt
 	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
 
 test_three:			## Test with 3 element stack
