@@ -24,9 +24,9 @@ int	ft_check_order(t_elem *stack_a, t_elem *stack_b, int idx)
 	int	min;
 
 	n_op_a = ft_getontop_ops(stack_a, idx, 1);
-	if ((ft_get_stack_min(stack_b).num > stack_a[idx].num) || \
-		(ft_get_stack_max(stack_b, -1).num < stack_a[idx].num))
-		n_op_b = ft_getontop_ops(stack_b, ft_get_stack_min(stack_b).index, 1);
+	if ((ft_stack_min(stack_b).num > stack_a[idx].num) || \
+		(ft_stack_max(stack_b, -1).num < stack_a[idx].num))
+		n_op_b = ft_getontop_ops(stack_b, ft_stack_min(stack_b).index, 1);
 	else
 	{
 		min = ft_min_above_thresh(stack_b, stack_a[idx].num).index;

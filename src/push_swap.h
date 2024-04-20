@@ -74,7 +74,7 @@ void	ft_sort_three(t_elem *stack);
 int		ft_is_sorted(t_elem *stack);
 int		ft_get_stack_start(t_elem *stack);
 int		ft_get_stack_end(t_elem *stack);
-t_elem	ft_get_stack_min(t_elem *stack);
-t_elem	ft_get_stack_max(t_elem *stack, int threshold);
+t_elem	ft_stack_min(t_elem *stack);
+t_elem	ft_stack_max(t_elem *stack, int threshold);
 
 #endif

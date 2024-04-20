@@ -80,7 +80,7 @@ int	ft_get_stack_end(t_elem *stack)
  *		- Increment start;
  *	- Return the element at min_idx;
  * */
-t_elem	ft_get_stack_min(t_elem *stack)
+t_elem	ft_stack_min(t_elem *stack)
 {
 	int	start;
 	int	end;
@@ -111,7 +111,7 @@ t_elem	ft_get_stack_min(t_elem *stack)
  *		- Increment start;
  *	- Return the element at max_idx;
  * */
-t_elem	ft_get_stack_max(t_elem *stack, int threshold)
+t_elem	ft_stack_max(t_elem *stack, int threshold)
 {
 	int	start;
 	int	end;

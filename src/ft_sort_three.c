@@ -32,19 +32,19 @@ void	ft_sort_three(t_elem *stack)
 
 	start = ft_get_stack_start(stack);
 	end = ft_get_stack_end(stack);
-	if ((ft_get_stack_min(stack).index == start)
-		&& (ft_get_stack_max(stack, -1).index == end))
+	if ((ft_stack_min(stack).index == start)
+		&& (ft_stack_max(stack, -1).index == end))
 		return ;
-	if ((ft_get_stack_min(stack).index == start)
-		&& (ft_get_stack_max(stack, -1).index == (end - 1)))
+	if ((ft_stack_min(stack).index == start)
+		&& (ft_stack_max(stack, -1).index == (end - 1)))
 	{
 		ft_swap_elem(stack, "sa\n");
 		ft_rotate(stack, "ra\n");
 	}
-	if (ft_get_stack_max(stack, -1).index == start)
+	if (ft_stack_max(stack, -1).index == start)
 		ft_rotate(stack, "ra\n");
 	if (stack[start].num > stack[(start + 1)].num)
 		ft_swap_elem(stack, "sa\n");
-	if (ft_get_stack_min(stack).index == end)
+	if (ft_stack_min(stack).index == end)
 		ft_rev_rotate(stack, "rra\n");
 }

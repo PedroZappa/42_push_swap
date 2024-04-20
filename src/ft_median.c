@@ -96,6 +96,6 @@ t_elem	ft_min_above_thresh(t_elem *stack, int threshold)
 		++start;
 	}
 	if (min == -1)
-		return (ft_get_stack_min(stack));
+		return (ft_stack_min(stack));
 	return (stack[min]);
 }

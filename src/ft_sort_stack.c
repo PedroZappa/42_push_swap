@@ -66,7 +66,7 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	ft_rotate_top(stack_a, ft_min_above_thresh(stack_a, stack_b[i].num).index, \
 	"ra\n", "rra\n");
 	ft_push_elem(stack_b, stack_a, "pa\n");
-	ft_rotate_top(stack_a, ft_get_stack_min(stack_a).index, "ra\n", "rra\n");
+	ft_rotate_top(stack_a, ft_stack_min(stack_a).index, "ra\n", "rra\n");
 }
 
 /* ft_calc_move():
@@ -107,9 +107,9 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 	idx -= ft_rotate_top(stack_a, idx, "rb\n", "rrb\n");
 	if (idx >= (stack_len - 2))
 		idx = (start + (idx - (stack_len - 1)));
-	if ((ft_get_stack_min(stack_b).num > stack_a[idx].num)
-		|| (ft_get_stack_max(stack_b, -1).num < stack_a[idx].num))
-		ft_rotate_top(stack_b, ft_get_stack_min(stack_b).index, "ra\n", "rra\n");
+	if ((ft_stack_min(stack_b).num > stack_a[idx].num)
+		|| (ft_stack_max(stack_b, -1).num < stack_a[idx].num))
+		ft_rotate_top(stack_b, ft_stack_min(stack_b).index, "ra\n", "rra\n");
 	else
 		ft_rotate_top(stack_b, \
 		ft_min_above_thresh(stack_b, stack_a[idx].num).index, "ra\n", "rra\n");
@@ -186,9 +186,9 @@ static int	ft_get_align_ops(t_elem *stack_a, t_elem *stack_b, int idx)
 
 	n_ops = 0;
 	n_ops += ft_getontop_ops(stack_a, idx, 0);
-	if ((ft_get_stack_min(stack_b).num > stack_a[idx].num) \
-	|| (ft_get_stack_max(stack_b, -1).num < stack_a[idx].num))
-		n_ops += ft_getontop_ops(stack_b, ft_get_stack_min(stack_b).index, 0);
+	if ((ft_stack_min(stack_b).num > stack_a[idx].num) \
+	|| (ft_stack_max(stack_b, -1).num < stack_a[idx].num))
+		n_ops += ft_getontop_ops(stack_b, ft_stack_min(stack_b).index, 0);
 	else
 	{
 		min_n_behind = ft_min_above_thresh(stack_b, stack_a[idx].num);
