@@ -85,7 +85,7 @@ void	ft_rev_rotate(t_elem *stack, char *msg)
 	--end;
 	i = start;
 	temp = stack[i].num;
-	while (i < start)
+	while (i < end)
 	{
 		temp2 = stack[(i + 1)].num;
 		stack[(i + 1)].num = temp;
