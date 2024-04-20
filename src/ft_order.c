@@ -77,7 +77,6 @@ void	ft_order(t_elem *stack_a, t_elem *stack_b, int idx)
 			--n_ops;
 		}
 	}
-	return ;
 }
 
 /* ft_getontop_ops() (using rotations)
