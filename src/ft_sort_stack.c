@@ -90,10 +90,10 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
  *	- Pushes the element in the top of stack_b to stack_a;
  * */
 static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
-						 int idx, int stack_len)
+					int idx, int stack_len)
 {
-	int start;
-	int same;
+	int	start;
+	int	same;
 
 	start = ft_stack_start(stack_a);
 	same = ft_check_order(stack_a, stack_b, idx);

@@ -48,8 +48,8 @@ void	ft_swap_elem(t_elem *stack, char *msg)
 *	*/
 void	ft_push_elem(t_elem *stack_a, t_elem *stack_b, char *msg)
 {
-	int a_idx;
-	int b_idx;
+	int	a_idx;
+	int	b_idx;
 
 	a_idx = 0;
 	while (stack_a[a_idx].filled != 1)
