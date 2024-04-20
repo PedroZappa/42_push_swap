@@ -18,10 +18,10 @@
  * */
 int	ft_check_order(t_elem *stack_a, t_elem *stack_b, int idx)
 {
-	int n_op_a;
-	int n_op_b;
-	int n_ops;
-	int min;
+	int	n_op_a;
+	int	n_op_b;
+	int	n_ops;
+	int	min;
 
 	n_op_a = ft_getontop_ops(stack_a, idx, 1);
 	if ((ft_get_stack_min(stack_b).num > stack_a[idx].num) || \
@@ -39,16 +39,19 @@ int	ft_check_order(t_elem *stack_a, t_elem *stack_b, int idx)
 		n_ops = ft_max(n_op_a, n_op_b);
 	return (n_ops);
 }
+
 /* ft_order()
  * ## Aligns two stacks maintaining the relative order of their elements.
  *
  *	- Calculate the number of operations needed to align the two stacks;
  *	- If the number of operations is positive (means that the element at idx of
- *		stack_a and the corresponding element in stack_b need to be moved upwards):
+ *		stack_a and the corresponding element in stack_b need to be moved 
+ *		upwards):
  *		- Rotate both stacks;
  *		- Decrement the number of operations;
- *	- Else if the number of operations is negative (means that the element at idx
- *		of stack_a and the corresponding element in stack_b need to be moved downwards):
+ *	- Else if the number of operations is negative (means that the element at 
+ *		idx of stack_a and the corresponding element in stack_b need to be moved
+ *		downwards):
  *		- Reverse rotate both stacks;
  *		- Increment the number of operations;
  * */

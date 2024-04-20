@@ -13,7 +13,7 @@
 #include "push_swap.h"
 
 static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
-						 int idx, int stack_len);
+				int idx, int stack_len);
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
 static int	ft_get_align_ops(t_elem *stack_a, t_elem *stack_b, int idx);
 

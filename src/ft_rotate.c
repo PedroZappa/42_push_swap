@@ -99,7 +99,8 @@ void	ft_rev_rotate(t_elem *stack, char *msg)
 /*	ft_rotate_top()
  *	## Rotates a stack to a specific index position.
  *	
- *	- Calculate the cost of moving the element at given idx to the top of the stack;
+ *	- Calculate the cost of moving the element at given idx to the top of the
+ *		stack;
  *	- Backup n_ops to teh variable sign;
  *	- If n_ops is negative (meaning the fastest way to get the element to the 
  *	top is by reverse rotating the stack):
