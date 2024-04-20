@@ -192,6 +192,14 @@ test_rand500:		## Test with 500 random elements
 	./randgen/randgen 500 | tee rand.txt
 	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
 
+test_50rand500:		## Test with 50 sets of 500 random elements
+	@for i in {1..50}; do \
+		echo "Test set $$i"; \
+		./randgen/randgen 500 > rand.txt; \
+		ARG=$$(cat rand.txt); \
+		./$(NAME) "$$ARG" | ./checker_linux "$$ARG"; \
+	done
+
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
