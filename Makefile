@@ -188,6 +188,10 @@ randgen: all build_randgen	## Generate list of n random values w/ given seed
 test_three:			## Test with 3 element stack
 	@ARG="2 1 3"; ./$(NAME) $$ARG | ./checker_linux $$ARG
 
+test_rand500:		## Test with 500 random elements
+	./randgen/randgen 500 | tee rand.txt
+	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
