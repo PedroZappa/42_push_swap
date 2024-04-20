@@ -56,7 +56,7 @@ void	ft_push_elem(t_elem *stack_a, t_elem *stack_b, char *msg);
 /* ft_order.c */
 int		ft_check_order(t_elem *stack_a, t_elem *stack_b, int idx);
 void	ft_order(t_elem *stack_a, t_elem *stack_b, int idx);
-int		get_op_for_topplace(t_elem *stack_a, int idx, int sign);
+int		ft_getontop_ops(t_elem *stack_a, int idx, int sign);
 
 /* ft_rotate.c */
 void	ft_rotate(t_elem *stack, char *msg);

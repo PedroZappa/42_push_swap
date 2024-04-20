@@ -124,7 +124,7 @@ int	ft_rotate_top(t_elem *stack_a, int idx, char *r, char *rr)
 	int	n_ops;
 	int	sign;
 
-	n_ops = get_op_for_topplace(stack_a, idx, 1);
+	n_ops = ft_getontop_ops(stack_a, idx, 1);
 	sign = n_ops;
 	if (n_ops < 0)
 		n_ops = -n_ops;

@@ -15,7 +15,7 @@
 static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 						 int idx, int stack_len);
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
-static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx);
+static int	ft_get_align_ops(t_elem *stack_a, t_elem *stack_b, int idx);
 
 /* ft_sort_stack():
  * 	Sorts a stack of integers by repeatedly partitioning the stack around
@@ -144,7 +144,7 @@ static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	min_ops.num = -1;
 	while (idx < (stack_len - 1))
 	{
-		cost = get_op_for_gplace(stack_a, stack_b, idx);
+		cost = ft_get_align_ops(stack_a, stack_b, idx);
 		if ((cost < min_ops.num) || (min_ops.num == -1))
 		{
 			min_ops.num = cost;
@@ -155,7 +155,7 @@ static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	return (min_ops.index);
 }
 
-/* get_op_for_gplace():
+/* ft_get_align_ops():
  *	## Calculate the total number of operations needed to move an element at a
  *	given index in stack_a to the top, and to align a corresponding element in
  *	stack_b with it.
@@ -178,21 +178,21 @@ static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
  *	- Subtract order from n_ops to get the total number of operations;
  *	- Return (n_ops + 1);
  * */
-static int	get_op_for_gplace(t_elem *stack_a, t_elem *stack_b, int idx)
+static int	ft_get_align_ops(t_elem *stack_a, t_elem *stack_b, int idx)
 {
 	int		n_ops;
 	int		order;
 	t_elem	min_n_behind;
 
 	n_ops = 0;
-	n_ops += get_op_for_topplace(stack_a, idx, 0);
+	n_ops += ft_getontop_ops(stack_a, idx, 0);
 	if ((ft_get_stack_min(stack_b).num > stack_a[idx].num) \
 	|| (ft_get_stack_max(stack_b, -1).num < stack_a[idx].num))
-		n_ops += get_op_for_topplace(stack_b, ft_get_stack_min(stack_b).index, 0);
+		n_ops += ft_getontop_ops(stack_b, ft_get_stack_min(stack_b).index, 0);
 	else
 	{
 		min_n_behind = ft_min_above_thresh(stack_b, stack_a[idx].num);
-		n_ops += get_op_for_topplace(stack_b, stack_b[min_n_behind.index].index, 0);
+		n_ops += ft_getontop_ops(stack_b, stack_b[min_n_behind.index].index, 0);
 	}
 	order = ft_check_order(stack_a, stack_b, idx);
 	if (order < 0)

@@ -19,14 +19,14 @@ int	ft_check_order(t_elem *stack_a, t_elem *stack_b, int idx)
 	int n_ops;
 	int min;
 
-	n_op_a = get_op_for_topplace(stack_a, idx, 1);
+	n_op_a = ft_getontop_ops(stack_a, idx, 1);
 	if ((ft_get_stack_min(stack_b).num > stack_a[idx].num) || \
 		(ft_get_stack_max(stack_b, -1).num < stack_a[idx].num))
-		n_op_b = get_op_for_topplace(stack_b, ft_get_stack_min(stack_b).index, 1);
+		n_op_b = ft_getontop_ops(stack_b, ft_get_stack_min(stack_b).index, 1);
 	else
 	{
 		min = ft_min_above_thresh(stack_b, stack_a[idx].num).index;
-		n_op_b = get_op_for_topplace(stack_b, min, 1);
+		n_op_b = ft_getontop_ops(stack_b, min, 1);
 	}
 	n_ops = 0;
 	if ((n_op_a > 0) && (n_op_b > 0))
@@ -73,7 +73,7 @@ void	ft_order(t_elem *stack_a, t_elem *stack_b, int idx)
 	return ;
 }
 
-/* get_op_for_topplace() (using rotations)
+/* ft_getontop_ops() (using rotations)
  *	## Calculates the number of operations needed to move an element at a given
  *	index to the top of a stack.
  *
@@ -91,7 +91,7 @@ void	ft_order(t_elem *stack_a, t_elem *stack_b, int idx)
  *		- Get the difference between the index and the start of the stack;
  *	- Return n_ops;	
  * */
-int	get_op_for_topplace(t_elem *stack, int idx, int sign)
+int	ft_getontop_ops(t_elem *stack, int idx, int sign)
 {
 	int		n_ops;
 	int		start;
