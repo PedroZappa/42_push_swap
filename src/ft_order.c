@@ -106,8 +106,8 @@ int	ft_getontop_ops(t_elem *stack, int idx, int sign)
 	int		median;
 
 	n_ops = 0;
-	start = ft_get_stack_start(stack);
-	end = ft_get_stack_end(stack);
+	start = ft_stack_start(stack);
+	end = ft_stack_end(stack);
 	median = (start + ((end - start) / 2));
 	if (idx > median)
 	{

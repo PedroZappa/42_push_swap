@@ -25,7 +25,7 @@ void	ft_swap_elem(t_elem *stack, char *msg)
 	int	start;
 	int	temp;
 
-	start = ft_get_stack_start(stack);
+	start = ft_stack_start(stack);
 	temp = stack[start].num;
 	stack[start].num = stack[(start + 1)].num;
 	stack[(start + 1)].num = temp;

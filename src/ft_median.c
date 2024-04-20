@@ -28,8 +28,8 @@ int	ft_get_median(t_elem *stack)
 	int	start;
 	int	end;
 
-	start = ft_get_stack_start(stack);
-	end = ft_get_stack_end(stack);
+	start = ft_stack_start(stack);
+	end = ft_stack_end(stack);
 	while (start <= end)
 	{
 		if (ft_is_median(stack, stack[start].num))
@@ -61,8 +61,8 @@ static int	ft_is_median(t_elem *stack, int num)
 	int	min;
 	int	diff;
 
-	start = ft_get_stack_start(stack);
-	end = ft_get_stack_end(stack);
+	start = ft_stack_start(stack);
+	end = ft_stack_end(stack);
 	min = 0;
 	max = 0;
 	while (start <= end)
@@ -85,8 +85,8 @@ t_elem	ft_min_above_thresh(t_elem *stack, int threshold)
 	int	end;
 	int	min;
 
-	start = ft_get_stack_start(stack);
-	end = ft_get_stack_end(stack);
+	start = ft_stack_start(stack);
+	end = ft_stack_end(stack);
 	min = -1;
 	while (start <= end)
 	{

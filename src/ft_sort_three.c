@@ -30,8 +30,8 @@ void	ft_sort_three(t_elem *stack)
 	int	start;
 	int	end;
 
-	start = ft_get_stack_start(stack);
-	end = ft_get_stack_end(stack);
+	start = ft_stack_start(stack);
+	end = ft_stack_end(stack);
 	if ((ft_stack_min(stack).index == start)
 		&& (ft_stack_max(stack, -1).index == end))
 		return ;

@@ -35,14 +35,14 @@ int	ft_is_sorted(t_elem *stack)
 	return (1);
 }
 
-/*	ft_get_stack_start()
+/*	ft_stack_start()
  *	- i keeps track of the index of the first filled stack element;
  *	- Loop from bottom to the top element of the stack;
  *	- After finding the first filled element decrement start by 1;
  *		(to account for the sentinel value);
  *	- Return start, the index of the first filled element;
  * */
-int	ft_get_stack_start(t_elem *stack)
+int	ft_stack_start(t_elem *stack)
 {
 	int	start;
 
@@ -54,12 +54,12 @@ int	ft_get_stack_start(t_elem *stack)
 	return (start);
 }
 
-/*	ft_get_stack_end()
+/*	ft_stack_end()
 *	- Loops through stack until the sentinel value (-1) is found;
 *	- Decrement end by 1 to select the value before the sentinel value;	
 *	- Returns the index of the last filled element;
 *	*/
-int	ft_get_stack_end(t_elem *stack)
+int	ft_stack_end(t_elem *stack)
 {
 	int	end;
 
@@ -86,8 +86,8 @@ t_elem	ft_stack_min(t_elem *stack)
 	int	end;
 	int	min_idx;
 
-	start = ft_get_stack_start(stack);
-	end = ft_get_stack_end(stack);
+	start = ft_stack_start(stack);
+	end = ft_stack_end(stack);
 	min_idx = stack[start].index;
 	while (start <= end)
 	{
@@ -117,8 +117,8 @@ t_elem	ft_stack_max(t_elem *stack, int threshold)
 	int	end;
 	int	max_idx;
 
-	start = ft_get_stack_start(stack);
-	end = ft_get_stack_end(stack);
+	start = ft_stack_start(stack);
+	end = ft_stack_end(stack);
 	max_idx = -1;
 	while (start <= end)
 	{
