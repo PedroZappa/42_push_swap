@@ -50,9 +50,27 @@ If the input stack has 2 values:
 
 ...
 
+___
+
 If the input stack has 3 values:
 
-...
+* It starts by getting the `start` and `end` indices of `stack_a`.
+
+* It checks if `stack_a` is already sorted: If the **minimum value** is at the `start` of `stack_a` and the **maximum value** is at the `end`, the function returns without making any changes.
+
+* If the **minimum value** is at the `start` and the **maximum value** is in the middle (second position), it **swaps** the first two elements and then **rotates** `stack_a`. This effectively moves the **maximum value** to the end of `stack_a`.
+
+* If the **maximum value** is at the `start` of `stack_a`, it rotates the stack. This moves the **maximum value** to the `end`.
+
+* If the first element is greater than the second element, it **swaps** the first two elements.
+
+* If the **minimum value** is at the `end` of `stack_a`, a **reverse rotation** is performed. This moves the **minimum value** to the `start` of `stack_a`.
+
+> [!Note]
+>
+> See the [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/master/ft_sort_three.c) for a direct look into the implementation of this part of the algorithm.
+
+___
 
 If the input stack has more than 3 values:
 
