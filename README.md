@@ -24,6 +24,7 @@ ___
 * [Implementation 📜](#implementation-)
 * [QuickSort Algorithm (push_swap Variation)](#quicksort-algorithm-push_swap-variation)
   * [If the stack is empty:](#if-the-stack-is-empty)
+  * [If the stack is invalid:](#if-the-stack-is-invalid)
   * [If the stack has 2 values:](#if-the-stack-has-2-values)
   * [If the stack has 3 values:](#if-the-stack-has-3-values)
   * [If the stack has more than 3 values:](#if-the-stack-has-more-than-3-values)
@@ -51,13 +52,22 @@ Here's a general description of the logic implemented in this project:
 
 ### If the stack is empty:
 
-...
+* The program simply returns the prompt to the user.
+
+___
+
+### If the stack is invalid:
+
+* The program prints "Error\n" to `stdout` and returns the prompt to the user.
 
 ___
 
 ### If the stack has 2 values:
 
-...
+* If the elements are already in order:
+	* No operations is necessary.
+* If the elements are not in order:
+	* A single **swap** operation is performed to sort `stack_a`.
 
 ___
 
