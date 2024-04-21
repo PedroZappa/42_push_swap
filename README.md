@@ -23,10 +23,10 @@ ___
 * [About 📌](#about-)
 * [Implementation 📜](#implementation-)
 * [QuickSort Algorithm (push_swap Variation)](#quicksort-algorithm-push_swap-variation)
-  * [If the input stack is empty:](#if-the-input-stack-is-empty)
-  * [If the input stack has 2 values:](#if-the-input-stack-has-2-values)
-  * [If the input stack has 3 values:](#if-the-input-stack-has-3-values)
-  * [If the input stack has more than 3 values:](#if-the-input-stack-has-more-than-3-values)
+  * [If the stack is empty:](#if-the-stack-is-empty)
+  * [If the stack has 2 values:](#if-the-stack-has-2-values)
+  * [If the stack has 3 values:](#if-the-stack-has-3-values)
+  * [If the stack has more than 3 values:](#if-the-stack-has-more-than-3-values)
 * [Calculating the Best Move](#calculating-the-best-move)
 * [Usage 🏁](#usage-)
 * [Tests 🧪](#tests-)
@@ -49,19 +49,19 @@ ___
 
 Here's a general description of the logic implemented in this project:
 
-### If the input stack is empty:
+### If the stack is empty:
 
 ...
 
 ___
 
-### If the input stack has 2 values:
+### If the stack has 2 values:
 
 ...
 
 ___
 
-### If the input stack has 3 values:
+### If the stack has 3 values:
 
 * It starts by getting the `start` and `end` indices of `stack_a`.
 
@@ -81,7 +81,7 @@ ___
 
 ___
 
-### If the input stack has more than 3 values:
+### If the stack has more than 3 values:
 
 * The algorithm starts by partitioning `stack_a` around a **median value**. 
 	* `i` is initialized to the start of `stack_a`, and `median` to its median value.
