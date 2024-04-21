@@ -31,6 +31,7 @@ _NORM 			= [$(MAG)Norminette$(D)]
 _NORM_SUCCESS 	= $(GRN)=== OK:$(D)
 _NORM_INFO 		= $(BLU)File no:$(D)
 _NORM_ERR 		= $(RED)=== KO:$(D)
+_SEP 			= ---------------------------
 
 #==============================================================================#
 #                                    PATHS                                     #
@@ -194,10 +195,13 @@ test_rand500:		## Test with 500 random elements
 
 test_50rand500:		## Test with 50 sets of 500 random elements
 	@for i in {1..50}; do \
-		echo "Test set $$i"; \
+		echo "Test set $(RED)$$i$(D)"; \
 		./randgen/randgen 500 > rand.txt; \
 		ARG=$$(cat rand.txt); \
-		./$(NAME) "$$ARG" | ./checker_linux "$$ARG"; \
+		./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+		N_OPS=$$(wc -l < push_swap_out.txt); \
+		echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+		echo "$(YEL)$(_SEP)$(D)"; \
 	done
 
 ##@ Clean-up Rules 󰃢
