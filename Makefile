@@ -41,9 +41,9 @@ SRC_PATH	= src
 LIBS_PATH	= lib
 BUILD_PATH	= .build
 
-SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_stack.c ft_ops.c \
-			  ft_create_stack.c ft_sort_three.c ft_sort_stack.c ft_median.c \
-			  ft_order.c ft_rotate.c)
+SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_assert_stack.c \
+			  ft_ops.c ft_create_stack.c ft_sort_three.c ft_sort_stack.c \
+			  ft_median.c ft_order.c ft_rotate.c)
 
 OBJS		= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 DEPS		= $(OBJS:.o=.d)

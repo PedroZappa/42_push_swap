@@ -39,6 +39,13 @@ typedef struct s_elem {
 //							Function Prototypes                                /
 //=============================================================================/
 
+/* ft_assert_stack.c */
+int		ft_is_sorted(t_elem *stack);
+int		ft_stack_start(t_elem *stack);
+int		ft_stack_end(t_elem *stack);
+t_elem	ft_stack_min(t_elem *stack);
+t_elem	ft_stack_max(t_elem *stack, int threshold);
+
 /* ft_create_stack.c */
 t_elem	*ft_create_stack(int argc, char **argv, int stack);
 
@@ -69,12 +76,5 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len);
 
 /* ft_sort_three.c */
 void	ft_sort_three(t_elem *stack);
-
-/* ft_stack.c */
-int		ft_is_sorted(t_elem *stack);
-int		ft_stack_start(t_elem *stack);
-int		ft_stack_end(t_elem *stack);
-t_elem	ft_stack_min(t_elem *stack);
-t_elem	ft_stack_max(t_elem *stack, int threshold);
 
 #endif
