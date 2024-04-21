@@ -53,6 +53,8 @@ Here's a general description of the logic implemented in this project:
 
 ...
 
+___
+
 ### If the input stack has 2 values:
 
 ...
@@ -97,6 +99,8 @@ ___
 * Finally, it rotates `stack_a` until its smallest element is at the top.
 
 This process is repeated until the entire stack is sorted.
+
+___
 
 ## Calculating the Best Move
 
