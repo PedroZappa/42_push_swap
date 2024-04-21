@@ -31,7 +31,7 @@ _NORM 			= [$(MAG)Norminette$(D)]
 _NORM_SUCCESS 	= $(GRN)=== OK:$(D)
 _NORM_INFO 		= $(BLU)File no:$(D)
 _NORM_ERR 		= $(RED)=== KO:$(D)
-_SEP 			= ---------------------------
+_SEP 			= =====================
 
 #==============================================================================#
 #                                    PATHS                                     #
@@ -149,8 +149,9 @@ norm: 		## Run norminette test
 		printf "[$(YEL)Everything is OK$(D)]\n"; \
 	fi
 
-valgrind: all			## Run push_swap w/ Valgrind
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME)
+valgrind: all build_randgen		## Run push_swap w/ Valgrind
+	./randgen/randgen 500 > rand.txt;
+	@ARG=$$(cat rand.txt); valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG"
 
 visual: 	## Run push_swap Visualizer 
 	@if test ! -d "$(VISUALIZER_PATH)"; then make get_visual; \
@@ -187,7 +188,20 @@ randgen: all build_randgen	## Generate list of n random values w/ given seed
 	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
 
 test_three:			## Test with 3 element stack
-	@ARG="2 1 3"; ./$(NAME) $$ARG | ./checker_linux $$ARG
+	./randgen/randgen 3 | tee rand.txt
+	@ARG=$$(cat rand.txt); \
+	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	N_OPS=$$(wc -l < push_swap_out.txt); \
+	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+	echo "$(YEL)$(_SEP)$(D)"; \
+
+test_six:			## Test with 3 element stack
+	./randgen/randgen 6 | tee rand.txt
+	@ARG=$$(cat rand.txt); \
+	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	N_OPS=$$(wc -l < push_swap_out.txt); \
+	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+	echo "$(YEL)$(_SEP)$(D)"; \
 
 test_rand500:		## Test with 500 random elements
 	./randgen/randgen 500 | tee rand.txt
