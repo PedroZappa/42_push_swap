@@ -60,6 +60,9 @@ ___
 
 * The program prints "Error\n" to `stdout` and returns the prompt to the user.
 
+> [!Note]
+>
+> See the [ft_errors.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_errors.c) to learn more about this implementation's error handling functions.
 ___
 
 ### If the stack has 2 values:
