@@ -41,7 +41,7 @@ ___
 
 # Implementation 📜
 
-The algorithm used to sort a stack of random integer values is a variation of the `QuickSort Algorithm`, adapted specifically for stacks. The algorithm uses two stacks to sort the elements, pushing and swapping elements between the stacks as necessary.
+The algorithm used to sort a stack of random integer values `stack_a` is a variation of the `QuickSort Algorithm` adapted to sort stacks. The algorithm sorts `stack_a` by repeatedly partitioning it around a `median` (pivot) value, pushing elements to `stack_b` programmatically after calculating which element is less costly to sort at each iteration.
 
 ___
 
