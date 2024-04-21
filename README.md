@@ -66,7 +66,7 @@ ___
 
 * If the elements are already in order:
 	* No operations is necessary.
-* If the elements are not in order:
+* If the elements are NOT in order:
 	* A single **swap** operation is performed to sort `stack_a`.
 
 ___
