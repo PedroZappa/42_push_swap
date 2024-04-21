@@ -96,9 +96,9 @@ ___
 
 * The top of `stack_b` is then pushed to `stack_a`.
 
-* Finally, it rotates `stack_a` until its smallest element is at the top.
+* Finally, it **rotates** `stack_a` until its smallest element is at the top.
 
-This process is repeated until the entire stack is sorted.
+This process is repeated until all the values in `stack_a` are sorted.
 
 ___
 
