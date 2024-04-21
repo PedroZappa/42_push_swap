@@ -68,7 +68,7 @@ If the input stack has 3 values:
 
 > [!Note]
 >
-> See the [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/master/ft_sort_three.c) for a direct look into the implementation of this part of the algorithm.
+> See the [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_three.c) for a direct look into the implementation of this part of the algorithm.
 
 ___
 
