@@ -41,7 +41,7 @@ void	ft_swap_elem(t_elem *stack, char *msg)
 * 		- Save the index of the top element in b_idx;
 * 	- Decrement b_idx by 1 to skip the sentinel value;
 * 	- Set the value at b_idx to the value at a_idx;
-* 	- Set the stack_b element as filled;
+* 	- Set the stack_b element as set;
 * 	- Set the value at a_idx to 0;
 * 	- Set the stack_a element as empty;
 *	- Print the operation message to stdout;
@@ -52,15 +52,15 @@ void	ft_push_elem(t_elem *stack_a, t_elem *stack_b, char *msg)
 	int	b_idx;
 
 	a_idx = 0;
-	while (stack_a[a_idx].filled != 1)
+	while (stack_a[a_idx].set != 1)
 		++a_idx;
 	b_idx = 0;
-	while ((stack_b[b_idx].index != -1) && (stack_b[b_idx].filled != 1))
+	while ((stack_b[b_idx].index != -1) && (stack_b[b_idx].set != 1))
 		++b_idx;
 	--b_idx;
 	stack_b[b_idx].num = stack_a[a_idx].num;
-	stack_b[b_idx].filled = 1;
+	stack_b[b_idx].set = 1;
 	stack_a[a_idx].num = 0;
-	stack_a[a_idx].filled = 0;
+	stack_a[a_idx].set = 0;
 	ft_putstr_fd(msg, 1);
 }

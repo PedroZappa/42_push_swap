@@ -36,18 +36,18 @@ int	ft_is_sorted(t_elem *stack)
 }
 
 /*	ft_stack_start()
- *	- i keeps track of the index of the first filled stack element;
+ *	- i keeps track of the index of the first set stack element;
  *	- Loop from bottom to the top element of the stack;
- *	- After finding the first filled element decrement start by 1;
+ *	- After finding the first set element decrement start by 1;
  *		(to account for the sentinel value);
- *	- Return start, the index of the first filled element;
+ *	- Return start, the index of the first set element;
  * */
 int	ft_stack_start(t_elem *stack)
 {
 	int	start;
 
 	start = 0;
-	while (stack[start].filled != 1)
+	while (stack[start].set != 1)
 		++start;
 	if (stack[start].index == -1)
 		--start;
@@ -57,7 +57,7 @@ int	ft_stack_start(t_elem *stack)
 /*	ft_stack_end()
 *	- Loops through stack until the sentinel value (-1) is found;
 *	- Decrement end by 1 to select the value before the sentinel value;	
-*	- Returns the index of the last filled element;
+*	- Returns the index of the last set element;
 *	*/
 int	ft_stack_end(t_elem *stack)
 {
@@ -73,7 +73,7 @@ int	ft_stack_end(t_elem *stack)
 /*	ft_get_stack_min()
  *	- Get the start of the stack;
  *	- Get the end of the stack;
- *	- Initialize min_idx to the index of the first filled element;
+ *	- Initialize min_idx to the index of the first set element;
  *	- Loop through the stack from start to end;
  *		- If the current element is less than the element at current min_idx
  *			- Set min_idx to the index of the current element;
@@ -106,7 +106,7 @@ t_elem	ft_stack_min(t_elem *stack)
  *		- check if max_idx is -1
  *		- OR if the curr element is greater than the element at max_idx
  *		- OR if the threshhold is -1 or the curr element is less than threshold
- *		- AND if the current element is not filled
+ *		- AND if the current element is not set
  *			- Set max_idx to the index of the current element;
  *		- Increment start;
  *	- Return the element at max_idx;
@@ -124,7 +124,7 @@ t_elem	ft_stack_max(t_elem *stack, int threshold)
 	{
 		if ((max_idx == -1) || (((stack[start].num > stack[max_idx].num)
 					|| (((threshold == -1) || (stack[start].num < threshold))
-						&& (stack[max_idx].filled == -1)))))
+						&& (stack[max_idx].set == -1)))))
 			max_idx = stack[start].index;
 		++start;
 	}

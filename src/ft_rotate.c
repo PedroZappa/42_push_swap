@@ -35,7 +35,7 @@ void	ft_rotate(t_elem *stack, char *msg)
 	int	i;
 
 	start = 0;
-	while ((stack[start].index != -1) && (stack[start].filled != 1))
+	while ((stack[start].index != -1) && (stack[start].set != 1))
 		++start;
 	end = 0;
 	while (stack[end].index != -1)
@@ -77,7 +77,7 @@ void	ft_rev_rotate(t_elem *stack, char *msg)
 	int	i;
 
 	start = 0;
-	while ((stack[start].index != -1) && (stack[start].filled != 1))
+	while ((stack[start].index != -1) && (stack[start].set != 1))
 		++start;
 	end = 0;
 	while (stack[end].index != -1)

@@ -32,7 +32,7 @@
 typedef struct s_elem {
 	int	num;
 	int	index;
-	int	filled;
+	int	set;
 }	t_elem;
 
 //=============================================================================/

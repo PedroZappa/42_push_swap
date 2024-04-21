@@ -18,7 +18,7 @@
  *		- Loops over args excluding the last one;
  *			- If select == 1 (building stack_a)
  *				- Convert string to int;
- *				- Set stack element as filled;
+ *				- Set stack element as set;
  *			- If select == 0 (building stack_b)
  *				- Set stack element as empty;
  *			- Assign current stack element index;
@@ -40,12 +40,12 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 		if (select == 1)
 		{
 			stack[i].num = ft_atoi(argv[i]);
-			stack[i].filled = 1;
+			stack[i].set = 1;
 		}
 		else
 		{
 			stack[i].num = 0;
-			stack[i].filled = 0;
+			stack[i].set = 0;
 		}
 		stack[i].index = i;
 		++i;
