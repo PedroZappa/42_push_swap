@@ -36,7 +36,7 @@
 *.x86_64
 *.hex
 push_swap
-randgen
+*/randgen
 
 # Debug files
 *.dSYM/
