@@ -26,6 +26,7 @@ ___
 * [Error / Invalid Input Handling](#error--invalid-input-handling)
 * [Creating the Stacks](#creating-the-stacks)
 * [Sorting the Stacks](#sorting-the-stacks)
+* [Freeing the Stacks](#freeing-the-stacks)
 * [QuickSort Algorithm (push_swap Variation)](#quicksort-algorithm-push_swap-variation)
   * [If the stack is empty:](#if-the-stack-is-empty)
   * [If the stack is invalid:](#if-the-stack-is-invalid)
@@ -185,8 +186,30 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 ___
 
 ## Sorting the Stacks
+```c
+int	main(int argc, char **argv)
+{
+	(...)
+	if (ft_is_sorted(stack_a) == -1)
+		ft_sort(stack_a, stack_b, argc);
+	(...)
+}
+```
 
 If stack_a is not already sorted (indicated by `ft_is_sorted()` returning -1), it sorts `stack_a` using the `ft_sort()` function.
+
+___
+
+## Freeing the Stacks
+```c
+int	main(int argc, char **argv)
+{
+	(...)
+	ft_free(stack_a, stack_b, input_list, must_free);
+	return (0);
+	(...)
+}
+```
 
 Finally, it frees any allocated memory before exiting the program.
 
