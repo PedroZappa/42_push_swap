@@ -33,7 +33,7 @@ ___
   * [If the stack has 2 values:](#if-the-stack-has-2-values)
   * [If the stack has 3 values:](#if-the-stack-has-3-values)
   * [If the stack has more than 3 values:](#if-the-stack-has-more-than-3-values)
-* [Calculating the Best Move](#calculating-the-best-move)
+  * [Calculating the Best Move](#calculating-the-best-move)
 * [Usage 🏁](#usage-)
 * [Tests 🧪](#tests-)
 * [References 📚](#references-)
@@ -284,7 +284,7 @@ This process is repeated until all the values in `stack_a` are sorted.
 
 ___
 
-## Calculating the Best Move
+### Calculating the Best Move
 
 ...
 
