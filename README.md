@@ -175,7 +175,7 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 > - Then it enters a loop initializing each element of the stack, with `i` as the index.
 >	- If `select` is 1:
 >		- Sets the `stack[i].num` field of the current element to the integer value of the corresponding argument (converted using `ft_atoi()`);
-		- Sets the `stack[i].set` field to 1 (used for some conditional checks later in the program).
+>		- Sets the `stack[i].set` field to 1 (used for some conditional checks later in the program).
 >	- If `select` is 0:
 >		- Sets the `stack[i].num` field of the current element to 0. 
 >		- Sets `stack[i].set` fields of the current element to 0.
