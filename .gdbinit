@@ -21,14 +21,16 @@ end
 
 # Start debugging from main.c
 # fs cmd
-# break main:41
-# run "1 2 3 -5"
+# break main:42
+# info break
+# run "1 2 3 -4"
 # main
 # rfr
 
 # Start at ft_sort()
 fs cmd
-break ft_sort
-run "1 2 3 -5"
+break main.c:118
+run "1 2 3 -4"
+info break
 # ft_sort
-rfr
+# rfr
