@@ -170,7 +170,7 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 ```
 
 > - It allocates memory for the stack using `malloc()`. The size of the allocated memory is the size of `t_elem` multiplied by (`argc` + 1) (the extra element is used as a sentinel value signaling the end of the stack.
->	- If the memory allocation fails, the function returns NULL.
+>	- If the memory allocation fails, it returns NULL.
 > - Initializes `i` to 0.
 > - Then it enters a loop initializing each element of the stack, with `i` as the index.
 >	- If `select` is 1:
