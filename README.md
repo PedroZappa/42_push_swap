@@ -174,13 +174,13 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 > - Initializes `i` to 0.
 > - Then it enters a loop initializing each element of the stack, with `i` as the index.
 >	- If `select` is 1:
->		- Sets the `stack[i].num` field of the current element to the integer value of the corresponding argument (converted using `ft_atoi()`);
+>		- Sets the `stack[i].num` field of the current element to the integer value of the corresponding argument (converted using [ft_atoi()](https://github.com/PedroZappa/42_libft/blob/master/libft/ft_atoi.c).
 >		- Sets the `stack[i].set` field to 1 (used for some conditional checks later in the program).
 >	- If `select` is 0:
 >		- Sets the `stack[i].num` field of the current element to 0. 
 >		- Sets `stack[i].set` fields of the current element to 0.
 >	- At the end of each iteration, sets the `stack[i].index` field of the current element to `i` (representing the position of the element in the stack).
-> - After the loop is done, it sets the index field of the sentinel element to -1.
+> - After the loop is done, the `stack[i].index` field is set to -1, signaling the end of the stack (sentinel value).
 > - It returns the stack.
 ___
 
