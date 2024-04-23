@@ -237,7 +237,7 @@ ___
 
 ## QuickSort Algorithm (push_swap Variation)
 
-Here's a general description of the logic implemented in this project:
+Here's a general description of the algorithm implemented in this project:
 
 ### If the stack is empty:
 
