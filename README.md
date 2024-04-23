@@ -138,7 +138,7 @@ int	main(int argc, char **argv)
 }
 ```
 
-* If no errors were detected, it creates two stacks `stack_a` and `stack_b` from the input arguments using the `ft_create_stack()` function (the third argument indicates whether the stack should be filled with the input elements (`stack_a`) or left empty (`stack_b`).
+* If no errors were detected, the program creates two stacks `stack_a` and `stack_b` from the input arguments using the `ft_create_stack()` function (the third argument indicates whether the stack should be filled with the input elements (`stack_a`) or left empty (`stack_b`).
 ```c
 t_elem	*ft_create_stack(int argc, char **argv, int select)
 {
