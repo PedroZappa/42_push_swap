@@ -198,6 +198,28 @@ int	main(int argc, char **argv)
 
 If stack_a is not already sorted (indicated by `ft_is_sorted()` returning -1), it sorts `stack_a` using the `ft_sort()` function.
 
+```c
+static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc)
+{
+	if (argc == 3)
+	{
+		if (ft_is_sorted(stack_a) == -1)
+			ft_swap_elem(stack_a, "sa\n");
+	}
+	else if (argc == 4)
+		ft_sort_three(stack_a);
+	else
+		ft_sort_stack(stack_a, stack_b, argc);
+}
+```
+
+> - If `argc` is 3, it means there are two elements in `stack_a` (excluding the program name). 
+>	- In this case, it checks if `stack_a` is already sorted. If it is NOT sorted (indicated by `ft_is_sorted()` returning -1): 
+>		- Swaps the two elements using `ft_swap_elem()`.
+> - If `argc` is 4, it means there are three elements in `stack_a`. 
+>	- In this case, it sorts the three elements using `ft_sort_three()`.
+> - If `argc` is greater than 4, meaning there are more than three elements in `stack_a`: 
+>	- The stack is sorted using `ft_sort_stack()`.
 ___
 
 ## Freeing the Stacks
