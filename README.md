@@ -121,7 +121,7 @@ int	ft_errors(int argc, char **input_list)
 	return (1);
 }
 ```
-> - In case `argc` is 1, meaning no arguments were provided (excluding the program name), the function simply returns 0.
+> - In case `argc` is 1, meaning no arguments were provided, the function simply returns 0.
 > - If the values in `input_list` are NOT numbers, the call to `ft_are_args_nbr()` returns -1. In this case, the function prints "Error\n" to the `stderr` and returns -1.
 > - Lastly if there are duplicate numbers in the `input_list`, the call to `ft_is_duplicate()` returns -1, in which case the function prints "Error\n" to the `stderr` and returns -1.
 > - If no errors were detected, the function returns 1.
