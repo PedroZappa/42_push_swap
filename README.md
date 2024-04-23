@@ -82,7 +82,7 @@ static char	**ft_get_elems(int *argc, char **argv, int *must_free)
 }
 ```
 > * Splits the single argument into multiple elements based on the specified separator (' ') storing the result in `split_list`. This is accomplished using the [ft_split](https://github.com/PedroZappa/42_libft/blob/master/libft/ft_split.c) function defined in my custom [libft](https://github.com/PedroZappa/42_libft) helper library;
-> * It counts the number of elements in the `split_list` using the `ft_argv_count()` function and adds 1 to the count (to account for the program name skipped at the start of execution). This updated count is assigned to `argc`.
+> * It counts the number of elements in the `split_list` using the `ft_argv_count()` and adds 1 to the count (to account for the program name skipped at the start of execution). This updated count is assigned to `argc`.
 > * It sets the `must_free` flag to 1 (indicating `split_list` must be freed).
 > * It returns `split_list` containing the list of input elements.
 ___
