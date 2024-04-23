@@ -197,7 +197,6 @@ int	main(int argc, char **argv)
 ```
 
 If `stack_a` is not already sorted (indicated by `ft_is_sorted()` returning -1), it is sorted using `ft_sort()`.
-
 ```c
 static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc)
 {
@@ -232,8 +231,7 @@ int	main(int argc, char **argv)
 	(...)
 }
 ```
-
-Finally, it frees any allocated memory before exiting the program.
+* Finally, it frees any allocated memory before exiting the program using [ft_free()](https://github.com/PedroZappa/42_push_swap/blob/main/src/main.c).
 
 ___
 
