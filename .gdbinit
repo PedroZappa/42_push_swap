@@ -25,6 +25,8 @@ define ft_sort_three
 	display end
 end
 
+# set print pretty on
+
 # Start debugging from main.c
 # fs cmd
 # break main:42
@@ -44,7 +46,9 @@ end
 # Start at ft_sort_three()
 fs cmd
 break ft_sort_three
-run "1 2 3 -4"
+# run "1 3 2"
+run "3 2 1"
+# run "1 2 3"
 info break
 ft_sort_three
 rfr
