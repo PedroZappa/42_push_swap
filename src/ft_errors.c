@@ -21,16 +21,16 @@ static int	ft_is_duplicate(int argc, char **argv);
  *	- if there are duplicate numbers return -1;
  *
  * */
-int	ft_errors(int argc, char **argv)
+int	ft_errors(int argc, char **input_list)
 {
 	if (argc == 1)
 		return (0);
-	if (ft_are_args_nbr(argc, argv) == -1)
+	if (ft_are_args_nbr(argc, input_list) == -1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (-1);
 	}
-	if (ft_is_duplicate(argc, argv) == -1)
+	if (ft_is_duplicate(argc, input_list) == -1)
 	{
 		ft_putstr_fd("Error\n", 2);
 		return (-1);
