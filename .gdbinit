@@ -1,5 +1,5 @@
 set trace-commands on
-set logging on
+set logging enabled on
 
 define rfr
 	refresh
@@ -21,6 +21,9 @@ end
 
 define ft_sort_three
 	display *stack
+	display *(stack+1)
+	display *(stack+2)
+	display *(stack+3)
 	display start
 	display end
 end
@@ -46,9 +49,9 @@ end
 # Start at ft_sort_three()
 fs cmd
 break ft_sort_three
-# run "1 3 2"
-run "3 2 1"
+run "1 3 2"
+# run "3 2 1"
+# sorted example
 # run "1 2 3"
-info break
 ft_sort_three
 rfr
