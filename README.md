@@ -28,8 +28,6 @@ ___
 * [Sorting the Stacks](#sorting-the-stacks)
 * [Freeing the Stacks](#freeing-the-stacks)
 * [QuickSort Algorithm (push_swap Variation)](#quicksort-algorithm-push_swap-variation)
-  * [If the stack is empty:](#if-the-stack-is-empty)
-  * [If the stack is invalid:](#if-the-stack-is-invalid)
   * [If the stack has 2 values:](#if-the-stack-has-2-values)
   * [If the stack has 3 values:](#if-the-stack-has-3-values)
   * [If the stack has more than 3 values:](#if-the-stack-has-more-than-3-values)
@@ -228,7 +226,6 @@ int	main(int argc, char **argv)
 	(...)
 	ft_free(stack_a, stack_b, input_list, must_free);
 	return (0);
-	(...)
 }
 ```
 * Finally, it frees any allocated memory before exiting the program using [ft_free()](https://github.com/PedroZappa/42_push_swap/blob/main/src/main.c).
@@ -237,21 +234,8 @@ ___
 
 ## QuickSort Algorithm (push_swap Variation)
 
-Here's a general description of the algorithm implemented in this project:
+The following is a general description of the algorithm implemented in this project:
 
-### If the stack is empty:
-
-* The program simply returns the prompt to the user.
-
-___
-
-### If the stack is invalid:
-
-* The program prints "Error\n" to `stderr` and returns the prompt to the user.
-
-> [!Note]
->
-> See the [ft_errors.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_errors.c) to learn more about this implementation's error handling functions.
 ___
 
 ### If the stack has 2 values:
