@@ -102,7 +102,7 @@ int	main(int argc, char **argv)
 }
 ```
 * Next, the program checks for invalid input in the `input_list` using the `ft_errors()` function:
-	* If an error was found (indicated by a return value less than or equal to 0), it frees any previously allocated memory and exits the cleanly.
+	* If an error is found (indicated by a return value less than or equal to 0), it frees any previously allocated memory and exits the cleanly.
 ```c
 int	ft_errors(int argc, char **input_list)
 {
