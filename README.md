@@ -234,17 +234,15 @@ ___
 
 This modified version of the `QuickSort Algorithm` sorts a stack (`stack_a`) by leveraging a second "temporary" stack (`stack_b`), repeatedly partitioning its elements around a `median` (pivot) value (the key concept of the traditional `QuickSort Algorithm`), while keeping track of the optimal operations needed to merge the partitions back together into `stack_a`. At the end `stack_a` is sortted in ascending order. 
 
-Following is a brief description of each case handled by the algorithm implemented in this project:
-
+Following is a brief description of each case handled by the algorithm implemented in this project.
 ___
 
 ### If the stack has 2 values:
 
 * If the elements are already in order:
-	* No operations is necessary.
+	* No operations are necessary.
 * If the elements are NOT in order:
 	* A single **swap** operation is performed to sort `stack_a`.
-
 ___
 
 ### If the stack has 3 values:
