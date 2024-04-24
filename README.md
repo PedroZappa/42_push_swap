@@ -254,7 +254,7 @@ The logic in [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/m
 * It checks if `stack_a` is already sorted: If the **minimum value** is at the `start` of `stack_a` and the **maximum value** is at the `end`, the function returns without making any changes.
 
 * If the **minimum value** is at the `start` and the **maximum value** is in the middle (second position):
-	* It **swaps** the first two elements.
+	* It **swaps** the top two elements.
 	* Then **rotates** `stack_a`. 
 > This effectively moves the **maximum value** to the `end` of `stack_a`.
 
