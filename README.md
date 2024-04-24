@@ -331,7 +331,7 @@ ___
 
 ### Calculating the Best Move
 
-[ft_calc_move()](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_stack.c) executes rotations and push operations according to the return of `ft_best_op_idx()` which calculates the optimal move to make when transferring elements from `stack_b` back to `stack_a` during the sorting process.
+[ft_calc_move()](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_stack.c) executes **rotation** and **push** operations according to the return of `ft_best_op_idx()` which calculates the optimal move to make when transferring elements from `stack_b` back to `stack_a` during the sorting process.
 
 #### `ft_best_op_idx()`
 
