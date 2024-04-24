@@ -46,6 +46,8 @@ ___
 
 ## `push_swap` Operations
 
+To get the stack sorted in ascending order, we only have the following operations at our disposal:
+
 | Code  | Operation                         | Description                                                 |
 | ----- | ----------------------------------- | ------------------------------------------------------ |
 | `sa`  | swap a                              | swaps the 2 top elements of stack a                    |
