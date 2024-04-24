@@ -341,7 +341,7 @@ ___
 		* Afterwards calculates the cost to move the corresponding element in `stack_b` to the top.
 		* It returns the total cost of aligning the element in `stack_b` with the element in `stack_a`.
 
-> So `ft_best_op_idx()` calculates the index that has the minimum cost.
+> In short, `ft_best_op_idx()` calculates the index that has the minimum cost.
 
 #### `ft_calc_move()`
 
