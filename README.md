@@ -339,7 +339,7 @@ ___
 	* `ft_get_align_ops()` subroutine calculates the total number of operations needed to move an element at a given index in `stack_a` to the top, and to align a corresponding element in `stack_b` with it.
 		* First it calculates the cost to move the element at index `idx` in `stack_a` to the top.
 		* Afterwards calculates the cost to move the corresponding element in `stack_b` to the top.
-		* It returns the total cost.
+		* It returns the total cost of aligning the element in `stack_b` with the element in `stack_a`.
 
 > So `ft_best_op_idx()` calculates the index that has the minimum cost.
 
