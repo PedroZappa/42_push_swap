@@ -34,6 +34,8 @@ ___
   * [If the stack has 3 values:](#if-the-stack-has-3-values)
   * [If the stack has more than 3 values:](#if-the-stack-has-more-than-3-values)
   * [Calculating the Best Move](#calculating-the-best-move)
+    * [`ft_best_op_idx()`](#ft_best_op_idx)
+    * [`ft_calc_move()`](#ft_calc_move)
 * [Usage 🏁](#usage-)
 * [Tests 🧪](#tests-)
 * [References 📚](#references-)
@@ -329,7 +331,39 @@ ___
 
 ### Calculating the Best Move
 
-...
+[ft_calc_move()](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_stack.c) executes rotations and push operations according to the return of `ft_best_op_idx()` which calculates the optimal move to make when transferring elements from `stack_b` back to `stack_a` during the sorting process.
+
+#### `ft_best_op_idx()`
+
+* `ft_best_op_idx()` loops through all the elements in `stack_a` calling `ft_get_align_ops()` to calculate the cost (number of operations) of moving that element to the top and aligning it with the corresponding element in `stack_b`.
+	* `ft_get_align_ops()` calculates the total number of operations needed to move an element at a given index in `stack_a` to the top, and to align a corresponding element in `stack_b` with it.
+		* First it calculates the cost to move the element at index `idx` in `stack_a` to the top.
+		* Afterwards calculates the cost to move the corresponding element in `stack_b` to the top.
+		* It returns the total cost.
+
+> So `ft_best_op_idx()` calculates the index that has the minimum cost.
+
+#### `ft_calc_move()`
+
+* Once the optimal index is found, `ft_calc_move()` is called (with the calculated index as an argument) to actually execute the moves:
+	* Gets the start index of `stack_a` storing it in `start`.
+	* Calls `ft_check_order()` to check if any elements in `stack_b` are already in order with `stack_a`. It saves the number of elements found to already be in order into `ordered`.
+	* Then calls `ft_order()` to move elements from `stack_b` to `stack_a` that are already in the correct order relative to each other.
+	* If necessary, handles the adjustment of the index `idx` after `ordered` elements have been moved from `stack_b` to `stack_a`.
+	* If `idx` is past the end of `stack_a`:
+		* It is recalculated and looped back to the start of the stack.
+	* Else, if `idx` is past the start of `stack_a`:
+		* It is recalculated and looped back to the end of the stack.
+
+	* Rotates `stack_a` to move the element at `idx` to the top.
+	* Again, check if `idx` is past the end of `stack_a`:
+		* If so, it is recalculated and looped back to the start of the stack.
+
+	* Checks if the min or max value of `stack_b` is less/greater than the element now at the top of `stack_a`:
+		* If so, it rotates `stack_b` to move its min to the top.
+	* Else, 
+		* It rotates `stack_b` to move the smallest element greater than `stack_a`'s top to the top of `stack_b`.
+	* Pushes the top element of stack_b to stack_a.
 
 ___
 
