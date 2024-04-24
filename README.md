@@ -249,6 +249,8 @@ ___
 
 ### If the stack has 3 values:
 
+The logic in [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_three.c) is triggered. It works as follows:
+
 * It starts by getting the `start` and `end` indices of `stack_a`.
 
 * It checks if `stack_a` is already sorted: If the **minimum value** is at the `start` of `stack_a` and the **maximum value** is at the `end`, the function returns without making any changes.
@@ -269,13 +271,26 @@ ___
 
 ### If the stack has more than 3 values:
 
-* The algorithm starts by partitioning `stack_a` around a **median value**. 
-	* `i` is initialized to the start of `stack_a`, and `median` to its median value.
-	* It then loops through `stack_a`, pushing elements to `stack_b` until there are only three elements left in `stack_a`. 
-		* If the current element in `stack_b` is greater than the `median` and the number of elements in `stack_a` is greater than 3, it rotates `stack_b`.
+The logic in [ft_sort_stack.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_stack.c) is triggered. This is where we get into the meat of the algorithm:
 
+* It starts by setting `i` to the start of `stack_a`;
+* It then calculates the median value of `stack_a` using [ft_median.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_median.c).
+* Loops through `stack_a`:
+	* Pushing elements to `stack_b` until there are only three elements left in `stack_a`.
+		* If the current element in `stack_b` is greater than the `median` and the number of elements in `stack_a` is greater than 3, it rotates `stack_b`.
 * The three remaining elements in `stack_a` are sorted.
+
 * The algorithm then resets `i` to the start of `stack_b`;
+
+* It then loops through `stack_b`:
+	* For each element, it calculates the index in `stack_a` that requires the minimum number of operations to move that element into the correct sorted position.
+	* It rotates `stack_a` to move that index to the top.
+	* It rotates `stack_b` to move its current element to the top.
+	* It pushes the top element of `stack_b` to `stack_a`.
+
+
+
+
 * Then iterates through `stack_b`, calculating the best move for each element in `stack_b`.
 
 * It rotates `stack_a` until the smallest number greater than the value at the top of `stack_b` is at the top of `stack_a`.
