@@ -45,11 +45,9 @@ ___
 
 # Implementation 📜
 
-The algorithm used in this implementation to sort a stack of random integer values (`stack_a`) is a variation of the `QuickSort Algorithm` adapted to sort stacks.
+The  sorting algorithm used in this implementation to order a stack of random integer values (`stack_a`) in ascending order is a variation of the `QuickSort Algorithm` adapted to sort stacks.
 
-The algorithm sorts `stack_a` by repeatedly partitioning it around a `median` (pivot) value, pushing elements to `stack_b` programmatically after calculating which element is less costly to sort at each iteration. At the end of execution `stack_a` contains all values stacked in ascending order.
-
-> But before we get into the nitty and gritty details of the algorithm, let's take a look at how the program handles input arguments and sets up the stacks.
+> Before we get into the nitty and gritty details of the algorithm, let's take a look at how the program handles input arguments and sets up the stacks.
 ___
 
 ## Processing Input Arguments
@@ -234,7 +232,7 @@ ___
 
 ## QuickSort Algorithm (push_swap Variation)
 
-The `QuickSort Algorithm` sorts a stack by leveraging a second stack to repeatedly partitioning the elements around a pivot, while keeping track of the optimal operations needed to merge the partitions back together in sorted order.
+The `QuickSort Algorithm` sorts a `stack_a` by leveraging a second `stack_b` to repeatedly partitioning the elements around a `median` (pivot) value, while keeping track of the optimal operations needed to merge the partitions back together into `stack_a` in ascending order. 
 
 Following is a brief description of each case handled by the algorithm implemented in this project:
 
