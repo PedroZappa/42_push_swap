@@ -259,7 +259,7 @@ The logic in [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/m
 > This effectively moves the **maximum value** to the top (`end`) of `stack_a`.
 
 * If the **maximum value** is at the `start` of `stack_a`:
-	* it rotates the stack. 
+	* it **rotates** the `stack_a`. 
 > This moves the **maximum value** to the `end`.
 
 * If the first element is greater than the second element: 
