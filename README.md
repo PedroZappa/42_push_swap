@@ -267,7 +267,7 @@ The logic in [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/m
 
 * If the **minimum value** is at the `end` of `stack_a`: 
 	* A **reverse rotation** is performed. 
-> This effectively moves the **minimum value** to the `start` of `stack_a`.
+> This effectively moves the **minimum value** to the bottom (`start`) of `stack_a`.
 
 > [!Note]
 >
