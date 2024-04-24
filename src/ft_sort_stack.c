@@ -93,13 +93,13 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 					int idx, int stack_len)
 {
 	int	start;
-	int	same;
+	int	ordered;
 
 	start = ft_stack_start(stack_a);
-	same = ft_check_order(stack_a, stack_b, idx);
+	ordered = ft_check_order(stack_a, stack_b, idx);
 	ft_order(stack_a, stack_b, idx);
-	if (same != 0)
-		idx -= same;
+	if (ordered != 0)
+		idx -= ordered;
 	if (idx >= (stack_len - 2))
 		idx = (start + (idx - (stack_len - 1)));
 	else if (idx < start)
