@@ -21,6 +21,7 @@ ___
 <!-- mtoc-start -->
 
 * [About 📌](#about-)
+* [`push_swap` Overview](#push_swap-overview)
 * [`push_swap` Operations](#push_swap-operations)
 * [Implementation 📜](#implementation-)
 * [Processing Input Arguments](#processing-input-arguments)
@@ -43,6 +44,16 @@ ___
 </div>
 
 # About 📌
+
+## `push_swap` Overview
+
+* `stack_a` and `stack_b`, which are arrays of `t_elem` structs:
+  * `stack_a` is initialized with the values passed in as arguments.
+  * `stack_b` is initialized as an empty stack.
+
+* The values in `stack_a` are a random sequence of positive and/or negative integers.
+
+* The objective of `push_swap` is to sort the values in `stack_a` in ascending order using a set of `push_swap` operations.
 
 ## `push_swap` Operations
 
