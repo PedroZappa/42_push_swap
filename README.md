@@ -75,7 +75,7 @@ To get the stack sorted in ascending order, we only have the following operation
 ___
 # Implementation 📜
 
-The sorting algorithm used in this implementation is a variation of the `QuickSort Algorithm` adapted to sort stacks.
+The sorting algorithm used in this implementation is a variation of the `QuickSort Algorithm` adapted to sort stacks using only the aforementioned operations.
 
 > Before we get into the nitty and gritty details of the algorithm, let's take a look at how the program handles input arguments and sets up the stacks.
 ___
