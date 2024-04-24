@@ -234,7 +234,9 @@ ___
 
 ## QuickSort Algorithm (push_swap Variation)
 
-The following is a general description of the algorithm implemented in this project:
+The `QuickSort Algorithm` sorts a stack by leveraging a second stack to repeatedly partitioning the elements around a pivot, while keeping track of the optimal operations needed to merge the partitions back together in sorted order.
+
+Following is a brief description of each case handled by the algorithm implemented in this project:
 
 ___
 
@@ -284,9 +286,11 @@ The logic in [ft_sort_stack.c](https://github.com/PedroZappa/42_push_swap/blob/m
 
 * It then loops through `stack_b`:
 	* For each element, it calculates the index in `stack_a` that requires the minimum number of operations to move that element into the correct sorted position.
-	* It rotates `stack_a` to move that index to the top.
-	* It rotates `stack_b` to move its current element to the top.
-	* It pushes the top element of `stack_b` to `stack_a`.
+* It rotates `stack_a` to move that index to the top.
+* It rotates `stack_b` to move its current element to the top.
+* It pushes the top element of `stack_b` to `stack_a`.
+* It rotates `stack_a` to move its new smallest element to the top.
+
 
 
 
