@@ -262,9 +262,9 @@ ___
 
 ## QuickSort Algorithm (push_swap Variation)
 
-This modified version of the `QuickSort Algorithm` sorts a stack (`stack_a`) by leveraging a second "temporary" stack (`stack_b`), repeatedly partitioning its elements around a `median` (pivot) value (the key concept of the traditional `QuickSort Algorithm`), while keeping track of the optimal operations needed to merge the partitions back together into `stack_a`. At the end `stack_a` is sortted in ascending order. 
+This modified version of the `QuickSort Algorithm` sorts a stack (`stack_a`) by leveraging a second "temporary" stack (`stack_b`), repeatedly partitioning its elements around a `median` (pivot) value (the key concept of the traditional `QuickSort Algorithm`), while keeping track of the optimal operations needed to merge the partitions back together into `stack_a`. At the end `stack_a` is sorted in ascending order. 
 
-Following is a brief description of each case handled by the algorithm implemented in this project.
+Following is a description of each case handled by the algorithm implemented in this project.
 ___
 
 ### If the stack has 2 values:
@@ -281,7 +281,8 @@ The logic in [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/m
 
 * It starts by getting the `start` and `end` indices of `stack_a`.
 
-* It checks if `stack_a` is already sorted: If the **minimum value** is at the `start` of `stack_a` and the **maximum value** is at the `end`, the function returns without making any changes.
+* It checks if `stack_a` is already sorted: 
+	* If the **minimum value** is at the `start` of `stack_a` and the **maximum value** is at the `end`, the function returns without executing any operations.
 
 * If the **minimum value** is at the `start` and the **maximum value** is in the middle (second position):
 	* It **swaps** the top two elements.
