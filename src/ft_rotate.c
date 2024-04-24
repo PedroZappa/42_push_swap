@@ -119,13 +119,13 @@ void	ft_rev_rotate(t_elem *stack, char *msg)
  *		- Set sign to -1;
  *	- Return the operation cost (sign * op);
  * */
-int	ft_rotate_top(t_elem *stack_a, int idx, char *r, char *rr)
+int	ft_rotate_top(t_elem *stack, int idx, char *r, char *rr)
 {
 	int	op;
 	int	n_ops;
 	int	sign;
 
-	n_ops = ft_getontop_ops(stack_a, idx, 1);
+	n_ops = ft_getontop_ops(stack, idx, 1);
 	sign = n_ops;
 	if (n_ops < 0)
 		n_ops = -n_ops;
@@ -135,9 +135,9 @@ int	ft_rotate_top(t_elem *stack_a, int idx, char *r, char *rr)
 		while (n_ops > 0)
 		{
 			if (sign > 0)
-				ft_rotate(stack_a, r);
+				ft_rotate(stack, r);
 			else
-				ft_rev_rotate(stack_a, rr);
+				ft_rev_rotate(stack, rr);
 			--n_ops;
 		}
 	}

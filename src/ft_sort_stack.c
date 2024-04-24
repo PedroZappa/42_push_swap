@@ -104,15 +104,15 @@ static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
 		idx = (start + (idx - (stack_len - 1)));
 	else if (idx < start)
 		idx = (ft_stack_end(stack_a) + idx);
-	idx -= ft_rotate_top(stack_a, idx, "rb\n", "rrb\n");
+	idx -= ft_rotate_top(stack_a, idx, "ra\n", "rra\n");
 	if (idx >= (stack_len - 2))
 		idx = (start + (idx - (stack_len - 1)));
 	if ((ft_stack_min(stack_b).num > stack_a[idx].num)
 		|| (ft_stack_max(stack_b, -1).num < stack_a[idx].num))
-		ft_rotate_top(stack_b, ft_stack_min(stack_b).index, "ra\n", "rra\n");
+		ft_rotate_top(stack_b, ft_stack_min(stack_b).index, "rb\n", "rrb\n");
 	else
 		ft_rotate_top(stack_b, \
-		ft_min_above_thresh(stack_b, stack_a[idx].num).index, "ra\n", "rra\n");
+		ft_min_above_thresh(stack_b, stack_a[idx].num).index, "rb\n", "rrb\n");
 	ft_push_elem(stack_a, stack_b, "pa\n");
 }
 
