@@ -72,6 +72,7 @@ To get the stack sorted in ascending order, we only have the following operation
 | `rra` | reverse rotate a                    | shifts all elements of stack a from top to bottom      |
 | `rrb` | reverse rotate b                    | shifts all elements of stack b from top to bottom      |
 | `rrr` | reverse rotate a & reverse rotate b | both `rra` and `rrb`                                   |
+___
 # Implementation 📜
 
 The sorting algorithm used in this implementation to order a stack of random integer values (`stack_a`) in ascending order is a variation of the `QuickSort Algorithm` adapted to sort stacks.
