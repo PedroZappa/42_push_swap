@@ -6,12 +6,11 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 09:26:44 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 19:31:13 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:32:11 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
-#include "ft_gnl.h"
 
 static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op);
 static int	ft_parse_op(t_elem *stack_a, t_elem *stack_b, char *op);
