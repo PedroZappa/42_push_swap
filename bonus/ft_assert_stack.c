@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 08:49:03 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 08:50:46 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 18:53:43 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	ft_stack_start(t_elem *stack)
 	int	start;
 
 	start = 0;
-	while (stack[start].set != 1)
+	while ((stack[start].index != -1) && (stack[start].set != 1))
 		++start;
 	if (stack[start].index == -1)
 		--start;

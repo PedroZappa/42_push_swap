@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ops_mult.c                                      :+:      :+:    :+:   */
+/*   ft_gnl.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/25 09:06:59 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 19:20:50 by passunca         ###   ########.fr       */
+/*   Created: 2024/04/25 10:01:07 by passunca          #+#    #+#             */
+/*   Updated: 2024/04/25 10:02:35 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "checker.h"
+#ifndef FT_GNL_H
+# define FT_GNL_H
 
-void	ft_swap_both(t_elem *stack_a, t_elem *stack_b)
-{
-	ft_swap_elem(stack_a);
-	ft_swap_elem(stack_b);
-}
+# include "../lib/libft/libft/libft.h"			// libft library
+# include "../lib/libft/ft_printf/ft_printf.h" 	// ft_printf
 
-/*	ft_rotate_both()
-*	## Rotates both stacks in a given direction.
-*	*/
-void	ft_rotate_both(t_elem *stack_a, t_elem *stack_b, int direction)
-{
-	if (direction == 0)
-	{
-		ft_rotate(stack_a);
-		ft_rotate(stack_b);
-	}
-	else
-	{
-		ft_rev_rotate(stack_a);
-		ft_rev_rotate(stack_b);
-	}
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
+char	*ft_gnl(int fd, int del);
+int		ft_strchr_index(char *s, int c);
+void	*f_calloc(int size, int nb);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+
+#endif

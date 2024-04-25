@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 07:58:08 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 09:28:11 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:15:25 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,4 @@ static void	ft_free(char **input_list, int must_free)
 		free(input_list[i]);
 		free(input_list);
 	}
-	return ;
 }

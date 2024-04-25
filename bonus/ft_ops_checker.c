@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 09:00:55 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 09:05:36 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:22:00 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	ft_push_elem(t_elem *stack_a, t_elem *stack_b)
 	while ((stack_b[b_idx].index != -1) && (stack_b[b_idx].set != 1))
 		++b_idx;
 	--b_idx;
+	if (b_idx == -1)
+		return ;
 	stack_b[b_idx].num = stack_a[a_idx].num;
 	stack_b[b_idx].set = 1;
 	stack_a[a_idx].num = 0;

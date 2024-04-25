@@ -6,11 +6,12 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 09:26:44 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 09:53:57 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:29:22 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
+#include "ft_gnl.h"
 
 static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op);
 static int	ft_parse_op(t_elem *stack_a, t_elem *stack_b, char *op);
@@ -24,16 +25,17 @@ void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 	result = 1;
 	while (result)
 	{
-		line = get_next_line(0);
-		if (!line)
+		line = ft_gnl(0, 0);
+		// line = get_next_line(0);
+		if (line == NULL)
 			result = 0;
 		else
 			ft_check_op(stack_a, stack_b, line);
 	}
 	start = 0;
-	while ((stack_b[start].index != 1) && (stack_b[start].set != 1))
+	while ((stack_b[start].index != -1) && (stack_b[start].set != 1))
 		++start;
-	if (ft_is_sorted(stack_a) == 1)
+	if ((ft_is_sorted(stack_a) == 1) && (stack_b[start].index == -1))
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
@@ -47,13 +49,16 @@ static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op)
 		result = -1;
 	else
 		result = ft_parse_op(stack_a, stack_b, op);
+	if (op != NULL)
+		free(op);
 	if (result == -1)
 	{
 		free(stack_a);
 		free(stack_b);
-		get_next_line(1);
+		ft_gnl(0, 1);
+		// get_next_line(0);
 		ft_putstr_fd("Error\n", 2);
-		return ;
+		exit(EXIT_FAILURE);
 	}
 }
 
