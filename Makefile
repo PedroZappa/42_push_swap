@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/25 08:51:06 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/25 09:25:06 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,8 +46,8 @@ BUILD_PATH	= .build
 SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_assert_stack.c \
 			  ft_ops.c ft_create_stack.c ft_sort_three.c ft_sort_stack.c \
 			  ft_median.c ft_order.c ft_rotate.c)
-BONUS		= $(addprefix $(BONUS_PATH)/, main_checker.c ft_create_stack.c \
-			  ft_errors.c ft_assert_stack.c)
+BONUS		= $(addprefix $(BONUS_PATH)/, main_checker.c ft_assert_stack.c \
+			  ft_create_stack.c ft_errors.c ft_ops_checker.c ft_ops_mult.c)
 
 OBJS		= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
 BONUS_OBJS	= $(BONUS:$(BONUS_PATH)/%.c=$(BUILD_PATH)/%.o)
@@ -92,6 +92,8 @@ MAKE		= make -C
 
 all: deps $(NAME)		## Compile push_swap
 
+bonus: $(NAME_BONUS)	## Compile push_swap checker
+
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
@@ -116,8 +118,6 @@ $(NAME_BONUS): $(BUILD_PATH) $(LIBFT_ARC) $(BONUS_OBJS)
 
 $(LIBFT_ARC):
 	$(MAKE) $(LIBFT_PATH) extra
-
-bonus: $(NAME_BONUS)	## Compile push_swap checker
 
 deps: 			## Download/Update libft
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \
