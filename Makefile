@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/25 08:42:20 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/25 08:44:18 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -152,6 +152,26 @@ norm: 		## Run norminette test
 	@if ! diff -q norm_ls.txt norm.txt > /dev/null; then \
 		printf "$(_NORM_ERR) "; \
 		norminette $(SRC_PATH) | grep -v "OK"> norm_err.txt; \
+		cat norm_err.txt | grep -wc "Error:" > norm_errn.txt; \
+		printf "$$(cat norm_errn.txt)\n"; \
+		printf "$$(cat norm_err.txt)\n"; \
+	else \
+		printf "[$(YEL)Everything is OK$(D)]\n"; \
+	fi
+
+norm_bonus: 		## Run norminette test
+	@printf "${_NORM}\n"
+	@ls $(SRC_PATH) | wc -l > norm_ls.txt
+	@printf "$(_NORM_INFO) $$(cat norm_ls.txt)\n"
+	@printf "$(_NORM_SUCCESS) "
+	@norminette $(BONUS_PATH) | grep -wc "OK" > norm.txt; \
+	if [ $$? -eq 1 ]; then \
+		echo "0" > norm.txt; \
+	fi
+	@printf "$$(cat norm.txt)\n"
+	@if ! diff -q norm_ls.txt norm.txt > /dev/null; then \
+		printf "$(_NORM_ERR) "; \
+		norminette $(BONUS_PATH) | grep -v "OK"> norm_err.txt; \
 		cat norm_err.txt | grep -wc "Error:" > norm_errn.txt; \
 		printf "$$(cat norm_errn.txt)\n"; \
 		printf "$$(cat norm_err.txt)\n"; \

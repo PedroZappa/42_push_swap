@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 07:58:08 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 08:25:16 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 08:45:36 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	stack_a = ft_create_stack(argc, input_list, 1);
 	stack_b = ft_create_stack(argc, input_list, 0);
 	ft_free(input_list, must_free);
-	// solve_stdin(stack_a, stack_b);
+	solve_stdin(stack_a, stack_b);
 	free(stack_a);
 	free(stack_b);
 	return (0);

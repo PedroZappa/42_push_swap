@@ -6,10 +6,9 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 07:52:57 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 08:13:26 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 08:45:05 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CHECKER_H
 # define CHECKER_H
@@ -44,6 +43,6 @@ typedef struct s_elem {
 t_elem	*ft_create_stack(int argc, char **argv, int stack);
 
 /* ft_errors.c */
-int	ft_errors(int argc, char **input_list);
+int		ft_errors(int argc, char **input_list);
 
 #endif
