@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 07:52:57 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 09:09:25 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 09:28:52 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ typedef struct s_elem {
 int		ft_is_sorted(t_elem *stack);
 int		ft_stack_start(t_elem *stack);
 int		ft_stack_end(t_elem *stack);
+
+/* ft_check_stack.c */
+void	ft_check_stack(t_elem *stack_a, t_elem *stack_b);
 
 /* ft_create_stack.c */
 t_elem	*ft_create_stack(int argc, char **argv, int stack);
