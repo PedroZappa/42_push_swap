@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/25 19:31:45 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/25 19:46:25 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -249,6 +249,13 @@ test_50rand500:		## Test with 50 sets of 500 random elements
 		echo "$(YEL)$(_SEP)$(D)"; \
 	done
 
+test_checker: all bonus		## Test bonus checker
+	./randgen/randgen 500 > rand.txt
+	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
+	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@echo "[$(YEL)Running push_swap custom checker$(D)]"
+	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker "$$ARG"
+
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
@@ -261,7 +268,7 @@ clean: 				## Remove object files
 	@echo "* $(YEL)Removing Norminette temp files:$(D) $(_SUCCESS)"
 
 fclean: clean	## Remove archives & executables
-	$(RM) $(NAME_SERVER) $(NAME_CLIENT)
+	$(RM) $(NAME) $(NAME_BONUS)
 	@echo "* $(YEL)Cleaning executable$(D): $(_SUCCESS)"
 	$(MAKE) $(LIBFT_PATH) fclean
 	@echo "* $(YEL)Removing libft archive$(D): $(_SUCCESS)"

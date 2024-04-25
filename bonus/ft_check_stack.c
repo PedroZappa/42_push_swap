@@ -6,14 +6,14 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 09:26:44 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 19:32:11 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:59:17 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
 static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op);
-static int	ft_parse_op(t_elem *stack_a, t_elem *stack_b, char *op);
+static int	ft_parse_op(char *op, t_elem *stack_a, t_elem *stack_b);
 
 void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 {
@@ -25,7 +25,7 @@ void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 	while (result)
 	{
 		line = get_next_line(0);
-		if (line == NULL)
+		if (!line)
 			result = 0;
 		else
 			ft_check_op(stack_a, stack_b, line);
@@ -33,7 +33,7 @@ void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 	start = 0;
 	while ((stack_b[start].index != -1) && (stack_b[start].set != 1))
 		++start;
-	if ((ft_is_sorted(stack_a) == 1) && (stack_b[start].index == -1))
+	if (!(ft_is_sorted(stack_a) == 1) && (stack_b[start].index == -1))
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
@@ -46,7 +46,7 @@ static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op)
 	if ((op == NULL) || (ft_strlen(op) == 1))
 		result = -1;
 	else
-		result = ft_parse_op(stack_a, stack_b, op);
+		result = ft_parse_op(op, stack_a, stack_b);
 	if (op != NULL)
 		free(op);
 	if (result == -1)
@@ -59,7 +59,7 @@ static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op)
 	}
 }
 
-static	int	ft_parse_op(t_elem *stack_a, t_elem *stack_b, char *op)
+static int	ft_parse_op(char *op, t_elem *stack_a, t_elem *stack_b)
 {
 	if (ft_strncmp(op, "pa\n", 3) == 0)
 		ft_push_elem(stack_b, stack_a);

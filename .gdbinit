@@ -47,11 +47,11 @@ end
 # rfr
 
 # Start at ft_sort_three()
-fs cmd
-break ft_sort_three
-run "1 3 2"
-# run "3 2 1"
-# sorted example
-# run "1 2 3"
-ft_sort_three
-rfr
+# fs cmd
+# break ft_sort_three
+# run "1 3 2"
+# # run "3 2 1"
+# # sorted example
+# # run "1 2 3"
+# ft_sort_three
+# rfr
