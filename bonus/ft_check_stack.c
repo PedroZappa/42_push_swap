@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 09:26:44 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 19:29:22 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 19:31:13 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 	result = 1;
 	while (result)
 	{
-		line = ft_gnl(0, 0);
-		// line = get_next_line(0);
+		line = get_next_line(0);
 		if (line == NULL)
 			result = 0;
 		else
@@ -55,8 +54,7 @@ static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op)
 	{
 		free(stack_a);
 		free(stack_b);
-		ft_gnl(0, 1);
-		// get_next_line(0);
+		get_next_line(0);
 		ft_putstr_fd("Error\n", 2);
 		exit(EXIT_FAILURE);
 	}
