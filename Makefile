@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/25 19:46:25 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/25 20:10:09 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,9 @@
 #==============================================================================#
 
 SHELL := bash
+#
+# Default values
+n ?= 100
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -218,6 +221,14 @@ randgen: all build_randgen	## Generate list of n random values w/ given seed
 	./randgen/randgen $(n) $(seed) | tee rand.txt
 	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
 
+test_n:				## Test with n elements
+	./randgen/randgen $(n) | tee rand.txt
+	@ARG=$$(cat rand.txt); \
+	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	N_OPS=$$(wc -l < push_swap_out.txt); \
+	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+	echo "$(YEL)$(_SEP)$(D)"; \
+
 test_three:			## Test with 3 element stack
 	./randgen/randgen 3 | tee rand.txt
 	@ARG=$$(cat rand.txt); \
@@ -226,13 +237,17 @@ test_three:			## Test with 3 element stack
 	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
 	echo "$(YEL)$(_SEP)$(D)"; \
 
-test_six:			## Test with 3 element stack
+test_six:			## Test with 6 element stack
 	./randgen/randgen 6 | tee rand.txt
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	N_OPS=$$(wc -l < push_swap_out.txt); \
 	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
 	echo "$(YEL)$(_SEP)$(D)"; \
+
+test_rand100:		## Test with 100 random elements
+	./randgen/randgen 100 | tee rand.txt
+	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
 
 test_rand500:		## Test with 500 random elements
 	./randgen/randgen 500 | tee rand.txt
@@ -250,7 +265,7 @@ test_50rand500:		## Test with 50 sets of 500 random elements
 	done
 
 test_checker: all bonus		## Test bonus checker
-	./randgen/randgen 500 > rand.txt
+	./randgen/randgen $(n) > rand.txt
 	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
 	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
 	@echo "[$(YEL)Running push_swap custom checker$(D)]"
