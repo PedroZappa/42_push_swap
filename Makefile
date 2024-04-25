@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/25 08:44:18 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/25 08:47:11 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,7 @@ update_modules:
 
 ##@ Test, Debug & Leak Check Rules 
 
-norm: 		## Run norminette test
+norm: 		## Run norminette test on push_swap files
 	@printf "${_NORM}\n"
 	@ls $(SRC_PATH) | wc -l > norm_ls.txt
 	@printf "$(_NORM_INFO) $$(cat norm_ls.txt)\n"
@@ -159,9 +159,9 @@ norm: 		## Run norminette test
 		printf "[$(YEL)Everything is OK$(D)]\n"; \
 	fi
 
-norm_bonus: 		## Run norminette test
+norm_bonus: 		## Run norminette test on chcker files
 	@printf "${_NORM}\n"
-	@ls $(SRC_PATH) | wc -l > norm_ls.txt
+	@ls $(BONUS_PATH) | wc -l > norm_ls.txt
 	@printf "$(_NORM_INFO) $$(cat norm_ls.txt)\n"
 	@printf "$(_NORM_SUCCESS) "
 	@norminette $(BONUS_PATH) | grep -wc "OK" > norm.txt; \
