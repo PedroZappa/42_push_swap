@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 07:52:57 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 08:45:05 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/25 08:50:17 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ typedef struct s_elem {
 //=============================================================================/
 //							Function Prototypes                                /
 //=============================================================================/
+
+/* ft_assert_stack.c */
+int		ft_stack_start(t_elem *stack);
+int		ft_stack_end(t_elem *stack);
 
 /* ft_create_stack.c */
 t_elem	*ft_create_stack(int argc, char **argv, int stack);
