@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/19 15:43:22 by passunca         ###   ########.fr        #
+#    Updated: 2024/04/25 08:42:20 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SHELL := bash
 
 USER			= passunca
 NAME			= push_swap
+NAME_BONUS		= checker
 UNAME 			= $(shell uname)
 
 ### Message Vars
@@ -38,15 +39,18 @@ _SEP 			= =====================
 #==============================================================================#
 
 SRC_PATH	= src
+BONUS_PATH	= bonus
 LIBS_PATH	= lib
 BUILD_PATH	= .build
 
 SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_assert_stack.c \
 			  ft_ops.c ft_create_stack.c ft_sort_three.c ft_sort_stack.c \
 			  ft_median.c ft_order.c ft_rotate.c)
+BONUS		= $(addprefix $(BONUS_PATH)/, main_checker.c ft_create_stack.c \
+			  ft_errors.c)
 
 OBJS		= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
-DEPS		= $(OBJS:.o=.d)
+BONUS_OBJS	= $(BONUS:$(BONUS_PATH)/%.c=$(BUILD_PATH)/%.o)
 
 LIBFT_PATH	= $(LIBS_PATH)/libft
 LIBFT_ARC	= $(LIBFT_PATH)/libft.a
@@ -92,6 +96,10 @@ $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
 	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
 
+$(BUILD_PATH)/%.o: $(BONUS_PATH)/%.c
+	@echo -n "$(MAG)█$(D)"
+	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+
 $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)
 	@echo "* $(YEL)Creating $(BUILD_PATH) folder:$(D) $(_SUCCESS)"
@@ -101,13 +109,15 @@ $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(OBJS)
 	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS) $(LIBFT_ARC) -o $(NAME)
 	@echo "[$(_SUCCESS) compiling $(MAG)push_swap!$(D) $(YEL)🖔$(D)]"
 
+$(NAME_BONUS): $(BUILD_PATH) $(LIBFT_ARC) $(BONUS_OBJS)
+	@echo "[$(YEL)Compiling push_swap checker$(D)]"
+	$(CC) $(CFLAGS) $(DFLAGS) $(BONUS_OBJS) $(LIBFT_ARC) -o $(NAME_BONUS)
+	@echo "[$(_SUCCESS) compiling $(MAG)push_swap checker!$(D) $(YEL)🖔$(D)]"
+
 $(LIBFT_ARC):
 	$(MAKE) $(LIBFT_PATH) extra
 
-bonus:			## Compile push_swap with bonus features
-	@echo "[$(YEL)Compiling push_swap with bonus features$(D)]"
-	make all
-	@echo "[$(_SUCCESS) compiling $(MAG)push_swap w/ bonus!$(D) $(YEL)🖔$(D)]"
+bonus: $(NAME_BONUS)	## Compile push_swap checker
 
 deps: 			## Download/Update libft
 	@if test ! -d "$(LIBFT_PATH)"; then make get_libft; \

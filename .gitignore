@@ -37,6 +37,7 @@
 *.hex
 push_swap
 */randgen
+checker
 
 # Debug files
 *.dSYM/
