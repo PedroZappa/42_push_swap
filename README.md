@@ -294,7 +294,7 @@ ___
 
 ### If the stack has 3 values:
 
-The logic in [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_three.c) is triggered. It works as follows:
+The logic in [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_three.c) is triggered. This subroutine works as follows:
 
 * It starts by getting the `start` and `end` indices of `stack_a`.
 
