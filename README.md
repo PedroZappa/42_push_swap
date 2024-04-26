@@ -366,13 +366,13 @@ ___
 	* Then calls `ft_order()` to move elements from `stack_b` to `stack_a` that are already in the correct order relative to each other.
 	* If necessary, handles the adjustment of the index `idx` after `ordered` elements have been moved from `stack_b` to `stack_a`.
 	* If `idx` is past the end of `stack_a`:
-		* It is recalculated and looped back to the start of the stack.
+		* It is recalculated and **looped back to the start** of the stack.
 	* Else, if `idx` is past the start of `stack_a`:
-		* It is recalculated and looped back to the end of the stack.
+		* It is recalculated and **looped back to the end** of the stack.
 
 	* **Rotates** `stack_a` to move the element at `idx` to the top.
 	* Again, check if `idx` is past the end of `stack_a`:
-		* If so, it is recalculated and looped back to the start of the stack.
+		* If so, it is recalculated and **looped back to the start** of the stack.
 
 	* Checks if the min or max value of `stack_b` is less/greater than the element now at the top of `stack_a`:
 		* If so, it ***rotates** `stack_b` to move its min to the top.
