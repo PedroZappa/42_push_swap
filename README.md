@@ -49,8 +49,17 @@ ___
 
 ## `push_swap` Overview
 
-* `stack_a` and `stack_b`, which are arrays of `t_elem` structs:
-  * `stack_a` is initialized with the values passed in as arguments.
+* `stack_a` and `stack_b`, are arrays of `t_elem` structs:
+
+```c
+typedef struct s_elem {
+	int	num;
+	int	index;
+	int	set;
+}	t_elem;
+```
+
+* `stack_a` is initialized with the values passed in as arguments.
   * `stack_b` is initialized as an empty stack.
 
 * The values in `stack_a` are a random sequence of positive and/or negative integers.
