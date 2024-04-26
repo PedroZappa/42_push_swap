@@ -24,7 +24,6 @@ ___
 * [`push_swap` Overview](#push_swap-overview)
 * [`push_swap` Operations](#push_swap-operations)
 * [Operations Example](#operations-example)
-  * [Example](#example)
 * [Implementation 📜](#implementation-)
 * [Processing Input Arguments](#processing-input-arguments)
 * [Error / Invalid Input Handling](#error--invalid-input-handling)
@@ -91,8 +90,6 @@ To get the stack sorted, we have the following operations at our disposal:
 | `rrr` | reverse rotate a & reverse rotate b | performs both `rra` and `rrb`                                   |
 
 ## Operations Example
-
-#### Example
 
 To show these instructions in action, let’s sort a random list of integers.
 In this example, we’ll consider that both stacks grow from the right.
