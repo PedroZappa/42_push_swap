@@ -25,6 +25,7 @@ ___
 * [`push_swap` Operations](#push_swap-operations)
 * [Operations Example](#operations-example)
 * [Implementation 📜](#implementation-)
+* [Data Structures](#data-structures)
 * [Processing Input Arguments](#processing-input-arguments)
 * [Error / Invalid Input Handling](#error--invalid-input-handling)
 * [Creating the Stacks](#creating-the-stacks)
@@ -52,24 +53,14 @@ ___
 
 ## `push_swap` Requirements Overview
 
-* `stack_a` and `stack_b`, are arrays of `t_elem` structs:
+* It takes a stack as an argument, formatted as a list of positive and/or negative integers.
+* The first element should be at the top of the stack.
 
-```c
-typedef struct s_elem {
-	int	num;
-	int	index;
-	int	set;
-}	t_elem;
-```
+* The program prints to `stdout` the instructions to sort `stack_a` separated by a `\n`.
 
-* `stack_a` is initialized with the values passed in as arguments.
-* `stack_b` is initialized as an empty stack.
+* The goal is to sort the stack with the lowest possible number of operations.
 
-* The values in `stack_a` are a random sequence of positive and/or negative integers.
-
-> [!Important]
->
-> The objective of `push_swap` is to sort the values in `stack_a` in **ascending order** using a set of `push_swap` operations.
+* If no argument is given, the program gives the prompt back and does nothing.
 
 * In case of an error, it displays "Error" followed by a `\n` to `stderr`. 
 
@@ -78,15 +69,19 @@ Errors include:
 * Some arguments are bigger than an integer.
 * Some arguments are duplicates.
 
+> [!Important]
+>
+> The objective of `push_swap` is to sort the values in `stack_a` in **ascending order** using a set of `push_swap` operations.
+
 ## `push_swap` Operations
 
 To get the stack sorted, we have the following operations at our disposal:
 
-| Code  | Operation                         | Description                                                 |
-| ----- | ----------------------------------- | ------------------------------------------------------ |
+| Code  | Operation                         | Description                                            |
+| ----- | --------------------------------- | -------------------------------------------------------|
 | `sa`  | swap a                              | swaps the 2 top elements of `stack_a`                    |
 | `sb`  | swap b                              | swaps the 2 top elements of `stack_b`                    |
-| `ss`  | swap a & swap b                     | performs both `sa` and `sb`                                     |
+| `ss`  | swap a & swap b                     | performs both `sa` and `sb`                          |
 | `pa`  | push a                              | moves the top element of stack b at the top of `stack_a` |
 | `pb`  | push b                              | moves the top element of stack a at the top of `stack_b` |
 | `ra`  | rotate a                            | shifts all elements of `stack_a` from bottom to top      |
@@ -118,6 +113,17 @@ The sorting algorithm used in this implementation is a variation of the `QuickSo
 
 > Before we get into the nitty and gritty details of the algorithm, let's take a look at how the program handles input arguments and sets up the stacks.
 ___
+
+## Data Structures
+
+* `stack_a` and `stack_b`, are arrays of `t_elem` structs:
+```c
+typedef struct s_elem {
+	int	num;
+	int	index;
+	int	set;
+}	t_elem;
+```
 
 ## Processing Input Arguments
 ```c
