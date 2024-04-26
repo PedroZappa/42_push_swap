@@ -259,9 +259,9 @@ static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc)
 > - If `argc` is greater than 4, meaning there are more than three elements in `stack_a`: 
 >	- The stack is sorted using `ft_sort_stack()`.
 
-> [!Important]
+> [!Note]
 >
-> We'll get into more detail about how these subroutines work later in the algorithm description section.
+> We'll get into more detail about how these subroutines work in the algorithm description section.
 ___
 
 ## Freeing the Stacks
