@@ -332,7 +332,7 @@ The logic in [ft_sort_stack.c](https://github.com/PedroZappa/42_push_swap/blob/m
 * Loops through `stack_a`:
 	* Pushing elements to `stack_b` until there are only three elements left in `stack_a`.
 	* If the current top element in `stack_b` is greater than the `median` and the number of elements in `stack_a` is greater than 3, it **rotates** `stack_b`.
-* The three remaining elements in `stack_a` are sorted.
+* The three remaining elements in `stack_a` are sorted with [ft_sort_three.c](https://github.com/PedroZappa/42_push_swap/blob/main/src/ft_sort_three.c).
 
 * `i` is reset to the start of `stack_b`;
 * It then loops through `stack_b`:
