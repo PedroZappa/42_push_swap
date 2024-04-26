@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 09:26:44 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/25 19:59:17 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/26 13:07:24 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op);
 static int	ft_parse_op(char *op, t_elem *stack_a, t_elem *stack_b);
+static int	ft_strncmp_checker(char *s1, char *s2, size_t n);
 
 void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 {
@@ -33,7 +34,7 @@ void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 	start = 0;
 	while ((stack_b[start].index != -1) && (stack_b[start].set != 1))
 		++start;
-	if (!(ft_is_sorted(stack_a) == 1) && (stack_b[start].index == -1))
+	if ((ft_is_sorted(stack_a) == 1) && (stack_b[start].index == -1))
 		ft_putstr_fd("OK\n", 1);
 	else
 		ft_putstr_fd("KO\n", 1);
@@ -61,29 +62,41 @@ static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op)
 
 static int	ft_parse_op(char *op, t_elem *stack_a, t_elem *stack_b)
 {
-	if (ft_strncmp(op, "pa\n", 3) == 0)
+	if (ft_strncmp_checker(op, "pa\n", 3) == 0)
 		ft_push_elem(stack_b, stack_a);
-	else if (ft_strncmp(op, "pb\n", 3) == 0)
+	else if (ft_strncmp_checker(op, "pb\n", 3) == 0)
 		ft_push_elem(stack_a, stack_b);
-	else if (ft_strncmp(op, "sa\n", 3) == 0)
+	else if (ft_strncmp_checker(op, "sa\n", 3) == 0)
 		ft_swap_elem(stack_a);
-	else if (ft_strncmp(op, "sb\n", 3) == 0)
+	else if (ft_strncmp_checker(op, "sb\n", 3) == 0)
 		ft_swap_elem(stack_b);
-	else if (ft_strncmp(op, "ss\n", 3) == 0)
+	else if (ft_strncmp_checker(op, "ss\n", 3) == 0)
 		ft_swap_both(stack_a, stack_b);
-	else if (ft_strncmp(op, "ra\n", 3) == 0)
+	else if (ft_strncmp_checker(op, "ra\n", 3) == 0)
 		ft_rotate(stack_a);
-	else if (ft_strncmp(op, "rb\n", 3) == 0)
+	else if (ft_strncmp_checker(op, "rb\n", 3) == 0)
 		ft_rotate(stack_b);
-	else if (ft_strncmp(op, "rr\n", 3) == 0)
+	else if (ft_strncmp_checker(op, "rr\n", 3) == 0)
 		ft_rotate_both(stack_a, stack_b, 0);
-	else if (ft_strncmp(op, "rra\n", 4) == 0)
+	else if (ft_strncmp_checker(op, "rra\n", 4) == 0)
 		ft_rev_rotate(stack_a);
-	else if (ft_strncmp(op, "rrb\n", 4) == 0)
+	else if (ft_strncmp_checker(op, "rrb\n", 4) == 0)
 		ft_rev_rotate(stack_b);
-	else if (ft_strncmp(op, "rrr\n", 4) == 0)
+	else if (ft_strncmp_checker(op, "rrr\n", 4) == 0)
 		ft_rotate_both(stack_a, stack_b, 1);
 	else
 		return (-1);
 	return (1);
+}
+
+static int	ft_strncmp_checker(char *s1, char *s2, size_t n)
+{
+	unsigned int	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
