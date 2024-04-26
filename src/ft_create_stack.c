@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:47:20 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/12 15:02:13 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:38:55 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,3 +53,31 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 	stack[i].index = -1;
 	return (stack);
 }
+//
+// t_elem	*ft_create_stack(int argc, char **argv, int select)
+// {
+//     t_elem	*stack;
+//     int		i;
+//
+//     stack = malloc(sizeof(t_elem) * (argc + 1));
+//     if (stack == NULL)
+//         return (NULL);
+//     i = 0;
+//     while (i < (argc - 1))
+//     {
+//         if (select == 1)
+//         {
+//             stack[i].num = ft_atoi(argv[argc - 2 - i]);
+//             stack[i].set = 1;
+//         }
+//         else
+//         {
+//             stack[i].num = 0;
+//             stack[i].set = 0;
+//         }
+//         stack[i].index = i;
+//         ++i;
+//     }
+//     stack[argc - 1].index = -1;
+//     return (stack);
+// }

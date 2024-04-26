@@ -8,6 +8,9 @@ end
 define main
 	display *input_list
 	display *stack_a
+	display *(stack_a+1)
+	display *(stack_a+2)
+	display *(stack_a+3)
 	display *stack_b
 	display must_free
 	display error
@@ -28,15 +31,29 @@ define ft_sort_three
 	display end
 end
 
+define ft_create_stack
+	display argc
+	display argv
+	display select
+	display *stack
+	display *(stack+1)
+	display *(stack+2)
+	display *(stack+3)
+	display *(stack+4)
+	display i
+	next
+end
+
 # set print pretty on
 
 # Start debugging from main.c
-# fs cmd
+fs cmd
 # break main:42
 # info break
 # run "1 2 3 -4"
 # main
 # rfr
+# next
 
 # Start at ft_sort()
 # fs cmd
@@ -56,36 +73,44 @@ end
 # ft_sort_three
 # rfr
 
+# Start at ft_create_stack()
+fs cmd
+break ft_create_stack
+info break
+run "1 2 3 -4"
+ft_create_stack
+rfr
+next
 
 ###
 ### Checker DBG
 ###
 
-define main
-	display argc
-	display *argv
-	display *(argv+1)
-	display *(argv+2)
-	display *input_list
-	display *stack_a
-	display *stack_b
-	display must_free
-	display error
-end
-
-define ft_errors
-	display argc
-	display **input_list
-	display **(input_list+1)
-end
-
-define ft_are_args_nbr
-	display i
-	display j
-	display argc
-	display **argv
-	display **(argv+1)
-end
+# define main
+# 	display argc
+# 	display *argv
+# 	display *(argv+1)
+# 	display *(argv+2)
+# 	display *input_list
+# 	display *stack_a
+# 	display *stack_b
+# 	display must_free
+# 	display error
+# end
+#
+# define ft_errors
+# 	display argc
+# 	display **input_list
+# 	display **(input_list+1)
+# end
+#
+# define ft_are_args_nbr
+# 	display i
+# 	display j
+# 	display argc
+# 	display **argv
+# 	display **(argv+1)
+# end
 
 # Start debugging from checker.c
 # fs cmd
@@ -104,9 +129,9 @@ end
 # next
 
 # Start at ft_are_args_nbr()
-fs cmd
-break ft_are_args_nbr
-run "" 1
-ft_are_args_nbr
-rfr
-next
+# fs cmd
+# break ft_are_args_nbr
+# run "" 1
+# ft_are_args_nbr
+# rfr
+# next
