@@ -71,6 +71,13 @@ typedef struct s_elem {
 >
 > The objective of `push_swap` is to sort the values in `stack_a` in **ascending order** using a set of `push_swap` operations.
 
+* In case of an error, it displays "Error" followed by a `\n` to `stderr`. 
+
+Errors include:
+* Some arguments are not integers.
+* Some arguments are bigger than an integer.
+* Some arguments are duplicates.
+
 ## `push_swap` Operations
 
 To get the stack sorted, we have the following operations at our disposal:
