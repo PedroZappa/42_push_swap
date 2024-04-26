@@ -66,11 +66,11 @@ typedef struct s_elem {
 
 > [!Important]
 >
-> The objective of `push_swap` is to sort the values in `stack_a` in ascending order using a set of `push_swap` operations.
+> The objective of `push_swap` is to sort the values in `stack_a` in **ascending order** using a set of `push_swap` operations.
 
 ## `push_swap` Operations
 
-To get the stack sorted in ascending order, we only have the following operations at our disposal:
+To get the stack sorted, we have the following operations at our disposal:
 
 | Code  | Operation                         | Description                                                 |
 | ----- | ----------------------------------- | ------------------------------------------------------ |
