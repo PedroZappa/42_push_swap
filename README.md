@@ -370,15 +370,15 @@ ___
 	* Else, if `idx` is past the start of `stack_a`:
 		* It is recalculated and looped back to the end of the stack.
 
-	* Rotates `stack_a` to move the element at `idx` to the top.
+	* **Rotates** `stack_a` to move the element at `idx` to the top.
 	* Again, check if `idx` is past the end of `stack_a`:
 		* If so, it is recalculated and looped back to the start of the stack.
 
 	* Checks if the min or max value of `stack_b` is less/greater than the element now at the top of `stack_a`:
-		* If so, it rotates `stack_b` to move its min to the top.
+		* If so, it ***rotates** `stack_b` to move its min to the top.
 	* Else, 
-		* It rotates `stack_b` to move the smallest element greater than `stack_a`'s top to the top of `stack_b`.
-	* Pushes the top element of stack_b to stack_a.
+		* It **rotates** `stack_b` to move the smallest element greater than `stack_a`'s top to the top of `stack_b`.
+	* **Pushes** the top element of `stack_b` to `stack_a`.
 
 ___
 
