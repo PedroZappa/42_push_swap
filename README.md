@@ -23,6 +23,8 @@ ___
 * [About 📌](#about-)
 * [`push_swap` Overview](#push_swap-overview)
 * [`push_swap` Operations](#push_swap-operations)
+* [Operations Example](#operations-example)
+  * [Example](#example)
 * [Implementation 📜](#implementation-)
 * [Processing Input Arguments](#processing-input-arguments)
 * [Error / Invalid Input Handling](#error--invalid-input-handling)
@@ -87,6 +89,24 @@ To get the stack sorted, we have the following operations at our disposal:
 | `rra` | reverse rotate a                    | shifts all elements of `stack_a` from top to bottom      |
 | `rrb` | reverse rotate b                    | shifts all elements of `stack_b` from top to bottom      |
 | `rrr` | reverse rotate a & reverse rotate b | performs both `rra` and `rrb`                                   |
+
+## Operations Example
+
+#### Example
+
+To show these instructions in action, let’s sort a random list of integers.
+In this example, we’ll consider that both stacks grow from the right.
+
+|Init a and b |`sa` |`pb` |`pb` |`pb` |`ra` |`rb` |`rra`|`rrb`|`sa` |`pa` |`pa` |`pa` |
+|-------------|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| 2          | `1`   |     |     |     |     |     |     |     |     |     |     | `1`   |
+| 1          | `2`   | 2   |     |     |     |     |     |     |     |     | `2`   | 2   |
+| 3          | 3   | 3   | 3   |     |     |     |     |     |     | `3`   | 3   | 3   |
+| 6          | 6   | 6   | 6   | 6 `3` | 5 3 | 5 2 | `6` 2 | 6 `3` | `5` 3 | 5   | 5   | 5   |
+| 5          | 5   | 5   | 5 `2` | 5 2 | 8 2 | 8 1 | 5 1 | 5 2 | `6` 2 | 6 2 | 6   | 6   |
+| 8          | 8   | 8 `1` | 8 1 | 8 1 | `6` 1 | 6 `3` | 8 3 | 8 1 | 8 1 | 8 1 | 8 1 | 8   |
+| a b        | a b | a b | a b | a b | a b | a b | a b | a b | a b | a b | a b | a b |
+
 ___
 # Implementation 📜
 
