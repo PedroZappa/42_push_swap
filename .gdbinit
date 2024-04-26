@@ -11,6 +11,7 @@ define main
 	display *(stack_a+1)
 	display *(stack_a+2)
 	display *(stack_a+3)
+	display *(stack_a+4)
 	display *stack_b
 	display must_free
 	display error
@@ -47,7 +48,7 @@ end
 # set print pretty on
 
 # Start debugging from main.c
-fs cmd
+#fs cmd
 # break main:42
 # info break
 # run "1 2 3 -4"
@@ -75,9 +76,10 @@ fs cmd
 
 # Start at ft_create_stack()
 fs cmd
-break ft_create_stack
-info break
+break main.c:52
 run "1 2 3 -4"
+main
+step
 ft_create_stack
 rfr
 next
