@@ -337,9 +337,9 @@ The logic in [ft_sort_stack.c](https://github.com/PedroZappa/42_push_swap/blob/m
 * `i` is reset to the start of `stack_b`;
 * It then loops through `stack_b`:
 	* For each element, it calculates the index in `stack_a` that requires the minimum number of operations to move that element into the correct sorted position.
-* It rotates `stack_a` until the value right above the median is at the top.
-* It pushes the top element of `stack_b` to `stack_a`.
-* It rotates `stack_a` to move its new smallest element to the top.
+* It **rotates** `stack_a` until the value right above the median is at the top.
+* It **pushes** the top element of `stack_b` to `stack_a`.
+* It **rotates** `stack_a` to move its new smallest element to the top.
 
 This process is repeated until all the values in `stack_a` are sorted.
 ___
