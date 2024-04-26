@@ -268,7 +268,7 @@ test_checker: all bonus		## Test bonus checker
 	./randgen/randgen $(n) > rand.txt
 	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
 	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
-	@echo "[$(YEL)Running push_swap custom checker$(D)]"
+	@echo "[$(YEL)Running push_swap passunca's checker$(D)]"
 	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker "$$ARG"
 
 ##@ Clean-up Rules 󰃢
