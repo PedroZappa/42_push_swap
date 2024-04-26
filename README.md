@@ -59,12 +59,14 @@ typedef struct s_elem {
 }	t_elem;
 ```
 
-	* `stack_a` is initialized with the values passed in as arguments.
-	* `stack_b` is initialized as an empty stack.
+* `stack_a` is initialized with the values passed in as arguments.
+* `stack_b` is initialized as an empty stack.
 
 * The values in `stack_a` are a random sequence of positive and/or negative integers.
 
-* The objective of `push_swap` is to sort the values in `stack_a` in ascending order using a set of `push_swap` operations.
+> [!Important]
+>
+> The objective of `push_swap` is to sort the values in `stack_a` in ascending order using a set of `push_swap` operations.
 
 ## `push_swap` Operations
 
