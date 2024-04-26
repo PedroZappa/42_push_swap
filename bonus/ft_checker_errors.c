@@ -51,6 +51,8 @@ static int	ft_are_args_nbr(int argc, char **argv)
 	i = 0;
 	while (i < (argc - 1))
 	{
+		if (argv[i][0] == '\0')
+			return (-1);
 		j = 0;
 		while (argv[i][j] != '\0')
 		{

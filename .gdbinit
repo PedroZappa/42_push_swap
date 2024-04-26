@@ -55,3 +55,58 @@ end
 # # run "1 2 3"
 # ft_sort_three
 # rfr
+
+
+###
+### Checker DBG
+###
+
+define main
+	display argc
+	display *argv
+	display *(argv+1)
+	display *(argv+2)
+	display *input_list
+	display *stack_a
+	display *stack_b
+	display must_free
+	display error
+end
+
+define ft_errors
+	display argc
+	display **input_list
+	display **(input_list+1)
+end
+
+define ft_are_args_nbr
+	display i
+	display j
+	display argc
+	display **argv
+	display **(argv+1)
+end
+
+# Start debugging from checker.c
+# fs cmd
+# break main
+# run "" 1
+# main
+# rfr
+# next
+
+# Start at ft_errors()
+# fs cmd
+# break ft_errors
+# run "" 1
+# ft_errors
+# rfr
+# next
+
+# Start at ft_are_args_nbr()
+fs cmd
+break ft_are_args_nbr
+run "" 1
+ft_are_args_nbr
+rfr
+next
