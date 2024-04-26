@@ -164,7 +164,7 @@ int	ft_errors(int argc, char **input_list)
 > - In case `argc` is 1, meaning no arguments were provided, the function simply returns 0.
 > - If the values in `input_list` are NOT numbers, the call to `ft_are_args_nbr()` returns -1. In this case, the function prints "Error\n" to the `stderr` and returns -1.
 > - Lastly if there are duplicate numbers in the `input_list`, the call to `ft_is_duplicate()` returns -1, in which case the function prints "Error\n" to the `stderr` and returns -1.
-> - If no errors were detected, the function returns 1.
+> - If no errors are detected, the function returns 1.
 ___
 
 ## Creating the Stacks
@@ -213,10 +213,10 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 >	- If the memory allocation fails, it returns NULL.
 > - Initializes `i` to 0.
 > - Then it enters a loop initializing each element of the stack, with `i` as the index.
->	- If `select` is 1:
+>	- If `select` is 1, it initializes `stack_a`:
 >		- Sets the `stack[i].num` field of the current element to the integer value of the corresponding argument (converted using [ft_atoi()](https://github.com/PedroZappa/42_libft/blob/master/libft/ft_atoi.c).
 >		- Sets the `stack[i].set` field to 1 (used for some conditional checks later in the program).
->	- If `select` is 0:
+>	- If `select` is 0, it initializes `stack_b`:
 >		- Sets the `stack[i].num` field of the current element to 0. 
 >		- Sets `stack[i].set` fields of the current element to 0.
 >	- At the end of each iteration, sets the `stack[i].index` field of the current element to `i` (representing the position of the element in the stack).
