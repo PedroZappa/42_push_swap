@@ -214,7 +214,7 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 > - Initializes `i` to 0.
 > - Then it enters a loop initializing each element of the stack, with `i` as the index.
 >	- If `select` is 1, it initializes `stack_a`:
->		- Sets the `stack[i].num` field of the current element to the integer value of the corresponding argument (converted using [ft_atoi()](https://github.com/PedroZappa/42_libft/blob/master/libft/ft_atoi.c).
+>		- Sets the `stack[i].num` field of the current element to the integer value of the corresponding argument (converted using [ft_atoi()](https://github.com/PedroZappa/42_libft/blob/master/libft/ft_atoi.c)).
 >		- Sets the `stack[i].set` field to 1 (used for some conditional checks later in the program).
 >	- If `select` is 0, it initializes `stack_b`:
 >		- Sets the `stack[i].num` field of the current element to 0. 
@@ -251,7 +251,7 @@ static void	ft_sort(t_elem *stack_a, t_elem *stack_b, int argc)
 }
 ```
 
-> - If `argc` is 3, it means there are two elements in `stack_a` (excluding the program name). 
+> - If `argc` is 3, it means there are two elements in `stack_a` (plus the program's name). 
 >	- In this case, it checks if `stack_a` is already sorted. If it is NOT sorted (indicated by `ft_is_sorted()` returning -1): 
 >		- Swaps the two elements using `ft_swap_elem()`.
 > - If `argc` is 4, it means there are three elements in `stack_a`. 
