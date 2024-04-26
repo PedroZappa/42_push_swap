@@ -36,6 +36,7 @@ ___
   * [Calculating the Best Move](#calculating-the-best-move)
     * [`ft_best_op_idx()`](#ft_best_op_idx)
     * [`ft_calc_move()`](#ft_calc_move)
+* [Bonus: Checker ✅](#bonus-checker-)
 * [Usage 🏁](#usage-)
 * [Tests 🧪](#tests-)
 * [References 📚](#references-)
@@ -379,6 +380,10 @@ ___
 	* Else, 
 		* It **rotates** `stack_b` to move the smallest element greater than `stack_a`'s top to the top of `stack_b`.
 	* **Pushes** the top element of `stack_b` to `stack_a`.
+
+___
+
+## Bonus: Checker ✅
 
 ___
 
