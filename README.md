@@ -108,7 +108,7 @@ int	main(int argc, char **argv)
 ```
 * First, it increments `argv` so to skip the program's name;
 * It then assigns `argv` to `input_list`.
-* Initializes `must_free` flag to 0 (This flag is used to indicate that the memory was allocated and needs to be freed later);
+* Initializes `must_free` flag to 0 (This flag is used to indicate that the memory was allocated and therefore needs to be freed later);
 * If `argc` is 2 (meaning a single command line argument was provided) `ft_get_elems()` is called:
 ```c
 static char	**ft_get_elems(int *argc, char **argv, int *must_free)
