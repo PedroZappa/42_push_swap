@@ -327,7 +327,7 @@ fclean: clean	## Remove archives & executables
 
 libclean: fclean	## Remove libft
 	$(RM) $(LIBS_PATH)
-	@echo "* $(YEL)Removing libft folder & files!$(D) : $(_SUCCESS)"
+	@echo "* $(YEL)Removing lib folder & files!$(D) : $(_SUCCESS)"
 
 re: fclean all	## Purge and Recompile
 
