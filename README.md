@@ -515,8 +515,8 @@ void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 	* `stack_a` should be sorted, so it calls `ft_is_sorted()` to check.
 
 	* If both conditions are met:
-		* It prints "OK";
-		* else prints "KO".
+		* It prints "OK" to `stdout`, meaning the instructions are valid.
+		* else prints "KO" to `stdout`, meaning the instructions are invalid.
 ___
 ### `ft_check_op()` 
 
