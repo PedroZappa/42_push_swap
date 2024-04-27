@@ -23,7 +23,7 @@ ___
 <!-- mtoc-start -->
 
 * [About 📌](#about-)
-* [`push_swap` Requirements Overview](#push_swap-requirements-overview)
+* [`push_swap` Requirements Overview ✅](#push_swap-requirements-overview-)
 * [`push_swap` Operations](#push_swap-operations)
 * [Operations Example](#operations-example)
 * [Implementation 📜](#implementation-)
@@ -55,7 +55,7 @@ ___
 
 # About 📌
 
-## `push_swap` Requirements Overview
+## `push_swap` Requirements Overview ✅
 
 * It takes a stack as an argument, formatted as a list of positive and/or negative integers.
 * The first element should be at the top of the stack.
