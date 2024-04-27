@@ -662,7 +662,7 @@ make help
 ```
 > [!Important]
 >
-> Check the [Makefile](https://github.com/PedroZappa/42_push_swap/blob/master/Makefile) for more details about what's going on with each command.
+> Check the [Makefile](https://github.com/PedroZappa/42_push_swap/blob/master/Makefile) for more details about what's going on with each command. there is a lot of juicy juice to drink 🤓
 
 ___
 # References 📚
