@@ -604,7 +604,7 @@ cd 42_push_swap_passunca
 ```
 ## Build `push_swap`
 
-To build `push_swap` and run: 
+To build `push_swap` run: 
 ```sh
 make
 ```
@@ -615,7 +615,10 @@ Here are a couple different ways to run the program:
 ./push_swap 2 1 3 6 5 8
 # or
 ./push_swap "2 1 3 6 5 8"
-
+# or
+ARG="2 1 3 6 5 8"; ./push_swap $ARG
+# and to run it with the checker provided by 42:
+ARG="2 1 3 6 5 8"; ./push_swap $ARG | ./checker_linux $ARG
 ```
 ___
 
@@ -626,10 +629,42 @@ To build `checker`, run:
 make bonus
 ```
 
+To manually test `checker`, run:
+```sh
+echo -e "rra\npb\nsa\nrra\npa" > input.txt
+./checker 3 2 1 0 < input.txt
+```
 ___
 
 # Tests 🧪
 
+I've prepared several make rules to test the `push_swap` program and the `checker` in a systematic and automated way.
+
+To run the tests present on the subject run:
+```sh
+make test_subject	# for push_swap
+make test_checker	# for checker
+```
+
+To test `push_swap` with a custom number of input elements run:
+```sh
+make test_n n=100
+```
+To test `push_swap` together `checker` with a custom number of input elements run:
+```sh
+make test_checker n=100
+```
+> `n` is the number of input elements, in this example 100.
+
+To check all available commands including tests run:
+```sh
+make help
+```
+> [!Important]
+>
+> Check the [Makefile](https://github.com/PedroZappa/42_push_swap/blob/master/Makefile) for more details about what's going on with each command.
+
+___
 # References 📚
 
 # License 📖
