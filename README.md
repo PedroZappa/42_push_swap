@@ -439,11 +439,6 @@ ___
 
 ### Checker Implementation 📜
 
-The `checker` program reads a set of instructions from `stdin` and executes them on the stack received as an argument. It has a very similar structure and uses many of the same subroutines as this project's `push_swap` implementation.
-
-> [!Important]
->
-> The main difference between the `checker` program and the `push_swap` program is that other than sorting `stack_a` it also checks if the instructions produced by `push_swap` are valid.
 ```c
 /* push_swap checker */
 int	main(int argc, char **argv)
@@ -474,14 +469,21 @@ int	main(int argc, char **argv)
 	return (0);
 }
 ```
+The `checker` program reads a set of instructions from `stdin` and executes them on the stack received as an argument. It has a very similar structure and uses many of the same subroutines as this project's `push_swap` implementation.
+
+> [!Important]
+>
+> The main difference between the `checker` program and the `push_swap` program is that other than sorting `stack_a` it also checks if the instructions produced by `push_swap` are valid.
 ### `ft_check_stack()` 
 
+```c
+```
 * It takes in two stacks - `stack_a` and `stack_b`.
 
 * It reads input commands line by line using [get_next_line()](https://github.com/PedroZappa/42_get_next_line).
-	* For each line, it calls `ft_check_op()` which will execute the operation on the two stacks.
+	* For each line, it calls `ft_check_op()` which will check if the line is a valid instruction, and if so, execute the operation on the appropriate stack.
 
-After reading all the input, it checks if the stacks are in the expected sorted state:
+* After reading all the input, it checks if the stacks are in the expected sorted state:
 
 stack_b should be empty, so it loops through to find the first element with index=-1.
 
