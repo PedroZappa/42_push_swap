@@ -46,6 +46,8 @@ ___
   * [`ft_check_op()` ](#ft_check_op-)
   * [`ft_parse_op()` ](#ft_parse_op-)
 * [Usage 🏁](#usage-)
+* [Build `push_swap`](#build-push_swap)
+* [Build `checker`](#build-checker)
 * [Tests 🧪](#tests-)
 * [References 📚](#references-)
 * [License 📖](#license-)
@@ -594,6 +596,37 @@ Parses an `op` string and executes the corresponding operation on `stack_a` or `
 ___
 
 # Usage 🏁
+
+First, clone the repository, and `cd` into the project folder:
+```sh
+git clone git@github.com:PedroZappa/42_push_swap.git 42_push_swap_passunca
+cd 42_push_swap_passunca
+```
+## Build `push_swap`
+
+To build `push_swap` and run: 
+```sh
+make
+```
+> This command will fetch the dependencies and build the project.
+
+Here are a couple different ways to run the program:
+```sh
+./push_swap 2 1 3 6 5 8
+# or
+./push_swap "2 1 3 6 5 8"
+
+```
+___
+
+## Build `checker`
+
+To build `checker`, run:
+```sh
+make bonus
+```
+
+___
 
 # Tests 🧪
 
