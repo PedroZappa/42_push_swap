@@ -318,6 +318,8 @@ clean: 				## Remove object files
 	@echo "* $(YEL)Removing $(BUILD_PATH) folder & files$(D): $(_SUCCESS)"
 	$(RM) norm.txt norm_ls.txt norm_err.txt norm_errn.txt
 	@echo "* $(YEL)Removing Norminette temp files:$(D) $(_SUCCESS)"
+	$(RM) push_swap_out.txt rand.txt ops.txt input.txt imgui.ini
+	@echo "* $(YEL)Removing test temp files:$(D) $(_SUCCESS)"
 
 fclean: clean	## Remove archives & executables
 	$(RM) $(NAME) $(NAME_BONUS)
