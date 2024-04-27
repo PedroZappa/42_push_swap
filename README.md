@@ -40,7 +40,7 @@ ___
     * [`ft_calc_move()`](#ft_calc_move)
 * [Bonus: Checker Requirements Overview ✅](#bonus-checker-requirements-overview-)
   * [Checker Implementation 📜](#checker-implementation-)
-  * [`ft_check_stack()` ](#ft_check_stack-)
+  * [`ft_check_op()` ](#ft_check_op-)
 * [Usage 🏁](#usage-)
 * [Tests 🧪](#tests-)
 * [References 📚](#references-)
@@ -440,7 +440,7 @@ ___
 ### Checker Implementation 📜
 
 ```c
-/* push_swap checker */
+/* push_swap checker (main_checker.c) */
 int	main(int argc, char **argv)
 {
 	char	**input_list;
@@ -474,7 +474,8 @@ The `checker` program reads a set of instructions from `stdin` and executes them
 > [!Important]
 >
 > The main difference between the `checker` program and the `push_swap` program is that other than sorting `stack_a` it also checks if the instructions produced by `push_swap` are valid.
-### `ft_check_stack()` 
+
+### `ft_check_op()` 
 
 ```c
 ```
