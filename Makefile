@@ -227,7 +227,7 @@ print_test:
 	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
 	echo "$(YEL)$(_SEP)$(D)"; \
 
-test_subject:		## Test push_swap with examples from subject
+test_subject: all	## Test push_swap with examples from subject
 	@echo "[$(YEL)Running push_swap tests from subject$(D)]"
 	@echo "[$(RED)1/2$(D) :$(CYA)Success test$(D) (correct args)]"
 	./push_swap 2 1 3 6 5 8
@@ -236,37 +236,37 @@ test_subject:		## Test push_swap with examples from subject
 	./push_swap 0 one 2 3
 	@echo "$(YEL)$(_SEP)$(D)"
 
-test_n:				## Test with n elements
+test_n:	all build_randgen				## Test with n elements
 	make --no-print-directory randgen n=$(n)
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_three:			## Test with 3 element stack
+test_three:	all build_randgen			## Test with 3 element stack
 	make --no-print-directory randgen n=3
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_six:			## Test with 6 element stack
+test_six:	all build_randgen			## Test with 6 element stack
 	make --no-print-directory randgen n=6
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_rand100:		## Test with 100 random elements
+test_rand100:	all build_randgen		## Test with 100 random elements
 	make --no-print-directory randgen n=100
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_rand500:		## Test with 500 random elements
+test_rand500:	all build_randgen	## Test with 500 random elements
 	make --no-print-directory randgen n=500
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_50rand500:		## Test with 50 sets of 500 random elements
+test_50rand500:	all build_randgen	## Test with 50 sets of 500 random elements
 	@echo "[$(CYA)Running tests with 50 sets of 500 random elements$(D)]"
 	@echo "[$(YEL)Generating and sorting lists...$(D)]"
 	@rm -f ops.txt 2>/dev/null
