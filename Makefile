@@ -51,7 +51,7 @@ SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_assert_stack.c \
 			  ft_median.c ft_order.c ft_rotate.c)
 BONUS		= $(addprefix $(BONUS_PATH)/, main_checker.c ft_assert_stack.c \
 			  ft_create_stack.c ft_checker_errors.c ft_ops_checker.c \
-			  ft_ops_mult.c ft_check_stack.c ft_gnl.c ft_gnl_utils.c)
+			  ft_ops_mult.c ft_check_stack.c)
 
 
 OBJS		= $(SRC:$(SRC_PATH)/%.c=$(BUILD_PATH)/%.o)
