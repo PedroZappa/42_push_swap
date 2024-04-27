@@ -49,7 +49,6 @@ ___
 * [Build `push_swap`](#build-push_swap)
 * [Build `checker`](#build-checker)
 * [Tests 🧪](#tests-)
-* [References 📚](#references-)
 * [License 📖](#license-)
 
 <!-- mtoc-end -->
@@ -664,7 +663,8 @@ make help
 >
 > Check the [Makefile](https://github.com/PedroZappa/42_push_swap/blob/master/Makefile) for more details about what's going on with each command. there is a lot of juicy juice gathered in it for your Make'ing enjoyment 🤓
 
-___
-# References 📚
-
 # License 📖
+
+This work is published under the terms of <a href="https://github.com/PedroZappa/42_minitalk/blob/main/LICENSE">42 Unlicense</a>.
+
+<p align="right">(<a href="#readme-top">get to top</a>)</p>
