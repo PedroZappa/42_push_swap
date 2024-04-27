@@ -508,15 +508,15 @@ void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 * It takes in two stacks - `stack_a` and `stack_b`.
 
 * It reads input commands line by line using [get_next_line()](https://github.com/PedroZappa/42_get_next_line).
-	* For each line, it calls `ft_check_op()` which will check if the line is a valid instruction, and if so, execute the operation on the appropriate stack.
+	* For each line, it calls `ft_check_op()` which will process and check if the line contains a valid instruction.
 
 * After reading all the input, it checks if the stacks are in the expected sorted state:
 	* `stack_b` should be empty, so it loops through to find the first element with index=-1.
 	* `stack_a` should be sorted, so it calls `ft_is_sorted()` to check.
 
 	* If both conditions are met:
-		* It prints "OK" to `stdout`, meaning the instructions are valid.
-		* else prints "KO" to `stdout`, meaning the instructions are invalid.
+		* It prints "OK\n" to `stdout`, meaning the instructions are valid.
+		* else prints "KO\n" to `stdout`, meaning the instructions are invalid.
 ___
 ### `ft_check_op()` 
 
@@ -541,12 +541,57 @@ static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op)
 	}
 }
 ```
+* It takes in `stack_a` and `stack_b`, and the operation string `op`.
+
+* It first does some sanity checking on the op string:
+	* If it's NULL or only 1 character, set result = -1 to indicate invalid operation.
+	* Else it calls `ft_parse_op()` to execute the operation on the appropriate stack.
+
+* It frees the `op` string.
+
+* It checks the return value of `ft_parse_op()` stored in `result`. If -1, it means an invalid operation was parsed. 
+	* It frees the stacks.
+	* It reads and discards the rest of input.
+	* It prints "Error\n" to `stderr` and exits.
 
 ___
 ### `ft_parse_op()` 
-
 ```c
+static int	ft_parse_op(char *op, t_elem *stack_a, t_elem *stack_b)
+{
+	if (ft_strncmp_checker(op, "pa\n", 3) == 0)
+		ft_push_elem(stack_b, stack_a);
+	else if (ft_strncmp_checker(op, "pb\n", 3) == 0)
+		ft_push_elem(stack_a, stack_b);
+	else if (ft_strncmp_checker(op, "sa\n", 3) == 0)
+		ft_swap_elem(stack_a);
+	else if (ft_strncmp_checker(op, "sb\n", 3) == 0)
+		ft_swap_elem(stack_b);
+	else if (ft_strncmp_checker(op, "ss\n", 3) == 0)
+		ft_swap_both(stack_a, stack_b);
+	else if (ft_strncmp_checker(op, "ra\n", 3) == 0)
+		ft_rotate(stack_a);
+	else if (ft_strncmp_checker(op, "rb\n", 3) == 0)
+		ft_rotate(stack_b);
+	else if (ft_strncmp_checker(op, "rr\n", 3) == 0)
+		ft_rotate_both(stack_a, stack_b, 0);
+	else if (ft_strncmp_checker(op, "rra\n", 4) == 0)
+		ft_rev_rotate(stack_a);
+	else if (ft_strncmp_checker(op, "rrb\n", 4) == 0)
+		ft_rev_rotate(stack_b);
+	else if (ft_strncmp_checker(op, "rrr\n", 4) == 0)
+		ft_rotate_both(stack_a, stack_b, 1);
+	else
+		return (-1);
+	return (1);
+}
 ```
+Parses an `op` string and executes the corresponding operation on `stack_a` or `stack_b`.
+
+* It compares the input string `op` to each possible operation. Based on the matching operation, it calls the corresponding stack operation function.
+	* If there is no match, it returns -1 to indicate invalid operation.
+	* Otherwise it executes the operation and returns 1.
+
 __
 
 # Usage 🏁
