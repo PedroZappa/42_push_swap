@@ -222,37 +222,40 @@ randgen: all build_randgen	## Generate list of n random values w/ given seed
 	./randgen/randgen $(n) $(seed) | tee rand.txt
 	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
 
+print_test:
+	@N_OPS=$$(wc -l < push_swap_out.txt); \
+	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+	echo "$(YEL)$(_SEP)$(D)"; \
+
 test_n:				## Test with n elements
 	./randgen/randgen $(n) | tee rand.txt
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
-	N_OPS=$$(wc -l < push_swap_out.txt); \
-	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
-	echo "$(YEL)$(_SEP)$(D)"; \
+	make --no-print-directory print_test
 
 test_three:			## Test with 3 element stack
 	./randgen/randgen 3 | tee rand.txt
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
-	N_OPS=$$(wc -l < push_swap_out.txt); \
-	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
-	echo "$(YEL)$(_SEP)$(D)"; \
+	make --no-print-directory print_test
 
 test_six:			## Test with 6 element stack
 	./randgen/randgen 6 | tee rand.txt
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
-	N_OPS=$$(wc -l < push_swap_out.txt); \
-	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
-	echo "$(YEL)$(_SEP)$(D)"; \
+	make --no-print-directory print_test
 
 test_rand100:		## Test with 100 random elements
 	./randgen/randgen 100 | tee rand.txt
-	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@ARG=$$(cat rand.txt); \
+	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	make --no-print-directory print_test
 
 test_rand500:		## Test with 500 random elements
 	./randgen/randgen 500 | tee rand.txt
-	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@ARG=$$(cat rand.txt); \
+	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	make --no-print-directory print_test
 
 test_50rand500:		## Test with 50 sets of 500 random elements
 	@for i in {1..50}; do \
@@ -260,12 +263,23 @@ test_50rand500:		## Test with 50 sets of 500 random elements
 		./randgen/randgen 500 > rand.txt; \
 		ARG=$$(cat rand.txt); \
 		./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
-		N_OPS=$$(wc -l < push_swap_out.txt); \
-		echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
-		echo "$(YEL)$(_SEP)$(D)"; \
+		make --no-print-directory print_test; \
 	done
 
-test_checker: all bonus		## Test bonus checker
+test_checker: all bonus		## Test checker with examples from subject
+	@echo "[$(YEL)Running checker tests from subject$(D)]"
+	@echo "[$(RED)1/4$(D) :$(CYA)Success test$(D) (correct operations)]"
+	echo -e "rra\npb\nsa\nrra\npa" > input.txt
+	./checker 3 2 1 0 < input.txt
+	@echo "[$(RED)2/4$(D) :$(CYA)Failure test$(D) (wrong operations)]"
+	echo -e "sa\nrra\npb" > input.txt
+	./checker 3 2 1 0 < input.txt
+	@echo "[$(RED)3/4$(D) :$(CYA)Failure test$(D) (receiving chars)]"
+	./checker 3 2 one 0
+	@echo "[$(RED)4/4$(D) :$(CYA)Failure test$(D) (receiving empty string)]"
+	./checker "" 1
+
+test_checker_n: all bonus	## Test bonus checker with n elements
 	./randgen/randgen $(n) > rand.txt
 	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
 	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
