@@ -6,7 +6,7 @@
 /*   By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 14:47:20 by passunca          #+#    #+#             */
-/*   Updated: 2024/04/26 16:01:59 by passunca         ###   ########.fr       */
+/*   Updated: 2024/04/27 07:45:56 by passunca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 	stack[i].index = -1;
 	return (stack);
 }
-/* Saving the args from right to left like requirted in the subject but 
+/* Saving the args from right to left like required in the subject but 
  * checker doesn't accept it... */
 // t_elem	*ft_create_stack(int argc, char **argv, int select)
 // {
