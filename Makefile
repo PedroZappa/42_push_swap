@@ -142,6 +142,27 @@ update_modules:
 	git submodule update --recursive --remote
 	@echo "* $(GRN)Submodules update$(D): $(_SUCCESS)"
 
+randgen: all build_randgen	## Generate list of n random values w/ given seed
+	@echo "* [$(YEL)Generating list of random values$(D)]"
+	./randgen/randgen $(n) $(seed) | tee rand.txt
+	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
+
+build_randgen:
+	@if test ! -d "$(PCG_C_PATH)"; then make get_pcgc; \
+	else echo "[$(CYA)pcg-c$(D)] folder found $(YEL)🖔$(D)"; \
+	echo "[$(_SUCCESS) compiling $(MAG)randgen!$(D) $(YEL)🖔$(D)]"; \
+	fi
+	@echo "[$(YEL)Compiling $(MAG)pcg-c$(D) Random Number Generator$(D)]"
+	$(MAKE) $(RANDGEN_PATH)
+
+get_pcgc:
+	@echo "[Downloading $(CYA)Random Number Generator$(D) $(MAG)pcg-c$(D)]"
+	git clone git@github.com:imneme/pcg-c.git $(PCG_C_PATH)
+	@echo "* $(MAG)pcg-c$(D) download: $(_SUCCESS)"
+	@echo "[$(YEL)Building $(MAG)pcg-c$(D) Random Number Generator$(D)]"
+	$(MAKE) $(PCG_C_PATH)
+	@echo "[$(_SUCCESS) building $(MAG)pcg-c$(D) $(CYA)Random Number Generator!$(D) $(YEL)🖔$(D)]"
+
 ##@ Test, Debug & Leak Check Rules 
 
 norm: 		## Run norminette test on push_swap files
@@ -185,7 +206,7 @@ norm_bonus: 		## Run norminette test on chcker files
 	fi
 
 valgrind: all build_randgen		## Run push_swap w/ Valgrind
-	./randgen/randgen 500 > rand.txt;
+	make randgen n=500
 	@ARG=$$(cat rand.txt); valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG"
 
 visual: 	## Run push_swap Visualizer 
@@ -201,70 +222,59 @@ get_visual:
 	cd $(VISUALIZER_PATH) && mkdir build && cd build && cmake .. && make
 	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
 
-build_randgen:
-	@if test ! -d "$(PCG_C_PATH)"; then make get_pcgc; \
-	else echo "[$(CYA)pcg-c$(D)] folder found $(YEL)🖔$(D)"; \
-	echo "[$(_SUCCESS) compiling $(MAG)randgen!$(D) $(YEL)🖔$(D)]"; \
-	fi
-	@echo "[$(YEL)Compiling $(MAG)pcg-c$(D) Random Number Generator$(D)]"
-	$(MAKE) $(RANDGEN_PATH)
-
-get_pcgc:
-	@echo "[Downloading $(CYA)Random Number Generator$(D) $(MAG)pcg-c$(D)]"
-	git clone git@github.com:imneme/pcg-c.git $(PCG_C_PATH)
-	@echo "* $(MAG)pcg-c$(D) download: $(_SUCCESS)"
-	@echo "[$(YEL)Building $(MAG)pcg-c$(D) Random Number Generator$(D)]"
-	$(MAKE) $(PCG_C_PATH)
-	@echo "[$(_SUCCESS) building $(MAG)pcg-c$(D) $(CYA)Random Number Generator!$(D) $(YEL)🖔$(D)]"
-
-randgen: all build_randgen	## Generate list of n random values w/ given seed
-	@echo "* [$(YEL)Generating list of random values$(D)]"
-	./randgen/randgen $(n) $(seed) | tee rand.txt
-	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
-
 print_test:
 	@N_OPS=$$(wc -l < push_swap_out.txt); \
 	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
 	echo "$(YEL)$(_SEP)$(D)"; \
 
 test_n:				## Test with n elements
-	./randgen/randgen $(n) | tee rand.txt
+	make --no-print-directory randgen n=$(n)
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_three:			## Test with 3 element stack
-	./randgen/randgen 3 | tee rand.txt
+	make --no-print-directory randgen n=3
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_six:			## Test with 6 element stack
-	./randgen/randgen 6 | tee rand.txt
+	make --no-print-directory randgen n=6
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_rand100:		## Test with 100 random elements
-	./randgen/randgen 100 | tee rand.txt
+	make --no-print-directory randgen n=100
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_rand500:		## Test with 500 random elements
-	./randgen/randgen 500 | tee rand.txt
+	make --no-print-directory randgen n=500
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_50rand500:		## Test with 50 sets of 500 random elements
+	@echo "[$(CYA)Running tests with 50 sets of 500 random elements$(D)]"
+	@echo "[$(YEL)Generating and sorting lists...$(D)]"
+	@rm -f ops.txt 2>/dev/null
 	@for i in {1..50}; do \
 		echo "Test set $(RED)$$i$(D)"; \
 		./randgen/randgen 500 > rand.txt; \
 		ARG=$$(cat rand.txt); \
 		./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
-		make --no-print-directory print_test; \
+		N_OPS=$$(wc -l < push_swap_out.txt); \
+		echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+		echo "$(YEL)$(_SEP)$(D)"; \
+		echo $$N_OPS >> ops.txt; \
 	done
+	@echo "[$(YEL)Calculating statistics...$(D)]"
+	@echo "Minimum: $$(sort -n ops.txt | head -n 1)"
+	@echo "Maximum: $$(sort -n ops.txt | tail -n 1)"
+	@echo "Median: $$(awk '{sum += $$1} END {print sum / NR}' ops.txt)"
 
 test_checker: all bonus		## Test checker with examples from subject
 	@echo "[$(YEL)Running checker tests from subject$(D)]"
@@ -282,9 +292,14 @@ test_checker: all bonus		## Test checker with examples from subject
 test_checker_n: all bonus	## Test bonus checker with n elements
 	./randgen/randgen $(n) > rand.txt
 	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
-	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker_linux "$$ARG"
+	@ARG=$$(cat rand.txt); \
+	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"
 	@echo "[$(YEL)Running push_swap passunca's checker$(D)]"
-	@ARG=$$(cat rand.txt); ./$(NAME) "$$ARG" | ./checker "$$ARG"
+	@ARG=$$(cat rand.txt); \
+	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	make --no-print-directory print_test
+
+
 
 ##@ Clean-up Rules 󰃢
 
