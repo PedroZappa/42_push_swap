@@ -40,7 +40,9 @@ ___
     * [`ft_calc_move()`](#ft_calc_move)
 * [Bonus: Checker Requirements Overview ✅](#bonus-checker-requirements-overview-)
   * [Checker Implementation 📜](#checker-implementation-)
+  * [`ft_parse_stack()` ](#ft_parse_stack-)
   * [`ft_check_op()` ](#ft_check_op-)
+  * [`ft_parse_op()` ](#ft_parse_op-)
 * [Usage 🏁](#usage-)
 * [Tests 🧪](#tests-)
 * [References 📚](#references-)
@@ -475,9 +477,33 @@ The `checker` program reads a set of instructions from `stdin` and executes them
 >
 > The main difference between the `checker` program and the `push_swap` program is that other than sorting `stack_a` it also checks if the instructions produced by `push_swap` are valid.
 
-### `ft_check_op()` 
+___
+### `ft_parse_stack()` 
 
 ```c
+void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
+{
+	int		result;
+	int		start;
+	char	*line;
+
+	result = 1;
+	while (result)
+	{
+		line = get_next_line(0);
+		if (!line)
+			result = 0;
+		else
+			ft_check_op(stack_a, stack_b, line);
+	}
+	start = 0;
+	while ((stack_b[start].index != -1) && (stack_b[start].set != 1))
+		++start;
+	if ((ft_is_sorted(stack_a) == 1) && (stack_b[start].index == -1))
+		ft_putstr_fd("OK\n", 1);
+	else
+		ft_putstr_fd("KO\n", 1);
+}
 ```
 * It takes in two stacks - `stack_a` and `stack_b`.
 
@@ -485,12 +511,42 @@ The `checker` program reads a set of instructions from `stdin` and executes them
 	* For each line, it calls `ft_check_op()` which will check if the line is a valid instruction, and if so, execute the operation on the appropriate stack.
 
 * After reading all the input, it checks if the stacks are in the expected sorted state:
+	* `stack_b` should be empty, so it loops through to find the first element with index=-1.
+	* `stack_a` should be sorted, so it calls `ft_is_sorted()` to check.
 
-stack_b should be empty, so it loops through to find the first element with index=-1.
+	* If both conditions are met:
+		* It prints "OK";
+		* else prints "KO".
+___
+### `ft_check_op()` 
 
-stack_a should be sorted, so it calls ft_is_sorted() to check.
+```c
+static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op)
+{
+	int		result;
 
-If both conditions are met, it prints "OK", else prints "KO" to indicate the result of the checker.
+	if ((op == NULL) || (ft_strlen(op) == 1))
+		result = -1;
+	else
+		result = ft_parse_op(op, stack_a, stack_b);
+	if (op != NULL)
+		free(op);
+	if (result == -1)
+	{
+		free(stack_a);
+		free(stack_b);
+		get_next_line(0);
+		ft_putstr_fd("Error\n", 2);
+		exit(EXIT_FAILURE);
+	}
+}
+```
+
+___
+### `ft_parse_op()` 
+
+```c
+```
 __
 
 # Usage 🏁
