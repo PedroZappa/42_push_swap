@@ -648,13 +648,13 @@ make test_checker	# for checker
 
 To test `push_swap` with a custom number of input elements run:
 ```sh
-make test_n n=100
+make test_n n=42
 ```
 To test `push_swap` together `checker` with a custom number of input elements run:
 ```sh
-make test_checker n=100
+make test_checker n=42
 ```
-> `n` is the number of input elements, in this example 100.
+> `n` is the number of input elements, in these examples, 42.
 
 To check all available commands including tests run:
 ```sh
