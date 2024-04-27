@@ -591,8 +591,7 @@ Parses an `op` string and executes the corresponding operation on `stack_a` or `
 * It compares the input string `op` to each possible operation. Based on the matching operation, it calls the corresponding stack operation function.
 	* If there is no match, it returns -1 to indicate invalid operation.
 	* Otherwise it executes the operation and returns 1.
-
-__
+___
 
 # Usage 🏁
 
