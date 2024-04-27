@@ -543,7 +543,7 @@ static void	ft_check_op(t_elem *stack_a, t_elem *stack_b, char *op)
 ```
 * It takes in `stack_a` and `stack_b`, and the operation string `op`.
 
-* It first does some sanity checking on the op string:
+* It first checks if the `op` string is valid:
 	* If it's NULL or only 1 character, set result = -1 to indicate invalid operation.
 	* Else it calls `ft_parse_op()` to execute the operation on the appropriate stack.
 
