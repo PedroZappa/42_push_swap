@@ -163,6 +163,19 @@ get_pcgc:
 	$(MAKE) $(PCG_C_PATH)
 	@echo "[$(_SUCCESS) building $(MAG)pcg-c$(D) $(CYA)Random Number Generator!$(D) $(YEL)🖔$(D)]"
 
+visual: 	## Run push_swap Visualizer 
+	@if test ! -d "$(VISUALIZER_PATH)"; then make get_visual; \
+	else echo "$(YEL)[push_swap Visualizer]$(D) folder found 🖔"; \
+	./$(VISUALIZER_PATH)/build/bin/visualizer; fi
+
+get_visual:
+	@echo "* [$(CYA)Getting push_swap Visualizer$(D)]"
+	git clone https://github.com/o-reo/push_swap_visualizer.git $(VISUALIZER_PATH)
+	@echo "* $(GRN)Visualizer download$(D): $(_SUCCESS)"
+	@echo "[$(YEL)Building push_swap Visualizer$(D)]"
+	cd $(VISUALIZER_PATH) && mkdir build && cd build && cmake .. && make
+	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
+
 ##@ Test, Debug & Leak Check Rules 
 
 norm: 		## Run norminette test on push_swap files
@@ -208,19 +221,6 @@ norm_bonus: 		## Run norminette test on chcker files
 valgrind: all build_randgen		## Run push_swap w/ Valgrind
 	make randgen n=500
 	@ARG=$$(cat rand.txt); valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG"
-
-visual: 	## Run push_swap Visualizer 
-	@if test ! -d "$(VISUALIZER_PATH)"; then make get_visual; \
-	else echo "$(YEL)[push_swap Visualizer]$(D) folder found 🖔"; \
-	./$(VISUALIZER_PATH)/build/bin/visualizer; fi
-
-get_visual:
-	@echo "* [$(CYA)Getting push_swap Visualizer$(D)]"
-	git clone https://github.com/o-reo/push_swap_visualizer.git $(VISUALIZER_PATH)
-	@echo "* $(GRN)Visualizer download$(D): $(_SUCCESS)"
-	@echo "[$(YEL)Building push_swap Visualizer$(D)]"
-	cd $(VISUALIZER_PATH) && mkdir build && cd build && cmake .. && make
-	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
 
 print_test:
 	@N_OPS=$$(wc -l < push_swap_out.txt); \
@@ -298,8 +298,6 @@ test_checker_n: all bonus	## Test bonus checker with n elements
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
-
-
 
 ##@ Clean-up Rules 󰃢
 
