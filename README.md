@@ -18,6 +18,8 @@ ___
 
 <h3>Table o'Contents</h3>
 
+</div>
+
 <!-- mtoc-start -->
 
 * [About 📌](#about-)
@@ -49,8 +51,6 @@ ___
 * [License 📖](#license-)
 
 <!-- mtoc-end -->
-
-</div>
 
 # About 📌
 
