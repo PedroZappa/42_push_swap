@@ -39,7 +39,7 @@ ___
     * [`ft_best_op_idx()`](#ft_best_op_idx)
     * [`ft_calc_move()`](#ft_calc_move)
 * [Bonus: Checker Requirements Overview ✅](#bonus-checker-requirements-overview-)
-  * [Checker Implementation 📜](#checker-implementation-)
+* [Checker Implementation 📜](#checker-implementation-)
   * [`ft_parse_stack()` ](#ft_parse_stack-)
   * [`ft_check_op()` ](#ft_check_op-)
   * [`ft_parse_op()` ](#ft_parse_op-)
@@ -439,7 +439,7 @@ Errors include:
 
 ___
 
-### Checker Implementation 📜
+## Checker Implementation 📜
 
 ```c
 /* push_swap checker (main_checker.c) */
