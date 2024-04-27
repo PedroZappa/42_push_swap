@@ -227,6 +227,15 @@ print_test:
 	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
 	echo "$(YEL)$(_SEP)$(D)"; \
 
+test_subject:		## Test push_swap with examples from subject
+	@echo "[$(YEL)Running push_swap tests from subject$(D)]"
+	@echo "[$(RED)1/2$(D) :$(CYA)Success test$(D) (correct args)]"
+	./push_swap 2 1 3 6 5 8
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "[$(RED)2/2$(D) :$(CYA)Failure test$(D) (wrong args)]"
+	./push_swap 0 one 2 3
+	@echo "$(YEL)$(_SEP)$(D)"
+
 test_n:				## Test with n elements
 	make --no-print-directory randgen n=$(n)
 	@ARG=$$(cat rand.txt); \
