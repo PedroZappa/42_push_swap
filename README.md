@@ -511,7 +511,7 @@ void	ft_check_stack(t_elem *stack_a, t_elem *stack_b)
 	* For each line, it calls `ft_check_op()` which will process and check if the line contains a valid instruction.
 
 * After reading all the input, it checks if the stacks are in the expected sorted state:
-	* `stack_b` should be empty, so it loops through to find the first element with index=-1.
+	* `stack_b` should be empty, so it loops through to find the first element with index = -1.
 	* `stack_a` should be sorted, so it calls `ft_is_sorted()` to check.
 
 	* If both conditions are met:
