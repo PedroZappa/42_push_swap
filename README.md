@@ -434,11 +434,46 @@ Errors include:
 * Some arguments are duplicates.
 * An instruction doesn't exist or is incorrectly formatted.
 
-
-
 ___
 
 ### Checker Implementation 📜
+
+The `checker` program reads a set of instructions from `stdin` and executes them on the stack received as an argument. It has a very similar structure and uses many of the same subroutines as this project's `push_swap` implementation.
+
+> [!Important]
+>
+> The main difference being that instead of simply sorting `stack_a` it also checks if the instructions produced by `push_swap` are valid with t.
+```c
+/* push_swap checker */
+int	main(int argc, char **argv)
+{
+	char	**input_list;
+	t_elem	*stack_a;
+	t_elem	*stack_b;
+	int		must_free;
+	int		error;
+
+	++argv;
+	input_list = argv;
+	must_free = 0;
+	if (argc == 2)
+		input_list = ft_get_elems(&argc, argv, &must_free);
+	error = ft_errors(argc, input_list);
+	if (error <= 0)
+	{
+		ft_free(input_list, must_free);
+		return (0);
+	}
+	stack_a = ft_create_stack(argc, input_list, 1);
+	stack_b = ft_create_stack(argc, input_list, 0);
+	ft_free(input_list, must_free);
+	ft_check_stack(stack_a, stack_b);
+	free(stack_a);
+	free(stack_b);
+	return (0);
+}
+```
+
 
 __
 
