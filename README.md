@@ -40,6 +40,7 @@ ___
     * [`ft_calc_move()`](#ft_calc_move)
 * [Bonus: Checker Requirements Overview ✅](#bonus-checker-requirements-overview-)
   * [Checker Implementation 📜](#checker-implementation-)
+  * [`ft_check_stack()` ](#ft_check_stack-)
 * [Usage 🏁](#usage-)
 * [Tests 🧪](#tests-)
 * [References 📚](#references-)
@@ -442,7 +443,7 @@ The `checker` program reads a set of instructions from `stdin` and executes them
 
 > [!Important]
 >
-> The main difference being that instead of simply sorting `stack_a` it also checks if the instructions produced by `push_swap` are valid with t.
+> The main difference between the `checker` program and the `push_swap` program is that other than sorting `stack_a` it also checks if the instructions produced by `push_swap` are valid.
 ```c
 /* push_swap checker */
 int	main(int argc, char **argv)
@@ -473,8 +474,20 @@ int	main(int argc, char **argv)
 	return (0);
 }
 ```
+### `ft_check_stack()` 
 
+* It takes in two stacks - `stack_a` and `stack_b`.
 
+* It reads input commands line by line using [get_next_line()](https://github.com/PedroZappa/42_get_next_line).
+	* For each line, it calls `ft_check_op()` which will execute the operation on the two stacks.
+
+After reading all the input, it checks if the stacks are in the expected sorted state:
+
+stack_b should be empty, so it loops through to find the first element with index=-1.
+
+stack_a should be sorted, so it calls ft_is_sorted() to check.
+
+If both conditions are met, it prints "OK", else prints "KO" to indicate the result of the checker.
 __
 
 # Usage 🏁
