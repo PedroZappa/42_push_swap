@@ -355,7 +355,7 @@ ___
 
 ## QuickSort Algorithm (push_swap Variation)
 
-This modified version of the `QuickSort Algorithm` sorts a stack (`stack_a`) by leveraging a second "temporary" stack (`stack_b`), repeatedly partitioning its elements around a `median` (pivot) value (the key concept of the traditional `QuickSort Algorithm`), while keeping track of the optimal operations needed to merge the partitions back together into `stack_a`. At the end `stack_a` is sorted in ascending order. 
+This modified version of the `QuickSort Algorithm` sorts a stack (`stack_a`) by leveraging a second "temporary" stack (`stack_b`), and repeatedly checking for the `median` value (used as a pivot, the key concept of the traditional `QuickSort Algorithm`), to get the optimal operations needed to merge all elements back together into `stack_a` sorted in ascending order. 
 
 > Following is a description of each case handled by the algorithm implemented in this project.
 ___
