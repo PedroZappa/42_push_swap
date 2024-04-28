@@ -130,7 +130,7 @@ Since an algorithm's running time usually varies between different inputs of the
 
 Less common, but more often explicitly specified, the **average-case time complexity** is the average length of time required to run a given algorithm.
 
-In either case, the **Time Complexity** is generally expressed as a function of the input size. Such a function is most often very difficult to define, and since its running time is usually inconsequential, it is customary to focus on the **asymptotic behaviour** of the complexity
+**Time Complexity** is generally expressed as a function of the input size. Such a function is most often very difficult to define, and since its running time is usually inconsequential, it is customary to focus on the **asymptotic behaviour** of the complexity.
 
 > [!Note]
 >
