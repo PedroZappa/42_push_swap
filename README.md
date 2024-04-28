@@ -135,7 +135,7 @@ In either case, the **Time Complexity** is generally expressed as a function of 
 >
 > The asymptotic behaviour of a function is the behaviour of the function as the input size increases.
 
-Taking this into consideration, the **Time Complexity** is commonly expressed using **Big O Notation**, expressed as **_O(n)_** 
+Taking this into consideration, the **Time Complexity** is commonly expressed using **Big O Notation**, expressed as $O(n)$ , **_O(n)_**, 
 
 ___
 # Implementation 📜
