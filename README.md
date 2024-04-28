@@ -147,7 +147,7 @@ Taking this into consideration, the **Time Complexity** is commonly expressed us
 | $O(n)$           | Linear          | Finding the smallest/largest element in an array.      |
 | $O(n\log n)$     | Log Linear      | Fastest possible comparison sort (Fast Fourier Transform). |
 | $O(n^2)$         | Quadratic       | Bubble sort, Insertion Sort, Direct Convolution.       |
-| $O(n^3)$         | Cubic           | Naive multiplication of $n * n$ matrices; Calculating partial correlation.            |
+| $O(n^3)$         | Cubic           | Naive multiplication of $n w\times n$ matrices; Calculating partial correlation.            |
 
 ___
 # Implementation 📜
