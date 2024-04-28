@@ -31,6 +31,7 @@ ___
 * [`push_swap` Operations](#push_swap-operations)
 * [Operations Example](#operations-example)
 * [Complexity](#complexity)
+  * [Table of Common Time Complexities](#table-of-common-time-complexities)
 * [Implementation 📜](#implementation-)
 * [Data Structures](#data-structures)
 * [Processing Input Arguments](#processing-input-arguments)
@@ -136,6 +137,18 @@ In either case, the **Time Complexity** is generally expressed as a function of 
 > The asymptotic behaviour of a function is the behaviour of the function as the input size increases.
 
 Taking this into consideration, the **Time Complexity** is commonly expressed using **Big O Notation**, expressed as $O(n)$ , $O(n\log n)$, $O(2^n)$, etc., where $n$ is the size in units of bits needed to represent the input.  
+
+### Table of Common Time Complexities
+
+| Complexity     | Time Complexity | Example |
+|----------------|-----------------|---------|
+| $O(1)$           | Constant        | Finding the median value in a sorted array of numbers. |
+| $O(log$ n)       | Logarithmic     | Binary Search       |
+| $O(n)$           | Linear          | Finding the smallest/largest element in an array.      |
+| $O(n^2)$         | Quadratic       | 4       |
+| $O(n^3)$         | Cubic           | 5       |
+
+
 ___
 # Implementation 📜
 
