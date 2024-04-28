@@ -145,9 +145,9 @@ Taking this into consideration, the **Time Complexity** is commonly expressed us
 | $O(1)$           | Constant        | Finding the median value in a sorted array of numbers. |
 | $O(log$ n)       | Logarithmic     | Binary Search       |
 | $O(n)$           | Linear          | Finding the smallest/largest element in an array.      |
-| $O(n\log n)$     | Log Linear      | Fastest possible comparison sort (Fast Fourier Transform) |
-| $O(n^2)$         | Quadratic       | Bubble sort, Insertion Sort, Direct Convolution       |
-| $O(n^3)$         | Cubic           | NAive multiplication of $n * n$ matrices; Calculating partial correlation            |
+| $O(n\log n)$     | Log Linear      | Fastest possible comparison sort (Fast Fourier Transform). |
+| $O(n^2)$         | Quadratic       | Bubble sort, Insertion Sort, Direct Convolution.       |
+| $O(n^3)$         | Cubic           | Naive multiplication of $n * n$ matrices; Calculating partial correlation.            |
 
 ___
 # Implementation 📜
