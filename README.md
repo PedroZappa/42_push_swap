@@ -30,6 +30,7 @@ ___
 * [`push_swap` Requirements Overview ✅](#push_swap-requirements-overview-)
 * [`push_swap` Operations](#push_swap-operations)
 * [Operations Example](#operations-example)
+* [Complexity](#complexity)
 * [Implementation 📜](#implementation-)
 * [Data Structures](#data-structures)
 * [Processing Input Arguments](#processing-input-arguments)
@@ -113,6 +114,28 @@ In this example, we’ll consider that both stacks grow from the right.
 | 5          | 5   | 5   | 5 `2` | 5 2 | 8 2 | 8 1 | 5 1 | 5 2 | `6` 2 | 6 2 | 6   | 6   |
 | 8          | 8   | 8 `1` | 8 1 | 8 1 | `6` 1 | 6 `3` | 8 3 | 8 1 | 8 1 | 8 1 | 8 1 | 8   |
 | a b        | a b | a b | a b | a b | a b | a b | a b | a b | a b | a b | a b | a b |
+
+___
+
+## Complexity
+
+Also known as `Time Complexity`, is the **computational complexity** that describes the amount of computer time it takes to run an algorithm (usually measured by the **number of needed elementary operations**, assuming each operation takes a fixed amount of time to be performed).
+
+> ![Note]
+>
+> The computational complexity of an algorithm is the amount of resources required to run it. Particular focus is given to **computation time** and **memory storage** requirements**.
+
+Since an algorithm's running time usually varies between different inputs of the same size, it is common to consider the **worst-case time complexity**, the maximum length of time required to run a given algorithm.
+
+Less common, but more often explicitly specified, the **average-case time complexity** is the average length of time required to run a given algorithm.
+
+In either case, the **Time Complexity** is generally expressed as a function of the input size. Such a function is most often very difficult to define, and since its running time is usually inconsequential, it is customary to focus on the **asymptotic behaviour** of the complexity
+
+> ![Note]
+>
+> The asymptotic behaviour of a function is the behaviour of the function as the input size increases.
+
+Taking this into consideration, the **Time Complexity** is commonly expressed using **Big O Notation**, expressed as **_O(n)_** 
 
 ___
 # Implementation 📜
