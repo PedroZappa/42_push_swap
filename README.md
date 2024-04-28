@@ -16,6 +16,10 @@
 
 ___
 
+<img alt="minitalk demo" src="./video/minitalk-demo.gif" width="100%" />
+
+___
+
 <h3>Table o'Contents</h3>
 
 </div>
