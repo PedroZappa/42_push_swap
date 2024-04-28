@@ -148,6 +148,7 @@ Taking this into consideration, the **Time Complexity** is commonly expressed us
 | $O(n\log n)$     | Log Linear      | Fastest possible comparison sort (Fast Fourier Transform). |
 | $O(n^2)$         | Quadratic       | Bubble sort, Insertion Sort, Direct Convolution.       |
 | $O(n^3)$         | Cubic           | Naive multiplication of $n \times n$ matrices; Calculating partial correlation.            |
+| ... | ... | ... |
 
 ___
 # Implementation 📜
