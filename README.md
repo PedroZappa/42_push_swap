@@ -121,7 +121,7 @@ ___
 
 Also known as `Time Complexity`, is the **computational complexity** that describes the amount of computer time it takes to run an algorithm (usually measured by the **number of needed elementary operations**, assuming each operation takes a fixed amount of time to be performed).
 
-> ![Note]
+> [!Note]
 >
 > The computational complexity of an algorithm is the amount of resources required to run it. Particular focus is given to **computation time** and **memory storage** requirements**.
 
@@ -131,7 +131,7 @@ Less common, but more often explicitly specified, the **average-case time comple
 
 In either case, the **Time Complexity** is generally expressed as a function of the input size. Such a function is most often very difficult to define, and since its running time is usually inconsequential, it is customary to focus on the **asymptotic behaviour** of the complexity
 
-> ![Note]
+> [!Note]
 >
 > The asymptotic behaviour of a function is the behaviour of the function as the input size increases.
 
