@@ -130,7 +130,9 @@ Also known as `Time Complexity` (studied by `Complexity Analysis`), is the **com
 
 > [!Note]
 >
-> The computational complexity of an algorithm is the amount of resources required to run it. Particular focus is given to **computation time** and **memory storage** requirements.
+> The computational complexity of an algorithm is the amount of resources required to run it. Particular focus is given to:
+> - **computation time**;
+> - and **memory storage** requirements.
 
 Since an algorithm's running time usually varies between different inputs of the same size, it is common to consider primarily the **worst-case time complexity**.
 
