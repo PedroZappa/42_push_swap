@@ -18,10 +18,6 @@ static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
 static int	ft_get_align_ops(t_elem *stack_a, t_elem *stack_b, int idx);
 
 /* ft_sort_stack():
- * 	Sorts a stack of integers by repeatedly partitioning the stack around
- * 	a median value, pushing elements less than the median to a second stack, \
- * 	and then merging the two stacks back together in sorted order.
- *	
  *	- Initialize i to the start of the stack;
  *	- Initialize median to the median value of the stack;
  *	- Loop through the stack_a pushing elements to stack_b until there are only
