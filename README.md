@@ -34,7 +34,7 @@ ___
   * [Asymptotic Notations in Complexity Analysis](#asymptotic-notations-in-complexity-analysis)
     * [**Big O Notation**](#big-o-notation)
     * [**Big Ω (Omega) Notation**](#big--omega-notation)
-    * [Theta Notation](#theta-notation)
+    * [ϴ (Theta) Notation](#-theta-notation)
     * [Little o Notation](#little-o-notation)
     * [Little ω (Omega) Notation](#little--omega-notation)
   * [Table of Common Time Complexities](#table-of-common-time-complexities)
@@ -156,7 +156,7 @@ It represents the upper bound of the running time of an algorithm. As mentioned 
 
 It represents the lower bound of the running time of an algorithm. It gives the **best-case time complexity** of an algorithm: the **lower-bound** of an algorithm's time complexity. 
 
-#### Theta Notation
+#### ϴ (Theta) Notation
 
 Represents the **upper-bound** and **lower-bound** of the running time of an algorithm, enclosing the function from above and below: it is used to analyze the **average-case time complexity** of an algorithm. 
 
