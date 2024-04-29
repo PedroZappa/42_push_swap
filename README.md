@@ -31,6 +31,12 @@ ___
 * [`push_swap` Operations](#push_swap-operations)
 * [Operations Example](#operations-example)
 * [Complexity](#complexity)
+  * [Asymptotic Notations in Complexity Analysis](#asymptotic-notations-in-complexity-analysis)
+    * [**Big O Notation**](#big-o-notation)
+    * [**Big Ω (Omega) Notation**](#big--omega-notation)
+    * [Theta Notation](#theta-notation)
+    * [Little o Notation](#little-o-notation)
+    * [Little ω (Omega) Notation](#little--omega-notation)
   * [Table of Common Time Complexities](#table-of-common-time-complexities)
 * [Implementation 📜](#implementation-)
 * [Data Structures](#data-structures)
@@ -120,23 +126,46 @@ ___
 
 ## Complexity
 
-Also known as `Time Complexity`, is the **computational complexity** that describes the amount of computer time it takes to run an algorithm (usually measured by the **number of needed elementary operations**, assuming each operation takes a fixed amount of time to be performed).
+Also known as `Time Complexity`, studied by `Complexity Analysis`, is the **computational complexity** that describes the amount of computer time it takes to run an algorithm (usually measured by the **number of needed elementary operations**, assuming each operation takes a fixed amount of time to be performed).
 
 > [!Note]
 >
 > The computational complexity of an algorithm is the amount of resources required to run it. Particular focus is given to **computation time** and **memory storage** requirements.
 
-Since an algorithm's running time usually varies between different inputs of the same size, it is common to consider the **worst-case time complexity**: the maximum length of time required to run a given algorithm.
+Since an algorithm's running time usually varies between different inputs of the same size, it is common to consider primarily the **worst-case time complexity**.
 
-Less common, but more often explicitly specified, the **average-case time complexity** is the average length of time required to run a given algorithm.
-
-**Time Complexity** is generally expressed as a function of the input size. Such a function is most often very difficult to define, and since its running time is usually inconsequential, it is customary to focus on the **asymptotic behaviour** of the complexity.
+**Time Complexity** is generally expressed as a function of the input size. Such a function is often very difficult to define, and since its running time is usually inconsequential, it is customary to focus on the **asymptotic behaviour** of the complexity.
 
 > [!Note]
 >
 > The asymptotic behaviour of a function is the behaviour of the function as the input size increases.
 
-Taking this into consideration, the **Time Complexity** is commonly expressed using **Big O Notation**, expressed as $O(n)$ , $O(n\log n)$, $O(n^2)$, etc., where $n$ is the size in units of bits needed to represent the input.  
+Taking this into consideration, **Time Complexity** is most commonly defined using **Big O Notation**, expressed as $O(n)$ , $O(n\log n)$, $O(n^2)$, etc., where $n$ is the size in units of bits needed to represent the input.  
+
+### Asymptotic Notations in Complexity Analysis
+
+#### **Big O Notation**
+
+It represents the upper bound of the running time of an algorithm. As mentioned earlier, it gives the **worst-case time complexity** of an algorithm: the maximum length of time required to run a given algorithm.
+
+#### **Big Ω (Omega) Notation**
+
+It represents the lower bound of the running time of an algorithm. It gives the **best-case time complexity** of an algorithm: the **lower-bound** of an algorithm's time complexity. 
+
+#### Theta Notation
+
+Represents the **upper-bound** and **lower-bound** of the running time of an algorithm, enclosing the function from above and below: it is used to analyze the **average-case time complexity** of an algorithm. 
+
+#### Little o Notation
+
+`Big-Ο` is used as a **tight upper bound** on the growth of an algorithm’s effort, even though, as written, it can also be a **loose upper bound**. `Little-ο` (ο()) notation is used to describe an upper bound that cannot be tight. 
+
+
+#### Little ω (Omega) Notation
+
+Describes the relationship between two functions when one grows strictly faster than the other: a relative growth rate.
+
+___
 
 ### Table of Common Time Complexities
 
