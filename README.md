@@ -162,7 +162,7 @@ Represents the **upper-bound** and **lower-bound** of the running time of an alg
 
 #### Little o Notation
 
-Is used as a **tight upper bound** on the growth of an algorithm’s effort, even though, as written, it can also be a **loose upper bound**. **Little ο** (`ο()`) notation is used to describe an upper bound that cannot be tight. 
+Is used as a **tight upper bound** on the growth of an algorithm’s effort, even though, as written, it can also be a **loose upper bound**: **Little ο** (`ο()`) notation is used to describe an upper bound that cannot be tight. 
 
 
 #### Little ω (Omega) Notation
