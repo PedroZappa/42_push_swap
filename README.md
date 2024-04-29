@@ -126,7 +126,7 @@ ___
 
 ## Complexity
 
-Also known as `Time Complexity`, studied by `Complexity Analysis`, is the **computational complexity** that describes the amount of computer time it takes to run an algorithm (usually measured by the **number of needed elementary operations**, assuming each operation takes a fixed amount of time to be performed).
+Also known as `Time Complexity` (studied by `Complexity Analysis`), is the **computational complexity** that describes the amount of computer time it takes to run an algorithm (usually measured by the **number of needed elementary operations**, assuming each operation takes a fixed amount of time to be performed).
 
 > [!Note]
 >
