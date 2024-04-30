@@ -36,7 +36,7 @@ int	ft_is_sorted(t_elem *stack)
 }
 
 /*	ft_stack_start()
- *	- i keeps track of the index of the first set stack element;
+ *	- start keeps track of the index of the first set stack element;
  *	- Loop from bottom to the top element of the stack;
  *	- After finding the first set element decrement start by 1;
  *		(to account for the sentinel value);
