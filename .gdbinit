@@ -45,7 +45,17 @@ define ft_create_stack
 	next
 end
 
+define ft_sort_stack
+	display *stack_a@stack_len
+	display *stack_b@stack_len
+	display stack_len
+	display i
+	display median
+end
+
 # set print pretty on
+# set print elements 2
+set print array on
 
 # Start debugging from main.c
 #fs cmd
@@ -75,14 +85,21 @@ end
 # rfr
 
 # Start at ft_create_stack()
+# fs cmd
+# break main.c:52
+# run "1 2 3 -4"
+# main
+# step
+# ft_create_stack
+# rfr
+# next
+
+# Start at ft_sort_stack()
 fs cmd
-break main.c:52
-run "1 2 3 -4"
-main
-step
-ft_create_stack
+break ft_sort_stack
+run "1 2 3 0 6 8 5 7"
+ft_sort_stack
 rfr
-next
 
 ###
 ### Checker DBG
