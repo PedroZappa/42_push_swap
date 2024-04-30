@@ -28,6 +28,12 @@ define ft_sort_three
 	display *(stack+1)
 	display *(stack+2)
 	display *(stack+3)
+	display *(stack+4)
+	display *(stack+5)
+	display *(stack+6)
+	display *(stack+7)
+	display *(stack+8)
+	display *(stack+9)
 	display ft_stack_min(stack)
 	display ft_stack_max(stack, -1)
 	display start
@@ -72,7 +78,6 @@ define ft_best_op_idx
 	display cost
 	display start
 	display min_ops
-	display *min_ops
 end
 
 # set print pretty on
