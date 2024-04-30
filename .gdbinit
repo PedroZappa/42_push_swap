@@ -28,6 +28,8 @@ define ft_sort_three
 	display *(stack+1)
 	display *(stack+2)
 	display *(stack+3)
+	display ft_stack_min(stack)
+	display ft_stack_max(stack, -1)
 	display start
 	display end
 end
