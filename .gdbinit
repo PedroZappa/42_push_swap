@@ -53,6 +53,26 @@ define ft_sort_stack
 	display median
 end
 
+define ft_calc_move
+	display *stack_a@stack_len
+	display *stack_b@stack_len
+	display stack_len
+	display idx
+	display start
+	display ordered
+end
+
+define ft_best_op_idx
+	display *stack_a@stack_len
+	display *stack_b@stack_len
+	display stack_len
+	display idx
+	display cost
+	display start
+	display min_ops
+	display *min_ops
+end
+
 # set print pretty on
 # set print elements 2
 set print array on
@@ -94,10 +114,10 @@ set print array on
 # rfr
 # next
 
-# Start at ft_sort_stack()
+# Start at ft_sort_stack() : test with 9 elements
 fs cmd
 break ft_sort_stack
-run "1 2 3 0 6 8 5 7"
+run "7 5 3 4 9 6 8 2 1"
 ft_sort_stack
 rfr
 
