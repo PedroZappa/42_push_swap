@@ -83,19 +83,19 @@ t_elem	ft_min_above_thresh(t_elem *stack, int threshold)
 {
 	int	start;
 	int	end;
-	int	min;
+	int	min_idx;
 
 	start = ft_stack_start(stack);
 	end = ft_stack_end(stack);
-	min = -1;
+	min_idx = -1;
 	while (start <= end)
 	{
 		if ((stack[start].num > threshold)
-			&& ((min == -1) || (stack[start].num < stack[min].num)))
-			min = stack[start].index;
+			&& ((min_idx == -1) || (stack[start].num < stack[min_idx].num)))
+			min_idx = stack[start].index;
 		++start;
 	}
-	if (min == -1)
+	if (min_idx == -1)
 		return (ft_stack_min(stack));
-	return (stack[min]);
+	return (stack[min_idx]);
 }
