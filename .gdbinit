@@ -1,64 +1,201 @@
+#
+##
+### GDB Settings 
+##
+#
 set trace-commands on
 set logging enabled on
 
+# set print pretty on
+# set print elements 2
+set print array on
+
+#
+##
+### Custom Commands
+##
+#
 define rfr
 	refresh
 end
 
+# main.c
 define main
 	display *input_list
-	display *stack_a
-	display *(stack_a+1)
-	display *(stack_a+2)
-	display *(stack_a+3)
-	display *(stack_a+4)
-	display *stack_b
+	display *stack_a@argc
+	display *stack_b@argc
 	display must_free
 	display error
 end
 
+define ft_get_elem
+	display *argc
+	display *argv
+	display *must_free
+	display *split_list@*argc
+end
+
 define ft_sort
-	display stack_a
-	display stack_b
+	display *stack_a@argc
+	display *stack_b@argc
 	display argc
 end
 
+# ft_errors.c
+define ft_errors
+	display argc
+	display *input_list@argc
+end
+
+define ft_are_args_nbr
+	display i
+	display j
+	display argc
+	display *argv@argc
+end
+
+# ft_sort_three.c
 define ft_sort_three
-	display *stack
-	display *(stack+1)
-	display *(stack+2)
-	display *(stack+3)
-	display *(stack+4)
-	display *(stack+5)
-	display *(stack+6)
-	display *(stack+7)
-	display *(stack+8)
-	display *(stack+9)
+	display *stack@(end+2)
 	display ft_stack_min(stack)
 	display ft_stack_max(stack, -1)
 	display start
 	display end
 end
 
+# ft_create_stack.c
 define ft_create_stack
 	display argc
 	display argv
 	display select
-	display *stack
-	display *(stack+1)
-	display *(stack+2)
-	display *(stack+3)
-	display *(stack+4)
+	display *stack@argc
 	display i
 	next
 end
 
+# ft_assert_stack.c
+define ft_is_sorted
+	display *stack
+	display *stack@i
+	display i
+end
+
+define ft_stack_start
+	display *stack
+	display *stack@start
+	display start
+end
+
+define ft_stack_end
+	display *stack
+	display *stack@end
+	display end
+end
+
+define ft_stack_min
+	display *stack
+	display *stack@start
+	display start
+	display end
+	display min_idx
+end
+
+define ft_stack_max
+	display *stack
+	display *stack@start
+	display start
+	display end
+	display max_idx
+end
+
+# ft_median.c
+define ft_is_median
+	display *stack
+	display num
+	display start
+	display end
+end
+
+define ft_median
+	display *stack
+	display num
+	display start
+	display end
+	display min
+	display max
+	display diff
+end
+
+define ft_min_above_thresh
+	display *stack
+	display stack[start].num
+	display threshold
+	display start
+	display end
+	display ft_stack_min(stack)
+	display min_idx
+	display stack[min_idx]
+end	
+
+# ft_order.c
+define ft_check_order
+	display *stack_a
+	display *stack_b
+	display idx
+	display n_op_a
+	display n_op_b
+	display n_ops
+	display min
+	display ft_stack_min(stack_b).num
+	display ft_stack_max(stack_b, -1).num
+
+end
+
+define ft_order
+	display *stack_a
+	display *stack_b
+	display idx
+	display n_ops
+
+end
+
+define ft_getontop_ops
+	display *stack@(end+2)
+	display sign
+	display start
+	display end
+	display idx
+	display median
+	display n_ops
+end
+
+# ft_rotate.c
+define ft_rotate
+	
+end
+
+define ft_rev_rotate
+
+end
+
+define ft_rotate_top
+	display *stack@ft_stack_end(stack-2)
+	display stack[idx]
+	display idx
+	display op
+	display n_ops
+	display sign
+end
+
+# ft_sort_stack.c
 define ft_sort_stack
 	display *stack_a@stack_len
 	display *stack_b@stack_len
 	display stack_len
 	display i
 	display median
+	display ft_stack_end(stack_b)
+	display ft_best_op_idx(stack_b, stack_a, stack_len)
 end
 
 define ft_calc_move
@@ -68,6 +205,10 @@ define ft_calc_move
 	display idx
 	display start
 	display ordered
+	display ft_stack_min(stack_b).num
+	display ft_stack_max(stack_b, -1).num
+	display stack_a[idx].num
+	display ft_min_above_thresh(stack_b, stack_a[idx].num).index
 end
 
 define ft_best_op_idx
@@ -78,17 +219,28 @@ define ft_best_op_idx
 	display cost
 	display start
 	display min_ops
+	display stack_a[idx]
+	display stack_b[idx]
 end
 
-# set print pretty on
-# set print elements 2
-set print array on
+define ft_get_align_ops
+	display *stack_a@(ft_stack_end(stack_a)+2)
+	display *stack_b@(ft_stack_end(stack_b)+2)
+	display idx
+	display n_ops
+	display order
+	display min_n_behind
+	display ft_stack_min(stack_b).num
+	display ft_stack_max(stack_b, -1).num
+	display stack_a[idx].num
+	display stack_b[min_n_behind.index]
+end
 
 # Start debugging from main.c
-#fs cmd
+# fs cmd
 # break main:42
 # info break
-# run "1 2 3 -4"
+# run "7 5 3 4 9 6 8 2 1"
 # main
 # rfr
 # next
@@ -96,7 +248,7 @@ set print array on
 # Start at ft_sort()
 # fs cmd
 # break main.c:118
-# run "1 2 3 -4"
+# run "7 5 3 4 9 6 8 2 1"
 # info break
 # ft_sort
 # rfr
@@ -114,7 +266,7 @@ set print array on
 # Start at ft_create_stack()
 # fs cmd
 # break main.c:52
-# run "1 2 3 -4"
+# run "7 5 3 4 9 6 8 2 1"
 # main
 # step
 # ft_create_stack
@@ -123,8 +275,10 @@ set print array on
 
 # Start at ft_sort_stack() : test with 9 elements
 fs cmd
-break ft_sort_stack
+break ft_sort_stack.c:56
+break ft_calc_move
 run "7 5 3 4 9 6 8 2 1"
+# target record-full
 ft_sort_stack
 rfr
 
