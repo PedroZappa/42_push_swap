@@ -229,11 +229,14 @@ print_test:
 
 test_subject: all	## Test push_swap with examples from subject
 	@echo "[$(YEL)Running push_swap tests from subject$(D)]"
-	@echo "[$(RED)1/2$(D) :$(CYA)Success test$(D) (correct args)]"
+	@echo "[$(RED)1/3$(D) :$(CYA)Success test$(D) (correct args)]"
 	./push_swap 2 1 3 6 5 8
 	@echo "$(YEL)$(_SEP)$(D)"
-	@echo "[$(RED)2/2$(D) :$(CYA)Failure test$(D) (wrong args)]"
+	@echo "[$(RED)2/3$(D) :$(CYA)Failure test$(D) (wrong args)]"
 	./push_swap 0 one 2 3
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "[$(RED)3/3$(D) :$(CYA)Failure test$(D) (wrong args)]"
+	./push_swap 0 "" 2 3
 	@echo "$(YEL)$(_SEP)$(D)"
 
 test_n:	all build_randgen				## Test with n elements
