@@ -33,10 +33,10 @@ ___
 * [Complexity](#complexity)
   * [Asymptotic Notations in Complexity Analysis](#asymptotic-notations-in-complexity-analysis)
     * [**Big O Notation**](#big-o-notation)
-    * [**Big Ω (Omega) Notation**](#big--omega-notation)
+    * [**Ω (Big Omega) Notation**](#-big-omega-notation)
     * [ϴ (Theta) Notation](#-theta-notation)
     * [Little o Notation](#little-o-notation)
-    * [Little ω (Omega) Notation](#little--omega-notation)
+    * [ω (Little Omega) Notation](#-little-omega-notation)
   * [Table of Common Time Complexities](#table-of-common-time-complexities)
 * [Implementation 📜](#implementation-)
 * [Data Structures](#data-structures)
@@ -153,7 +153,7 @@ ___
 
 It represents the upper bound of the running time of an algorithm. As mentioned earlier, it gives the **worst-case time complexity** of an algorithm: the maximum length of time required to run a given algorithm.
 
-#### **Big Ω (Omega) Notation**
+#### **Ω (Big Omega) Notation**
 
 It represents the lower bound of the running time of an algorithm. It gives the **best-case time complexity** of an algorithm: the **lower-bound** of an algorithm's time complexity. 
 
@@ -166,7 +166,7 @@ Represents the **upper-bound** and **lower-bound** of the running time of an alg
 Is used as a **tight upper bound** on the growth of an algorithm’s effort, even though, as written, it can also be a **loose upper bound** that cannot be tight. 
 
 
-#### Little ω (Omega) Notation
+#### ω (Little Omega) Notation
 
 Describes the relationship between two functions when one grows strictly faster than the other: a relative growth rate.
 
