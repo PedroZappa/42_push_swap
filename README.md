@@ -43,6 +43,7 @@ ___
 * [Processing Input Arguments](#processing-input-arguments)
 * [Error / Invalid Input Handling](#error--invalid-input-handling)
 * [Creating the Stacks](#creating-the-stacks)
+  * [Visualizing the Stacks](#visualizing-the-stacks)
 * [Sorting the Stacks](#sorting-the-stacks)
 * [Freeing the Stacks](#freeing-the-stacks)
 * [QuickSort Algorithm (push_swap Variation)](#quicksort-algorithm-push_swap-variation)
@@ -331,6 +332,27 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 >	- At the end of each iteration, sets the `stack[i].index` field of the current element to `i` (representing the position of the element in the stack).
 > - After the loop is done, the `stack[i].index` field is set to -1, signaling the end of the stack (sentinel value).
 > - It returns the stack.
+___
+
+### Visualizing the Stacks
+
+Take the following input example: `"7 5 3 4 9 6 8 2 1"`
+
+After initialization, the array of `t_elem` structs can be visualized as follows:
+
+| stack.num | stack.index | stack.set |
+| --- | --- | --- |
+| 7 | 0 | 1 |
+| 5 | 1 | 1 |
+| 3 | 2 | 1 |
+| 4 | 3 | 1 |
+| 9 | 4 | 1 |
+| 6 | 5 | 1 |
+| 8 | 6 | 1 |
+| 2 | 7 | 1 |
+| 1 | 8 | 1 |
+| 0 | -1 | 0 |
+
 ___
 
 ## Sorting the Stacks
