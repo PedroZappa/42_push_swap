@@ -336,9 +336,9 @@ ___
 
 ### Visualizing the Stacks
 
-Take the following input example: `"7 5 3 4 9 6 8 2 1"`
-
 After initialization, the array of `t_elem` structs can be visualized as follows:
+
+> Take the following input example: `"7 5 3 4 9 6 8 2 1"`
 
 | stack.num | stack.index | stack.set |
 | --- | --- | --- |
