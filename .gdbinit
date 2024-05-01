@@ -196,6 +196,8 @@ define ft_sort_stack
 	display median
 	display ft_stack_end(stack_b)
 	display ft_best_op_idx(stack_b, stack_a, stack_len)
+	display stack_b[i].num
+	display ft_min_above_thresh(stack_a, stack_b[i].num).index
 end
 
 define ft_calc_move
