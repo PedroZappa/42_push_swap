@@ -31,7 +31,7 @@ t_elem	*ft_create_stack(int argc, char **argv, int select)
 	t_elem	*stack;
 	int		i;
 
-	stack = malloc(sizeof(t_elem) * (argc + 1));
+	stack = ft_calloc(sizeof(t_elem), (argc + 1));
 	if (stack == NULL)
 		return (NULL);
 	i = 0;
