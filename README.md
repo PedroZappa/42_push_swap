@@ -46,7 +46,7 @@ ___
   * [Visualizing the Stacks](#visualizing-the-stacks)
 * [Sorting the Stacks](#sorting-the-stacks)
 * [Freeing the Stacks](#freeing-the-stacks)
-* [QuickSort Algorithm (push_swap Variation)](#quicksort-algorithm-push_swap-variation)
+* [The Algorithm (Loosely Based on the `QuickSort Algorithm`)](#the-algorithm-loosely-based-on-the-quicksort-algorithm)
   * [If the stack has 2 values:](#if-the-stack-has-2-values)
   * [If the stack has 3 values:](#if-the-stack-has-3-values)
   * [If the stack has more than 3 values:](#if-the-stack-has-more-than-3-values)
@@ -408,11 +408,16 @@ int	main(int argc, char **argv)
 
 ___
 
-## QuickSort Algorithm (push_swap Variation)
+## The Algorithm (Loosely Based on the `QuickSort Algorithm`)
 
-This modified version of the `QuickSort Algorithm` sorts a stack (`stack_a`) by leveraging a second "temporary" stack (`stack_b`), and repeatedly checking for the `median` value (used as a pivot, the key concept of the traditional `QuickSort Algorithm`), to get the optimal operations needed to merge all elements back together into `stack_a` sorted in ascending order. 
+The algorithm implemented in this project is inspired by the [**QuickSort Algorithm**](https://en.wikipedia.org/wiki/Quicksort).
 
-> Following is a description of each case handled by the algorithm implemented in this project.
+* It leverages a second "temporary" stack (`stack_b`) in order to sort the stack (`stack_a`) in ascending order. 
+* Calculates the `median` value (used as a pivot, the key concept of the standard `QuickSort Algorithm`) in the input stack (`stack_a`), then proceeds to push elements into `stack_b`. 
+* If the pushed element is larger than the `median` we rotate it to the bottom of `stack_b`. We do this until there are only 3 elements left in `stack_a`. We get those sorted. 
+* Then the algorithm starts moving one element at a time back to `stack_a` after calculating the least costly element to move at each iteration, effectively sorting the unordered input stack into ascending order.
+
+> Following this overview is a description of each case handled by the algorithm implemented in this project.
 ___
 
 ### If the stack has 2 values:
