@@ -57,6 +57,7 @@ dkms.conf
 
 #folders
 .build
+.temp
 lib
 
 # temp
