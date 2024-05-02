@@ -145,7 +145,7 @@ Since an algorithm's running time usually varies between different inputs of the
 
 > [!Important]
 > 
-> The asymptotic behaviour of a function is the behaviour of the function as the input size increases.
+> The **asymptotic behaviour** of a function is the behaviour of the function as the input size increases.
 
 Taking this into consideration, **Time Complexity** is most commonly defined using **Big O Notation**, expressed as $O(n)$ , $O(n\log n)$, $O(n^2)$, etc., where $n$ is the size in units of bits needed to represent the input.  
 
