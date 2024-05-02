@@ -177,7 +177,7 @@ get_visual:
 	cd $(VISUALIZER_PATH) && mkdir build && cd build && cmake .. && make
 	@echo "[$(_SUCCESS) building $(MAG)push_swap Visualizer!$(D) $(YEL)🖔$(D)]"
 
-##@ Test, Debug & Leak Check Rules 
+##@ Norm, Debug & Leak Check Rules 
 
 norm: 		## Run norminette test on push_swap files
 	@printf "${_NORM}: $(YEL)$(SRC_PATH)$(D)\n"
@@ -234,6 +234,11 @@ check_ext_func: bonus		## Check for external functions
 valgrind: all build_randgen		## Run push_swap w/ Valgrind
 	make randgen n=500
 	@ARG=$$(cat rand.txt); valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG"
+
+gdb:				## Run with GDB w/ custom arg=""
+	gdb --tui --args ./$(NAME) $(arg)
+
+##@ Test Rules 🧪
 
 print_test:
 	@N_OPS=$$(wc -l < push_swap_out.txt); \
@@ -323,9 +328,6 @@ test_checker_n: all bonus	## Test bonus checker with n elements
 	@ARG=$$(cat rand.txt); \
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
-
-gdb:				## Run with GDB
-	gdb --tui --args ./$(NAME) $(arg)
 
 ##@ Clean-up Rules 󰃢
 
