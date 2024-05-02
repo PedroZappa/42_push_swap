@@ -31,7 +31,7 @@ ___
 * [`push_swap` Operations](#push_swap-operations)
 * [Operations Example](#operations-example)
 * [Complexity](#complexity)
-  * [Asymptotic Notations in Complexity Analysis](#asymptotic-notations-in-complexity-analysis)
+  * [Asymptotic Notations in Complexity Analysis 🔎](#asymptotic-notations-in-complexity-analysis-)
     * [**Big O Notation**](#big-o-notation)
     * [**Ω (Big Omega) Notation**](#-big-omega-notation)
     * [ϴ (Theta) Notation](#-theta-notation)
@@ -151,7 +151,7 @@ Taking this into consideration, **Time Complexity** is most commonly defined usi
 
 ___
 
-### Asymptotic Notations in Complexity Analysis
+### Asymptotic Notations in Complexity Analysis 🔎
 
 #### **Big O Notation**
 
