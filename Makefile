@@ -19,9 +19,9 @@ SHELL	:= bash
 # Default test values
 n		?= 100
 arg		?= "2 7 5 3 4 9 6 8 1"
-SIZES	:= 3 6 9 20 50 100
+SIZES	:= 3 6 9 25 50 100
 SIZES	+= 200 300 400 500
-SIZES	+= 1000 2000
+# SIZES	+= 1000 2000
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -357,7 +357,6 @@ run_rand: $(TEMP_PATH)
 test_complexity: gen_rand run_rand 	## Analyse Complexity
 	@for size in $(SIZES); do \
 		echo "$(YEL)Analyzing output for size $(GRN)$$size$(D)"; \
-		# Add your analysis commands here, e.g., \
 		wc -l $(TEMP_PATH)/out_$$size.txt; \
 	done
 
