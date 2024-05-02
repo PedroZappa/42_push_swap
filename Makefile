@@ -16,8 +16,9 @@
 
 SHELL := bash
 
-# Default values
+# Default test values
 n ?= 100
+arg ?= "7 5 3 4 9 6 8 2 1"
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -324,7 +325,7 @@ test_checker_n: all bonus	## Test bonus checker with n elements
 	make --no-print-directory print_test
 
 gdb:				## Run with GDB
-	gdb --tui --args ./$(NAME) "7 5 3 4 9 6 8 2 1"
+	gdb --tui --args ./$(NAME) $(arg)
 
 ##@ Clean-up Rules 󰃢
 
