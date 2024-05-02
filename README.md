@@ -38,7 +38,7 @@ ___
     * [Little o Notation](#little-o-notation)
     * [ω (Little Omega) Notation](#-little-omega-notation)
   * [Table of Common Time Complexities](#table-of-common-time-complexities)
-* [Implementation 📜](#implementation-)
+* [`push_swap` Implementation 📜](#push_swap-implementation-)
 * [Data Structures](#data-structures)
 * [Processing Input Arguments](#processing-input-arguments)
 * [Error / Invalid Input Handling](#error--invalid-input-handling)
@@ -189,7 +189,7 @@ ___
 | ... | ... | ... |
 
 ___
-# Implementation 📜
+# `push_swap` Implementation 📜
 
 The sorting algorithm used in this implementation is a variation of the `QuickSort Algorithm` adapted to sort stacks using only the aforementioned operations.
 
