@@ -242,7 +242,7 @@ end
 # fs cmd
 # break main:42
 # info break
-# run "7 5 3 4 9 6 8 2 1"
+# run
 # main
 # rfr
 # next
@@ -250,7 +250,7 @@ end
 # Start at ft_sort()
 # fs cmd
 # break main.c:118
-# run "7 5 3 4 9 6 8 2 1"
+# run
 # info break
 # ft_sort
 # rfr
@@ -268,7 +268,7 @@ end
 # Start at ft_create_stack()
 # fs cmd
 # break main.c:52
-# run "7 5 3 4 9 6 8 2 1"
+# run
 # main
 # step
 # ft_create_stack
@@ -279,7 +279,7 @@ end
 fs cmd
 break ft_sort_stack.c:56
 break ft_calc_move
-run "7 5 3 4 9 6 8 2 1"
+run
 # target record-full
 ft_sort_stack
 rfr

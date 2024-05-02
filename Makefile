@@ -323,6 +323,9 @@ test_checker_n: all bonus	## Test bonus checker with n elements
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
+gdb:				## Run with GDB
+	gdb --tui --args ./$(NAME) "7 5 3 4 9 6 8 2 1"
+
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
