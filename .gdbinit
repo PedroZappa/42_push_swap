@@ -239,13 +239,13 @@ define ft_get_align_ops
 end
 
 # Start debugging from main.c
-# fs cmd
-# break main:42
-# info break
-# run
-# main
-# rfr
-# next
+fs cmd
+break main.c:52
+info break
+run
+main
+rfr
+next
 
 # Start at ft_sort()
 # fs cmd
@@ -276,13 +276,13 @@ end
 # next
 
 # Start at ft_sort_stack() : test with 9 elements
-fs cmd
-break ft_sort_stack.c:56
-break ft_calc_move
-run
-# target record-full
-ft_sort_stack
-rfr
+# fs cmd
+# break ft_sort_stack.c:56
+# break ft_calc_move
+# run
+# # target record-full
+# ft_sort_stack
+# rfr
 
 ###
 ### Checker DBG
