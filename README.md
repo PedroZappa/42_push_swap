@@ -135,9 +135,11 @@ Also known as `Time Complexity` (studied by `Complexity Analysis`), is the **com
 
 > [!Note]
 > `Algorithm`
+>
 > Algorithms are procedures or instructions (set of steps) that tell a computer what to do and how to do it.
 >
 > `Computational Complexity`
+>
 > The computational complexity of an algorithm is the amount of resources required to run it. Particular focus is given to:
 > - **computation time**;
 > - and **memory storage** requirements.
