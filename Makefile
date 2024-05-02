@@ -20,8 +20,8 @@ SHELL	:= bash
 n		?= 100
 arg		?= "2 7 5 3 4 9 6 8 1"
 SIZES	:= 3 6 9 20 50 100
-# SIZES	+= 250 500 1000
-
+SIZES	+= 200 300 400 500
+SIZES	+= 1000 2000
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -153,7 +153,7 @@ update_modules:
 
 randgen: all build_randgen	## Generate list of n random values w/ given seed
 	@echo "* [$(YEL)Generating list of random values$(D)]"
-	./randgen/randgen $(n) $(seed) | tee rand.txt
+	./randgen/randgen $(n) $(seed) | tee $(TEMP_PATH)/rand.txt
 	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
 
 build_randgen:
@@ -233,15 +233,16 @@ check_ext_func: bonus		## Check for external functions
 	@echo "[$(YEL)Checking for external functions$(D)]"
 	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "$(CYA)Reading binary$(D): $(MAG)push_swap$(D)"
-	nm ./push_swap | grep "U" | tee ext_func.txt
+	nm ./push_swap | grep "U" | tee $(TEMP_PATH)/ext_func.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "$(CYA)Reading binary$(D): $(MAG)checker$(D)"
-	nm ./checker | grep "U" | tee ext_func.txt
+	nm ./checker | grep "U" | tee $(TEMP_PATH)/ext_func.txt
 	@echo "$(YEL)$(_SEP)$(D)"
 
 valgrind: all build_randgen		## Run push_swap w/ Valgrind
 	make randgen n=500
-	@ARG=$$(cat rand.txt); valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG"
+	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt
 
 gdb:				## Run with GDB w/ custom arg=""
 	gdb --tui --args ./$(NAME) $(arg)
@@ -249,7 +250,8 @@ gdb:				## Run with GDB w/ custom arg=""
 ##@ Test Rules 🧪
 
 print_test:
-	@N_OPS=$$(wc -l < push_swap_out.txt); \
+	@echo "$(YEL)$(_SEP)$(D)";
+	@N_OPS=$$(wc -l < $(TEMP_PATH)/push_swap_out.txt); \
 	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
 	echo "$(YEL)$(_SEP)$(D)"; \
 
@@ -267,95 +269,96 @@ test_subject: all	## Test push_swap with examples from subject
 
 test_n:	all build_randgen				## Test with n elements
 	make --no-print-directory randgen n=$(n)
-	@ARG=$$(cat rand.txt); \
-	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_three:	all build_randgen			## Test with 3 element stack
 	make --no-print-directory randgen n=3
-	@ARG=$$(cat rand.txt); \
-	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_six:	all build_randgen			## Test with 6 element stack
 	make --no-print-directory randgen n=6
-	@ARG=$$(cat rand.txt); \
-	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_rand100:	all build_randgen		## Test with 100 random elements
 	make --no-print-directory randgen n=100
-	@ARG=$$(cat rand.txt); \
-	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_rand500:	all build_randgen	## Test with 500 random elements
 	make --no-print-directory randgen n=500
-	@ARG=$$(cat rand.txt); \
-	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_50rand500:	all build_randgen	## Test with 50 sets of 500 random elements
 	@echo "[$(CYA)Running tests with 50 sets of 500 random elements$(D)]"
 	@echo "[$(YEL)Generating and sorting lists...$(D)]"
-	@rm -f ops.txt 2>/dev/null
+	@rm -f $(TEMP_PATH)/ops.txt 2>/dev/null
 	@for i in {1..50}; do \
 		echo "Test set $(RED)$$i$(D)"; \
-		./randgen/randgen 500 > rand.txt; \
-		ARG=$$(cat rand.txt); \
-		./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
-		N_OPS=$$(wc -l < push_swap_out.txt); \
+		./randgen/randgen 500 > $(TEMP_PATH)/rand.txt; \
+		ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+		./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+		N_OPS=$$(wc -l < $(TEMP_PATH)/push_swap_out.txt); \
 		echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
 		echo "$(YEL)$(_SEP)$(D)"; \
-		echo $$N_OPS >> ops.txt; \
+		echo $$N_OPS >> $(TEMP_PATH)/ops.txt; \
 	done
-	@echo "[$(YEL)Calculating statistics...$(D)]"
-	@echo "Minimum: $$(sort -n ops.txt | head -n 1)"
-	@echo "Maximum: $$(sort -n ops.txt | tail -n 1)"
-	@echo "Median: $$(awk '{sum += $$1} END {print sum / NR}' ops.txt)"
+	@echo "[$(CYA)Calculating statistics...$(D)]"
+	@echo "Minimum: $$(sort -n $(TEMP_PATH)/ops.txt | head -n 1)"
+	@echo "Maximum: $$(sort -n $(TEMP_PATH)/ops.txt | tail -n 1)"
+	@echo "Median: $$(awk '{sum += $$1} END {print sum / NR}' $(TEMP_PATH)/ops.txt)"
+	@echo "$(YEL)$(_SEP)$(D)"
 
 test_checker: all bonus		## Test checker with examples from subject
 	@echo "[$(YEL)Running checker tests from subject$(D)]"
 	@echo "[$(RED)1/4$(D) :$(CYA)Success test$(D) (correct operations)]"
-	echo -e "rra\npb\nsa\nrra\npa" > input.txt
-	./checker 3 2 1 0 < input.txt
+	echo -e "rra\npb\nsa\nrra\npa" > $(TEMP_PATH)/input.txt
+	./checker 3 2 1 0 < $(TEMP_PATH)/input.txt
 	@echo "[$(RED)2/4$(D) :$(CYA)Failure test$(D) (wrong operations)]"
-	echo -e "sa\nrra\npb" > input.txt
-	./checker 3 2 1 0 < input.txt
+	echo -e "sa\nrra\npb" > $(TEMP_PATH)/input.txt
+	./checker 3 2 1 0 < $(TEMP_PATH)/input.txt
 	@echo "[$(RED)3/4$(D) :$(CYA)Failure test$(D) (receiving chars)]"
 	./checker 3 2 one 0
 	@echo "[$(RED)4/4$(D) :$(CYA)Failure test$(D) (receiving empty string)]"
 	./checker "" 1
 
 test_checker_n: all bonus	## Test bonus checker with n elements
-	./randgen/randgen $(n) > rand.txt
+	./randgen/randgen $(n) > $(TEMP_PATH)/rand.txt
 	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
-	@ARG=$$(cat rand.txt); \
-	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"
+	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"
 	@echo "[$(YEL)Running push_swap passunca's checker$(D)]"
-	@ARG=$$(cat rand.txt); \
-	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
+	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-gen_rand:
+gen_rand: $(TEMP_PATH)
 	@for size in $(SIZES); do \
 		echo "[$(YEL)Generating list of size $(GRN)$$size$(D)]"; \
-		./randgen/randgen $$size > rand_$$size.txt; \
+		./randgen/randgen $$size > $(TEMP_PATH)/rand_$$size.txt; \
 		echo "[$(_SUCCESS)]"; \
 	done
 
-run_rand:
+run_rand: $(TEMP_PATH)
 	@for size in $(SIZES); do \
 		echo "$(YEL)Running $(MAG)push_swap $(YEL)with size $(GRN)$$size$(D)"; \
-		ARG=$$(cat rand_$$size.txt); \
-		./$(NAME) "$$ARG" | tee out_$$size.txt >/dev/null 2>&1; \
+		ARG=$$(cat $(TEMP_PATH)/rand_$$size.txt); \
+		./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out_$$size.txt >/dev/null 2>&1; \
 	done
 
 test_complexity: gen_rand run_rand 	## Analyse Complexity
 	@for size in $(SIZES); do \
 		echo "$(YEL)Analyzing output for size $(GRN)$$size$(D)"; \
 		# Add your analysis commands here, e.g., \
-		wc -l out_$$size.txt; \
+		wc -l $(TEMP_PATH)/out_$$size.txt; \
 	done
 
 ##@ Clean-up Rules 󰃢
@@ -365,13 +368,9 @@ clean: 				## Remove object files
 	@echo "* $(YEL)Cleaning Libft objects 󰃢:$(D) $(_SUCCESS)"
 	@echo "* $(MAG)Removing push_swap$(D)"
 	$(RM) $(BUILD_PATH)
-	@echo "* $(YEL)Removing $(BUILD_PATH) folder & files$(D): $(_SUCCESS)"
-	$(RM) norm.txt norm_ls.txt norm_err.txt norm_errn.txt
-	@echo "* $(YEL)Removing Norminette temp files:$(D) $(_SUCCESS)"
-	$(RM) push_swap_out.txt rand.txt ops.txt input.txt imgui.ini
-	$(RM) output_*.txt rand_*.txt
+	@echo "* $(YEL)Removing $(CYA)$(BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"
 	$(RM) $(TEMP_PATH)
-	@echo "* $(YEL)Removing test temp files:$(D) $(_SUCCESS)"
+	@echo "* $(YEL)Removing $(CYA)$(TEMP_PATH)$(D) folder & files:$(D) $(_SUCCESS)"
 
 fclean: clean	## Remove archives & executables
 	$(RM) $(NAME) $(NAME_BONUS)
