@@ -179,7 +179,7 @@ get_visual:
 ##@ Test, Debug & Leak Check Rules 
 
 norm: 		## Run norminette test on push_swap files
-	@printf "${_NORM}\n"
+	@printf "${_NORM}: $(YEL)$(SRC_PATH)$(D)\n"
 	@ls $(SRC_PATH) | wc -l > norm_ls.txt
 	@printf "$(_NORM_INFO) $$(cat norm_ls.txt)\n"
 	@printf "$(_NORM_SUCCESS) "
@@ -197,9 +197,11 @@ norm: 		## Run norminette test on push_swap files
 	else \
 		printf "[$(YEL)Everything is OK$(D)]\n"; \
 	fi
+	@echo "$(CYA)$(_SEP)$(D)"
+	@make --no-print-directory norm_bonus
 
 norm_bonus: 		## Run norminette test on chcker files
-	@printf "${_NORM}\n"
+	@printf "${_NORM}: $(YEL)$(BONUS_PATH)$(D)\n"
 	@ls $(BONUS_PATH) | wc -l > norm_ls.txt
 	@printf "$(_NORM_INFO) $$(cat norm_ls.txt)\n"
 	@printf "$(_NORM_SUCCESS) "
@@ -217,6 +219,16 @@ norm_bonus: 		## Run norminette test on chcker files
 	else \
 		printf "[$(YEL)Everything is OK$(D)]\n"; \
 	fi
+
+check_ext_func: bonus		## Check for external functions
+	@echo "[$(YEL)Checking for external functions$(D)]"
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "$(CYA)Reading binary$(D): $(MAG)push_swap$(D)"
+	nm ./push_swap | grep "U" | tee ext_func.txt
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "$(CYA)Reading binary$(D): $(MAG)checker$(D)"
+	nm ./checker | grep "U" | tee ext_func.txt
+	@echo "$(YEL)$(_SEP)$(D)"
 
 valgrind: all build_randgen		## Run push_swap w/ Valgrind
 	make randgen n=500
