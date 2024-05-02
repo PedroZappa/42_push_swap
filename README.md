@@ -62,6 +62,10 @@ ___
 * [Build `push_swap`](#build-push_swap)
 * [Build `checker`](#build-checker)
 * [Tests 🧪](#tests-)
+* [General Tests](#general-tests)
+* [Memory Leak Tests](#memory-leak-tests)
+* [Run with GDB](#run-with-gdb)
+* [Check Available (make) Commands](#check-available-make-commands)
 * [License 📖](#license-)
 
 <!-- mtoc-end -->
@@ -739,10 +743,13 @@ ___
 
 I've prepared several make rules to test the `push_swap` program and the `checker` in a systematic and automated way.
 
+## General Tests
+
 To run the tests present on the subject run:
 ```sh
 make test_subject	# for push_swap
 make test_checker	# for checker
+make check_ext_func	# Checks external functions in use
 ```
 
 To test `push_swap` with a custom number of input elements run:
@@ -754,6 +761,23 @@ To test `push_swap` together `checker` with a custom number of input elements ru
 make test_checker n=42
 ```
 > `n` is the number of input elements, in these examples, 42.
+
+## Memory Leak Tests
+
+To check if `push_swap` has memory leaks run:
+```sh
+make valgrind
+```
+
+## Run with GDB
+
+To run `push_swap` with GDB run:
+```sh
+make gdb arg="2 1 3 6 5 8"
+```
+> if no argument is passed, it runs with the default argument defined in the Makefile.
+
+## Check Available (make) Commands
 
 To check all available commands including tests run:
 ```sh
