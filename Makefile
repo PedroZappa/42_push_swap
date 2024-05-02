@@ -19,6 +19,9 @@ SHELL	:= bash
 # Default test values
 n		?= 100
 arg		?= "2 7 5 3 4 9 6 8 1"
+SIZES	:= 3 6 9 20 50 100
+# SIZES	+= 250 500 1000
+
 
 #==============================================================================#
 #                                     NAMES                                    #
@@ -46,6 +49,7 @@ SRC_PATH	= src
 BONUS_PATH	= bonus
 LIBS_PATH	= lib
 BUILD_PATH	= .build
+TEMP_PATH	= .temp
 
 SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_assert_stack.c \
 			  ft_ops.c ft_create_stack.c ft_sort_three.c ft_sort_stack.c \
@@ -111,6 +115,10 @@ $(BUILD_PATH)/%.o: $(BONUS_PATH)/%.c
 $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)
 	@echo "* $(YEL)Creating $(BUILD_PATH) folder:$(D) $(_SUCCESS)"
+
+$(TEMP_PATH):
+	$(MKDIR_P) $(TEMP_PATH)
+	@echo "* $(YEL)Creating $(TEMP_PATH) folder:$(D) $(_SUCCESS)"
 
 $(NAME): $(BUILD_PATH) $(LIBFT_ARC) $(OBJS)
 	@echo "[$(YEL)Compiling push_swap$(D)]"
@@ -179,22 +187,22 @@ get_visual:
 
 ##@ Norm, Debug & Leak Check Rules 
 
-norm: 		## Run norminette test on push_swap files
+norm: $(TEMP_PATH)		## Run norminette test on push_swap files
 	@printf "${_NORM}: $(YEL)$(SRC_PATH)$(D)\n"
-	@ls $(SRC_PATH) | wc -l > norm_ls.txt
-	@printf "$(_NORM_INFO) $$(cat norm_ls.txt)\n"
+	@ls $(SRC_PATH) | wc -l > $(TEMP_PATH)/norm_ls.txt
+	@printf "$(_NORM_INFO) $$(cat $(TEMP_PATH)/norm_ls.txt)\n"
 	@printf "$(_NORM_SUCCESS) "
-	@norminette $(SRC_PATH) | grep -wc "OK" > norm.txt; \
+	@norminette $(SRC_PATH) | grep -wc "OK" > $(TEMP_PATH)/norm.txt; \
 	if [ $$? -eq 1 ]; then \
-		echo "0" > norm.txt; \
+		echo "0" > $(TEMP_PATH)/norm.txt; \
 	fi
-	@printf "$$(cat norm.txt)\n"
-	@if ! diff -q norm_ls.txt norm.txt > /dev/null; then \
+	@printf "$$(cat $(TEMP_PATH)/norm.txt)\n"
+	@if ! diff -q $(TEMP_PATH)/norm_ls.txt $(TEMP_PATH)/norm.txt > /dev/null; then \
 		printf "$(_NORM_ERR) "; \
-		norminette $(SRC_PATH) | grep -v "OK"> norm_err.txt; \
-		cat norm_err.txt | grep -wc "Error:" > norm_errn.txt; \
-		printf "$$(cat norm_errn.txt)\n"; \
-		printf "$$(cat norm_err.txt)\n"; \
+		norminette $(SRC_PATH) | grep -v "OK"> $(TEMP_PATH)/norm_err.txt; \
+		cat $(TEMP_PATH)/norm_err.txt | grep -wc "Error:" > $(TEMP_PATH)/norm_errn.txt; \
+		printf "$$(cat $(TEMP_PATH)/norm_errn.txt)\n"; \
+		printf "$$(cat $(TEMP_PATH)/norm_err.txt)\n"; \
 	else \
 		printf "[$(YEL)Everything is OK$(D)]\n"; \
 	fi
@@ -203,20 +211,20 @@ norm: 		## Run norminette test on push_swap files
 
 norm_bonus: 		## Run norminette test on chcker files
 	@printf "${_NORM}: $(YEL)$(BONUS_PATH)$(D)\n"
-	@ls $(BONUS_PATH) | wc -l > norm_ls.txt
-	@printf "$(_NORM_INFO) $$(cat norm_ls.txt)\n"
+	@ls $(BONUS_PATH) | wc -l > $(TEMP_PATH)/norm_ls.txt
+	@printf "$(_NORM_INFO) $$(cat $(TEMP_PATH)/norm_ls.txt)\n"
 	@printf "$(_NORM_SUCCESS) "
-	@norminette $(BONUS_PATH) | grep -wc "OK" > norm.txt; \
+	@norminette $(BONUS_PATH) | grep -wc "OK" > $(TEMP_PATH)/norm.txt; \
 	if [ $$? -eq 1 ]; then \
-		echo "0" > norm.txt; \
+		echo "0" > $(TEMP_PATH)/norm.txt; \
 	fi
-	@printf "$$(cat norm.txt)\n"
-	@if ! diff -q norm_ls.txt norm.txt > /dev/null; then \
+	@printf "$$(cat $(TEMP_PATH)/norm.txt)\n"
+	@if ! diff -q $(TEMP_PATH)/norm_ls.txt $(TEMP_PATH)/norm.txt > /dev/null; then \
 		printf "$(_NORM_ERR) "; \
-		norminette $(BONUS_PATH) | grep -v "OK"> norm_err.txt; \
-		cat norm_err.txt | grep -wc "Error:" > norm_errn.txt; \
-		printf "$$(cat norm_errn.txt)\n"; \
-		printf "$$(cat norm_err.txt)\n"; \
+		norminette $(BONUS_PATH) | grep -v "OK"> $(TEMP_PATH)/norm_err.txt; \
+		cat $(TEMP_PATH)/norm_err.txt | grep -wc "Error:" > $(TEMP_PATH)/norm_errn.txt; \
+		printf "$$(cat $(TEMP_PATH)/norm_errn.txt)\n"; \
+		printf "$$(cat $(TEMP_PATH)/norm_err.txt)\n"; \
 	else \
 		printf "[$(YEL)Everything is OK$(D)]\n"; \
 	fi
@@ -329,6 +337,27 @@ test_checker_n: all bonus	## Test bonus checker with n elements
 	./$(NAME) "$$ARG" | tee push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
+gen_rand:
+	@for size in $(SIZES); do \
+		echo "[$(YEL)Generating list of size $(GRN)$$size$(D)]"; \
+		./randgen/randgen $$size > rand_$$size.txt; \
+		echo "[$(_SUCCESS)]"; \
+	done
+
+run_rand:
+	@for size in $(SIZES); do \
+		echo "$(YEL)Running $(MAG)push_swap $(YEL)with size $(GRN)$$size$(D)"; \
+		ARG=$$(cat rand_$$size.txt); \
+		./$(NAME) "$$ARG" | tee out_$$size.txt >/dev/null 2>&1; \
+	done
+
+test_complexity: gen_rand run_rand 	## Analyse Complexity
+	@for size in $(SIZES); do \
+		echo "$(YEL)Analyzing output for size $(GRN)$$size$(D)"; \
+		# Add your analysis commands here, e.g., \
+		wc -l out_$$size.txt; \
+	done
+
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
@@ -340,6 +369,8 @@ clean: 				## Remove object files
 	$(RM) norm.txt norm_ls.txt norm_err.txt norm_errn.txt
 	@echo "* $(YEL)Removing Norminette temp files:$(D) $(_SUCCESS)"
 	$(RM) push_swap_out.txt rand.txt ops.txt input.txt imgui.ini
+	$(RM) output_*.txt rand_*.txt
+	$(RM) $(TEMP_PATH)
 	@echo "* $(YEL)Removing test temp files:$(D) $(_SUCCESS)"
 
 fclean: clean	## Remove archives & executables

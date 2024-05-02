@@ -70,3 +70,5 @@ push_swap_out.txt
 input.txt
 ops.txt
 palette.png
+out*.txt
+rand*.txt

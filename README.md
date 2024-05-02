@@ -146,7 +146,9 @@ Also known as `Time Complexity` (studied by `Complexity Analysis`), is the **com
 
 Since an algorithm's running time usually varies between different inputs of the same size, it is common to consider primarily the **worst-case time complexity**.
 
-**Time Complexity** represents the number of times a statement is executed. It is generally expressed as a **function of the input size**. Such a function is often very difficult to define, and since its running time is usually inconsequential, it is customary to focus on the **asymptotic behaviour** of the complexity.
+**Time Complexity** represents the number of times a statement is executed. It is generally expressed as a **function of the input size** (How quick the run time of an algorithm grows relative to input size). 
+
+Such a function is often very difficult to define, and since its running time is usually inconsequential (dependant on hardware, programming language, Operating System software, processing power, etc.), it is customary to focus on the **asymptotic behaviour** of the complexity.
 
 > [!Important]
 > 
