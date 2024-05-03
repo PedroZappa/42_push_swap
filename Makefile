@@ -267,7 +267,7 @@ test_subject: all	## Test push_swap with examples from subject
 	./push_swap 0 "" 2 3
 	@echo "$(YEL)$(_SEP)$(D)"
 
-test_n:	all build_randgen				## Test with n elements
+test_n:	all build_randgen $(TEMP_PATH)			## Test with n elements
 	make --no-print-directory randgen n=$(n)
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
