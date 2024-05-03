@@ -10,6 +10,7 @@ set logging enabled on
 # set print elements 2
 set print array on
 
+set unwindonsignal on
 #
 ##
 ### Custom Commands
