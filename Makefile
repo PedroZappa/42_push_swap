@@ -151,7 +151,7 @@ update_modules:
 	git submodule update --recursive --remote
 	@echo "* $(GRN)Submodules update$(D): $(_SUCCESS)"
 
-randgen: all build_randgen	## Generate list of n random values w/ given seed
+randgen: all build_randgen $(TEMP_PATH)	## Generate list of n random values w/ given seed
 	@echo "* [$(YEL)Generating list of random values$(D)]"
 	./randgen/randgen $(n) $(seed) | tee $(TEMP_PATH)/rand.txt
 	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
@@ -240,7 +240,7 @@ check_ext_func: bonus		## Check for external functions
 	@echo "$(YEL)$(_SEP)$(D)"
 
 valgrind: all build_randgen		## Run push_swap w/ Valgrind
-	make randgen n=500
+	make randgen n=$(n)
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt
 
