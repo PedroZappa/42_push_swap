@@ -29,7 +29,8 @@
 //=============================================================================/
 
 // Stack element
-typedef struct s_elem {
+typedef struct s_elem
+{
 	int	num;
 	int	index;
 	int	set;
