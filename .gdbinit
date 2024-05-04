@@ -76,8 +76,9 @@ end
 
 # ft_assert_stack.c
 define ft_is_sorted
-	display *stack
-	display *stack@i
+	display *stack@ft_stack_end(stack-2)
+	display stack[i]
+	display stack[i+1]
 	display i
 end
 
@@ -195,9 +196,10 @@ define ft_sort_stack
 	display stack_len
 	display i
 	display median
+	display ft_stack_start(stack_b)
 	display ft_stack_end(stack_b)
 	display ft_best_op_idx(stack_b, stack_a, stack_len)
-	display stack_b[i].num
+	display stack_a[i].num
 	display ft_min_above_thresh(stack_a, stack_b[i].num).index
 end
 
