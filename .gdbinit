@@ -249,7 +249,7 @@ end
 # Start debugging from main.c
 fs cmd
 break main.c:52
-break ft_calc_move
+break ft_exec_move
 info break
 run
 main
