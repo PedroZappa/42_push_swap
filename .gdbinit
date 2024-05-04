@@ -215,10 +215,10 @@ define ft_exec_move
 	display idx
 	display start
 	display ordered
-	display ft_stack_min(stack_b).num
-	display ft_stack_max(stack_b, -1).num
-	display stack_a[idx].num
-	display ft_min_above_thresh(stack_b, stack_a[idx].num).index
+	display ft_stack_min(stack_a).num
+	display ft_stack_max(stack_a, -1).num
+	display stack_b[idx].num
+	display ft_min_above_thresh(stack_a, stack_b[idx].num).index
 end
 
 define ft_best_op_idx
