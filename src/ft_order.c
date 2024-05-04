@@ -86,13 +86,13 @@ void	ft_order(t_elem *stack_a, t_elem *stack_b, int idx)
  *	- Initialize n_ops counter to 0;
  *	- Get the start of the stack;
  *	- Get the end of the stack;
- *	- Get the median position of the stack;
- *	- If the index is greater than the median:
+ *	- Get the mid_idx position of the stack;
+ *	- If the index is greater than the mid_idx:
  *		(closer to the end of the stack):
  *		- Get the difference between the end of the stack and the index + 1;
  *		- If the parameter sign is set to one:
  *			- Make n_ops negative to signify the direction of rotation;
- *	- Else if the index is less than or equal to the median 
+ *	- Else if the index is less than or equal to the mid_idx 
  *		(closer to the start of the stack):
  *		- Get the difference between the index and the start of the stack;
  *	- Return n_ops;	
@@ -102,19 +102,19 @@ int	ft_getontop_ops(t_elem *stack, int idx, int sign)
 	int		n_ops;
 	int		start;
 	int		end;
-	int		median;
+	int		mid_idx;
 
 	n_ops = 0;
 	start = ft_stack_start(stack);
 	end = ft_stack_end(stack);
-	median = (start + ((end - start) / 2));
-	if (idx > median)
+	mid_idx = (start + ((end - start) / 2));
+	if (idx > mid_idx)
 	{
 		n_ops = (end - idx + 1);
 		if (sign == 1)
 			n_ops = -n_ops;
 	}
-	else if (idx <= median)
+	else if (idx <= mid_idx)
 		n_ops = (idx - start);
 	return (n_ops);
 }
