@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	ft_exec_move(t_elem *stack_a, t_elem *stack_b,
+static void	ft_exec_move(t_elem *stack_b, t_elem *stack_a,
 				int idx, int stack_len);
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
 static int	ft_get_align_ops(t_elem *stack_a, t_elem *stack_b, int idx);
@@ -85,31 +85,31 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
  *		of stack_a is at the top;
  *	- Pushes the element in the top of stack_b to stack_a;
  * */
-static void	ft_exec_move(t_elem *stack_a, t_elem *stack_b,
+static void	ft_exec_move(t_elem *stack_b, t_elem *stack_a,
 					int idx, int stack_len)
 {
 	int	start;
 	int	ordered;
 
-	start = ft_stack_start(stack_a);
-	ordered = ft_check_order(stack_a, stack_b, idx);
-	ft_order(stack_a, stack_b, idx);
+	start = ft_stack_start(stack_b);
+	ordered = ft_check_order(stack_b, stack_a, idx);
+	ft_order(stack_b, stack_a, idx);
 	if (ordered != 0)
 		idx -= ordered;
 	if (idx >= (stack_len - 2))
 		idx = (start + (idx - (stack_len - 1)));
 	else if (idx < start)
-		idx = (ft_stack_end(stack_a) + idx);
-	idx -= ft_rotate_top(stack_a, idx, "rb\n", "rrb\n");
+		idx = (ft_stack_end(stack_b) + idx);
+	idx -= ft_rotate_top(stack_b, idx, "rb\n", "rrb\n");
 	if (idx >= (stack_len - 2))
 		idx = (start + (idx - (stack_len - 1)));
-	if ((ft_stack_min(stack_b).num > stack_a[idx].num)
-		|| (ft_stack_max(stack_b, -1).num < stack_a[idx].num))
-		ft_rotate_top(stack_b, ft_stack_min(stack_b).index, "ra\n", "rra\n");
+	if ((ft_stack_min(stack_a).num > stack_b[idx].num)
+		|| (ft_stack_max(stack_a, -1).num < stack_b[idx].num))
+		ft_rotate_top(stack_a, ft_stack_min(stack_a).index, "ra\n", "rra\n");
 	else
-		ft_rotate_top(stack_b, \
-		ft_min_above_thresh(stack_b, stack_a[idx].num).index, "ra\n", "rra\n");
-	ft_push_elem(stack_a, stack_b, "pa\n");
+		ft_rotate_top(stack_a, \
+		ft_min_above_thresh(stack_a, stack_b[idx].num).index, "ra\n", "rra\n");
+	ft_push_elem(stack_b, stack_a, "pa\n");
 }
 
 /* ft_best_op_idx():
