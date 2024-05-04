@@ -20,6 +20,11 @@ define rfr
 	refresh
 end
 
+define nr
+	next
+	refresh
+end
+
 # main.c
 define main
 	display *input_list
@@ -203,7 +208,7 @@ define ft_sort_stack
 	display ft_min_above_thresh(stack_a, stack_b[i].num).index
 end
 
-define ft_calc_move
+define ft_exec_move
 	display *stack_a@stack_len
 	display *stack_b@stack_len
 	display stack_len
@@ -244,6 +249,7 @@ end
 # Start debugging from main.c
 fs cmd
 break main.c:52
+break ft_calc_move
 info break
 run
 main
