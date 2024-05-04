@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
+static void	ft_exec_move(t_elem *stack_a, t_elem *stack_b,
 				int idx, int stack_len);
 static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len);
 static int	ft_get_align_ops(t_elem *stack_a, t_elem *stack_b, int idx);
@@ -55,7 +55,7 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	i = ft_stack_start(stack_b);
 	while (i < ft_stack_end(stack_b))
 	{
-		ft_calc_move(stack_b, stack_a, \
+		ft_exec_move(stack_b, stack_a, \
 			ft_best_op_idx(stack_b, stack_a, stack_len), stack_len);
 		++i;
 	}
@@ -65,7 +65,7 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
 	ft_rotate_top(stack_a, ft_stack_min(stack_a).index, "ra\n", "rra\n");
 }
 
-/* ft_calc_move():
+/* ft_exec_move():
  *	- Get the start of the stack_a;
  *	- Get number of elements in stack_a & stack_b that are in the right order
  *		relative to eachother;
@@ -85,7 +85,7 @@ void	ft_sort_stack(t_elem *stack_a, t_elem *stack_b, int stack_len)
  *		of stack_a is at the top;
  *	- Pushes the element in the top of stack_b to stack_a;
  * */
-static void	ft_calc_move(t_elem *stack_a, t_elem *stack_b,
+static void	ft_exec_move(t_elem *stack_a, t_elem *stack_b,
 					int idx, int stack_len)
 {
 	int	start;
