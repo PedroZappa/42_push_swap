@@ -18,7 +18,7 @@ SHELL	:= bash
 
 # Default test values
 n		?= 100
-arg		?= "2 7 5 3 4 9 6 8 1"
+arg		?= "2 7 5 3 9 4 6 8 1"
 SIZES	:= 3 6 9 25 50 100
 SIZES	+= 200 300 400 500
 # SIZES	+= 1000 2000
