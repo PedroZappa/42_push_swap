@@ -25,6 +25,8 @@ int	ft_is_sorted(t_elem *stack)
 {
 	int	i;
 
+	if (!stack)
+		return (-1);
 	i = 0;
 	while (stack[(i + 1)].index != -1)
 	{
@@ -46,6 +48,8 @@ int	ft_stack_start(t_elem *stack)
 {
 	int	start;
 
+	if (!stack)
+		return (-1);
 	start = 0;
 	while (stack[start].set != 1)
 		++start;
@@ -63,6 +67,8 @@ int	ft_stack_end(t_elem *stack)
 {
 	int	end;
 
+	if (!stack)
+		return (-1);
 	end = 0;
 	while (stack[end].index != -1)
 		++end;
