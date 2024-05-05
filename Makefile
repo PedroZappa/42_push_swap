@@ -172,10 +172,11 @@ get_pcgc:
 	$(MAKE) $(PCG_C_PATH)
 	@echo "[$(_SUCCESS) building $(MAG)pcg-c$(D) $(CYA)Random Number Generator!$(D) $(YEL)🖔$(D)]"
 
-visual: 	## Run push_swap Visualizer 
+visual: bonus 	## Run push_swap Visualizer 
 	@if test ! -d "$(VISUALIZER_PATH)"; then make get_visual; \
 	else echo "$(YEL)[push_swap Visualizer]$(D) folder found 🖔"; \
 	./$(VISUALIZER_PATH)/build/bin/visualizer; fi
+	make visual
 
 get_visual:
 	@echo "* [$(CYA)Getting push_swap Visualizer$(D)]"
