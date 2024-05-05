@@ -341,24 +341,17 @@ test_checker_n: all bonus	## Test bonus checker with n elements
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-gen_rand: $(TEMP_PATH)
+test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
 	@for size in $(SIZES); do \
-		echo "[$(YEL)Generating list of size $(GRN)$$size$(D)]"; \
-		./randgen/randgen $$size > $(TEMP_PATH)/rand_$$size.txt; \
-		echo "[$(_SUCCESS)]"; \
-	done
-
-run_rand: $(TEMP_PATH)
-	@for size in $(SIZES); do \
-		echo "$(YEL)Running $(MAG)push_swap $(YEL)with size $(GRN)$$size$(D)"; \
-		ARG=$$(cat $(TEMP_PATH)/rand_$$size.txt); \
-		./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out_$$size.txt >/dev/null 2>&1; \
-	done
-
-test_complexity: gen_rand run_rand 	## Analyse Complexity
-	@for size in $(SIZES); do \
-		echo "$(YEL)Analyzing output for size $(GRN)$$size$(D)"; \
-		wc -l $(TEMP_PATH)/out_$$size.txt; \
+		echo "[$(YEL)Generating lists of size $(MAG)$$size$(D)]"; \
+		for i in {1..3}; do \
+			./randgen/randgen $$size > $(TEMP_PATH)/rand.txt; \
+			ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+			./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt >/dev/null 2>&1; \
+			N_OPS=$$(wc -l < $(TEMP_PATH)/out.txt); \
+			echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+		done; \
+		echo "[$(_SEP)]"; \
 	done
 
 ##@ Clean-up Rules 󰃢
