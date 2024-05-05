@@ -132,11 +132,9 @@ static int	ft_best_op_idx(t_elem *stack_a, t_elem *stack_b, int stack_len)
 {
 	int		idx;
 	int		cost;
-	int		start;
 	t_elem	min_ops;
 
-	start = ft_stack_start(stack_a);
-	idx = start;
+	idx = ft_stack_start(stack_a);
 	min_ops.num = -1;
 	while (idx < (stack_len - 1))
 	{
