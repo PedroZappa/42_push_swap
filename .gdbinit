@@ -201,10 +201,11 @@ define ft_sort_stack
 	display stack_len
 	display i
 	display median
-	display ft_stack_start(stack_b)
+	# display ft_stack_start(stack_b)
 	display ft_stack_end(stack_b)
-	display ft_best_op_idx(stack_b, stack_a, stack_len)
+	# display ft_best_op_idx(stack_b, stack_a, stack_len)
 	display stack_a[i].num
+	display stack_b[i].num
 	display ft_min_above_thresh(stack_a, stack_b[i].num).index
 end
 
@@ -247,14 +248,14 @@ define ft_get_align_ops
 end
 
 # Start debugging from main.c
-fs cmd
-break main.c:52
-break ft_exec_move
-info break
-run
-main
-rfr
-next
+# fs cmd
+# break main.c:52
+# break ft_exec_move
+# info break
+# run
+# main
+# rfr
+# next
 
 # Start at ft_sort()
 # fs cmd
@@ -272,26 +273,27 @@ next
 # # sorted example
 # # run "1 2 3"
 # ft_sort_three
-# rfr
+# nr
 
 # Start at ft_create_stack()
 # fs cmd
 # break main.c:52
+# info break
 # run
 # main
 # step
 # ft_create_stack
-# rfr
-# next
+# nr
 
 # Start at ft_sort_stack() : test with 9 elements
-# fs cmd
-# break ft_sort_stack.c:56
-# break ft_calc_move
-# run
-# # target record-full
-# ft_sort_stack
-# rfr
+fs cmd
+break ft_sort_stack
+break ft_calc_move
+info break
+run
+# target record-full
+ft_sort_stack
+nr
 
 ###
 ### Checker DBG
