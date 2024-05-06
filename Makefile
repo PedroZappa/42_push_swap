@@ -17,6 +17,7 @@
 SHELL	:= bash
 
 # Default test values
+set		?= 10
 n		?= 100
 arg		?= "2 7 5 3 9 4 6 8 1"
 SIZES	:= 3 6 9 25 50 100
@@ -67,11 +68,7 @@ LIBFT_ARC	= $(LIBFT_PATH)/libft.a
 
 VISUALIZER_PATH	= $(LIBS_PATH)/visualizer
 
-RANDGEN_PATH	= ./randgen/
-PCG_C_PATH		= $(LIBS_PATH)/pcg-c
-PCG_C_SRC		= $(PCG_C_PATH)/src
-PCG_C_OBJS		= $(PCG_C_SRC:$(PCG_C_PATH)/%.c=$(BUILD_PATH)/%.o)
-PCG_ARC			= $(PCG_C_PATH)/libpcg-c.a
+RANDGEN_PATH	= $(LIBS_PATH)/randgen/
 
 #==============================================================================#
 #                              COMPILER & FLAGS                                #
@@ -140,37 +137,31 @@ deps: 			## Download/Update libft
 
 -include $(DEPS)
 
-get_libft:
-	@echo "* $(CYA)Getting Libft submodule$(D)]"
-	git clone git@github.com:PedroZappa/42_libft.git $(LIBFT_PATH)
-	@echo "* $(GRN)Libft submodule download$(D): $(_SUCCESS)"
-
 update_modules:
 	@echo "* $(CYA)Updating submodules$(D)]"
 	git submodule init
 	git submodule update --recursive --remote
 	@echo "* $(GRN)Submodules update$(D): $(_SUCCESS)"
 
-randgen: all build_randgen $(TEMP_PATH)	## Generate list of n random values w/ given seed
-	@echo "* [$(YEL)Generating list of random values$(D)]"
-	./randgen/randgen $(n) $(seed) | tee $(TEMP_PATH)/rand.txt
-	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
+get_libft:
+	@echo "* $(CYA)Getting Libft submodule$(D)]"
+	git clone git@github.com:PedroZappa/42_libft.git $(LIBFT_PATH)
+	@echo "* $(GRN)Libft submodule download$(D): $(_SUCCESS)"
 
-build_randgen:
-	@if test ! -d "$(PCG_C_PATH)"; then make get_pcgc; \
-	else echo "[$(CYA)pcg-c$(D)] folder found $(YEL)🖔$(D)"; \
-	echo "[$(_SUCCESS) compiling $(MAG)randgen!$(D) $(YEL)🖔$(D)]"; \
-	fi
-	@echo "[$(YEL)Compiling $(MAG)pcg-c$(D) Random Number Generator$(D)]"
+get_randgen:
+	@echo "* $(CYA)Getting Randgen submodule$(D)]"
+	git clone git@github.com:PedroZappa/randgen.git $(RANDGEN_PATH)
+	@echo "* $(GRN)Randgen submodule download$(D): $(_SUCCESS)"
+
+build_randgen: all $(TEMP_PATH)
+	@if test ! -d "$(RANDGEN_PATH)"; then \
+	git clone git@github.com:PedroZappa/randgen.git $(RANDGEN_PATH); fi
 	$(MAKE) $(RANDGEN_PATH)
 
-get_pcgc:
-	@echo "[Downloading $(CYA)Random Number Generator$(D) $(MAG)pcg-c$(D)]"
-	git clone git@github.com:imneme/pcg-c.git $(PCG_C_PATH)
-	@echo "* $(MAG)pcg-c$(D) download: $(_SUCCESS)"
-	@echo "[$(YEL)Building $(MAG)pcg-c$(D) Random Number Generator$(D)]"
-	$(MAKE) $(PCG_C_PATH)
-	@echo "[$(_SUCCESS) building $(MAG)pcg-c$(D) $(CYA)Random Number Generator!$(D) $(YEL)🖔$(D)]"
+randgen: build_randgen		## Generate list of n random values w/ given seed
+	@echo "* [$(YEL)Generating list of random values$(D)]"
+	./lib/randgen/randgen $(n) $(seed) | tee $(TEMP_PATH)/rand.txt
+	@echo "* [$(YEL)List of random values generated with$(D): $(_SUCCESS)]"
 
 visual: bonus 	## Run push_swap Visualizer 
 	@if test ! -d "$(VISUALIZER_PATH)"; then make get_visual; \
@@ -243,7 +234,10 @@ check_ext_func: bonus		## Check for external functions
 valgrind: all build_randgen		## Run push_swap w/ Valgrind
 	make randgen n=$(n)
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt; \
+	# N_ARGS=$$(cat $(TEMP_PATH)/rand.txt | wc -w); \
+	# echo "N_ARGS: $(GRN)$$N_ARGS$(D)";
+	@make --no-print-directory print_test
 
 gdb:				## Run with GDB w/ custom arg=""
 	gdb --tui --args ./$(NAME) $(arg)
@@ -251,9 +245,10 @@ gdb:				## Run with GDB w/ custom arg=""
 ##@ Test Rules 🧪
 
 print_test:
-	@echo "$(YEL)$(_SEP)$(D)";
-	@N_OPS=$$(wc -l < $(TEMP_PATH)/push_swap_out.txt); \
-	echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+	@echo "$(YEL)$(_SEP)$(D)"
+	@N_ARGS=$$(wc -w $(TEMP_PATH)/rand.txt | awk '{print $$1}'); \
+	N_OPS=$$(wc -l < $(TEMP_PATH)/push_swap_out.txt); \
+	echo "*** $(MAG)$$N_ARGS$(D) elements sorted in: $(GRN)$$N_OPS$(D) ops"; \
 	echo "$(YEL)$(_SEP)$(D)"; \
 
 test_subject: all	## Test push_swap with examples from subject
@@ -274,43 +269,45 @@ test_n:	all build_randgen $(TEMP_PATH)			## Test with n elements
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_three:	all build_randgen			## Test with 3 element stack
+test_three:	all build_randgen $(TEMP_PATH)			## Test with 3 element stack
 	make --no-print-directory randgen n=3
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_six:	all build_randgen			## Test with 6 element stack
+test_six:	all build_randgen $(TEMP_PATH)			## Test with 6 element stack
 	make --no-print-directory randgen n=6
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_rand100:	all build_randgen		## Test with 100 random elements
+test_rand100:	all build_randgen $(TEMP_PATH)		## Test with 100 random elements
 	make --no-print-directory randgen n=100
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_rand500:	all build_randgen	## Test with 500 random elements
+test_rand500:	all build_randgen $(TEMP_PATH)	## Test with 500 random elements
 	make --no-print-directory randgen n=500
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
-test_50rand500:	all build_randgen	## Test with 50 sets of 500 random elements
-	@echo "[$(CYA)Running tests with 50 sets of 500 random elements$(D)]"
+test_nrand:	all build_randgen $(TEMP_PATH)	## Test with 20 sets of 500 random elements
+	@echo "[$(CYA)Running tests with $(set) sets of $(n) random elements$(D)]"
 	@echo "[$(YEL)Generating and sorting lists...$(D)]"
 	@rm -f $(TEMP_PATH)/ops.txt 2>/dev/null
-	@for i in {1..50}; do \
-		echo "Test set $(RED)$$i$(D)"; \
-		./randgen/randgen 500 > $(TEMP_PATH)/rand.txt; \
+	@for i in {1..$(set)}; do \
+		printf "Test set $(CYA)$$i$(D): "; \
+		./lib/randgen/randgen $(n) > $(TEMP_PATH)/rand.txt; \
 		ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 		./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+		make --no-print-directory print_test; \
 		N_OPS=$$(wc -l < $(TEMP_PATH)/push_swap_out.txt); \
-		echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
-		echo "$(YEL)$(_SEP)$(D)"; \
+		# echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+		# echo "$(YEL)$(_SEP)$(D)"; \
 		echo $$N_OPS >> $(TEMP_PATH)/ops.txt; \
+		sleep 1s; \
 	done
 	@echo "[$(CYA)Calculating statistics...$(D)]"
 	@echo "Minimum: $$(sort -n $(TEMP_PATH)/ops.txt | head -n 1)"
@@ -318,7 +315,7 @@ test_50rand500:	all build_randgen	## Test with 50 sets of 500 random elements
 	@echo "Median: $$(awk '{sum += $$1} END {print sum / NR}' $(TEMP_PATH)/ops.txt)"
 	@echo "$(YEL)$(_SEP)$(D)"
 
-test_checker: all bonus		## Test checker with examples from subject
+test_checker: all bonus $(TEMP_PATH)		## Test checker with examples from subject
 	@echo "[$(YEL)Running checker tests from subject$(D)]"
 	@echo "[$(RED)1/4$(D) :$(CYA)Success test$(D) (correct operations)]"
 	echo -e "rra\npb\nsa\nrra\npa" > $(TEMP_PATH)/input.txt
@@ -331,8 +328,8 @@ test_checker: all bonus		## Test checker with examples from subject
 	@echo "[$(RED)4/4$(D) :$(CYA)Failure test$(D) (receiving empty string)]"
 	./checker "" 1
 
-test_checker_n: all bonus	## Test bonus checker with n elements
-	./randgen/randgen $(n) > $(TEMP_PATH)/rand.txt
+test_checker_n: all bonus $(TEMP_PATH)	## Test bonus checker with n elements
+	./lib/randgen/randgen $(n) > $(TEMP_PATH)/rand.txt
 	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"
@@ -345,7 +342,7 @@ test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
 	@for size in $(SIZES); do \
 		echo "[$(YEL)Generating lists of size $(MAG)$$size$(D)]"; \
 		for i in {1..3}; do \
-			./randgen/randgen $$size > $(TEMP_PATH)/rand.txt; \
+			./lib/randgen/randgen $$size > $(TEMP_PATH)/rand.txt; \
 			ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 			./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt >/dev/null 2>&1; \
 			N_OPS=$$(wc -l < $(TEMP_PATH)/out.txt); \
