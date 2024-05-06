@@ -350,6 +350,7 @@ test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
 			./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt >/dev/null 2>&1; \
 			N_OPS=$$(wc -l < $(TEMP_PATH)/out.txt); \
 			echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+			sleep 1s; \
 		done; \
 		echo "[$(_SEP)]"; \
 	done
