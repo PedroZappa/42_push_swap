@@ -234,7 +234,7 @@ check_ext_func: bonus		## Check for external functions
 valgrind: all build_randgen		## Run push_swap w/ Valgrind
 	make randgen n=$(n)
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt; \
+	valgrind --leak-check=full --show-leak-kinds=all ./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt; \
 	# N_ARGS=$$(cat $(TEMP_PATH)/rand.txt | wc -w); \
 	# echo "N_ARGS: $(GRN)$$N_ARGS$(D)";
 	@make --no-print-directory print_test
@@ -247,7 +247,7 @@ gdb:				## Run with GDB w/ custom arg=""
 print_test:
 	@echo "$(YEL)$(_SEP)$(D)"
 	@N_ARGS=$$(wc -w $(TEMP_PATH)/rand.txt | awk '{print $$1}'); \
-	N_OPS=$$(wc -l < $(TEMP_PATH)/push_swap_out.txt); \
+	N_OPS=$$(wc -l < $(TEMP_PATH)/out.txt); \
 	echo "*** $(MAG)$$N_ARGS$(D) elements sorted in: $(GRN)$$N_OPS$(D) ops"; \
 	echo "$(YEL)$(_SEP)$(D)"; \
 
@@ -266,31 +266,31 @@ test_subject: all	## Test push_swap with examples from subject
 test_n:	all build_randgen $(TEMP_PATH)			## Test with n elements
 	make --no-print-directory randgen n=$(n)
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_three:	all build_randgen $(TEMP_PATH)			## Test with 3 element stack
 	make --no-print-directory randgen n=3
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_six:	all build_randgen $(TEMP_PATH)			## Test with 6 element stack
 	make --no-print-directory randgen n=6
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_rand100:	all build_randgen $(TEMP_PATH)		## Test with 100 random elements
 	make --no-print-directory randgen n=100
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_rand500:	all build_randgen $(TEMP_PATH)	## Test with 500 random elements
 	make --no-print-directory randgen n=500
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 test_nrand:	all build_randgen $(TEMP_PATH)	## Test with 20 sets of 500 random elements
@@ -301,9 +301,9 @@ test_nrand:	all build_randgen $(TEMP_PATH)	## Test with 20 sets of 500 random el
 		printf "Test set $(CYA)$$i$(D): "; \
 		./lib/randgen/randgen $(n) > $(TEMP_PATH)/rand.txt; \
 		ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-		./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+		./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt | ./checker_linux "$$ARG"; \
 		make --no-print-directory print_test; \
-		N_OPS=$$(wc -l < $(TEMP_PATH)/push_swap_out.txt); \
+		N_OPS=$$(wc -l < $(TEMP_PATH)/out.txt); \
 		echo $$N_OPS >> $(TEMP_PATH)/ops.txt; \
 		sleep 1s; \
 	done
@@ -311,7 +311,9 @@ test_nrand:	all build_randgen $(TEMP_PATH)	## Test with 20 sets of 500 random el
 
 get_stats:
 	@echo "[$(CYA)Calculating statistics...$(D)]"
-	@echo "Maximum: $(RED)$$(sort -n $(TEMP_PATH)/ops.txt | tail -n 1)$(D)"
+	@MAX_OPS=$$(sort -n $(TEMP_PATH)/ops.txt | tail -n 1); \
+	echo "Max for $(CYA)$$SIZE$(D) elements: $(RED)$$MAX_OPS$(D) ops" >> $(TEMP_PATH)/max.txt; \
+	echo "Maximum: $(RED)$$MAX_OPS$(D)"
 	@echo "Median: $(YEL)$$(awk '{sum += $$1} END {print sum / NR}' $(TEMP_PATH)/ops.txt)$(D)"
 	@echo "Minimum: $(GRN)$$(sort -n $(TEMP_PATH)/ops.txt | head -n 1)$(D)"
 	@echo "$(YEL)$(_SEP)$(D)"
@@ -330,6 +332,9 @@ test_checker: all bonus $(TEMP_PATH)		## Test checker with examples from subject
 	./checker "" 1
 
 test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
+	@echo "[$(YEL)Running complexity tests$(D)]"
+	@echo "[$(CYA)$(set)$(D) sets of $(MAG)$(SIZES)$(D) elements each$(D)]"
+	rm -f $(TEMP_PATH)/max.txt 2>/dev/null
 	@for size in $(SIZES); do \
 		rm -f $(TEMP_PATH)/ops.txt 2>/dev/null; \
 		echo "[$(YEL)Generating $(CYA)$(set) $(YEL)lists of size $(MAG)$$size$(D)]"; \
@@ -342,18 +347,21 @@ test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
 			echo $$N_OPS >> $(TEMP_PATH)/ops.txt; \
 			sleep 1s; \
 		done; \
+		sleep 1s; \
 		echo "[$(YEL)$(_SEP)$(D)]"; \
-		make --no-print-directory get_stats; \
+		SIZE=$$size make --no-print-directory get_stats; \
 	done
+	@echo "[$(YEL)Displaying maximum values for each size$(D)]"
+	@cat $(TEMP_PATH)/max.txt
 
 test_checker_n: all bonus $(TEMP_PATH)	## Test bonus checker with n elements
 	./lib/randgen/randgen $(n) > $(TEMP_PATH)/rand.txt
 	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt | ./checker_linux "$$ARG"
 	@echo "[$(YEL)Running push_swap passunca's checker$(D)]"
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
+	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
 
 ##@ Clean-up Rules 󰃢
