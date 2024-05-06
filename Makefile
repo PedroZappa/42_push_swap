@@ -294,8 +294,8 @@ test_rand500:	all build_randgen $(TEMP_PATH)	## Test with 500 random elements
 	make --no-print-directory print_test
 
 test_nrand:	all build_randgen $(TEMP_PATH)	## Test with 20 sets of 500 random elements
-	@echo "[$(CYA)Running tests with $(set) sets of $(n) random elements$(D)]"
-	@echo "[$(YEL)Generating and sorting lists...$(D)]"
+	@echo "[$(CYA)Running tests with $(RED)$(set) $(CYA)sets of $(YEL)$(n) $(CYA)random elements$(D)]"
+	@echo "[$(BGRN)Generating and sorting lists...$(D)]"
 	@rm -f $(TEMP_PATH)/ops.txt 2>/dev/null
 	@for i in {1..$(set)}; do \
 		printf "Test set $(CYA)$$i$(D): "; \
@@ -304,15 +304,16 @@ test_nrand:	all build_randgen $(TEMP_PATH)	## Test with 20 sets of 500 random el
 		./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 		make --no-print-directory print_test; \
 		N_OPS=$$(wc -l < $(TEMP_PATH)/push_swap_out.txt); \
-		# echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
-		# echo "$(YEL)$(_SEP)$(D)"; \
 		echo $$N_OPS >> $(TEMP_PATH)/ops.txt; \
 		sleep 1s; \
 	done
+	make --no-print-directory get_stats
+
+get_stats:
 	@echo "[$(CYA)Calculating statistics...$(D)]"
-	@echo "Minimum: $$(sort -n $(TEMP_PATH)/ops.txt | head -n 1)"
-	@echo "Maximum: $$(sort -n $(TEMP_PATH)/ops.txt | tail -n 1)"
-	@echo "Median: $$(awk '{sum += $$1} END {print sum / NR}' $(TEMP_PATH)/ops.txt)"
+	@echo "Maximum: $(RED)$$(sort -n $(TEMP_PATH)/ops.txt | tail -n 1)$(D)"
+	@echo "Median: $(YEL)$$(awk '{sum += $$1} END {print sum / NR}' $(TEMP_PATH)/ops.txt)$(D)"
+	@echo "Minimum: $(GRN)$$(sort -n $(TEMP_PATH)/ops.txt | head -n 1)$(D)"
 	@echo "$(YEL)$(_SEP)$(D)"
 
 test_checker: all bonus $(TEMP_PATH)		## Test checker with examples from subject
@@ -328,6 +329,23 @@ test_checker: all bonus $(TEMP_PATH)		## Test checker with examples from subject
 	@echo "[$(RED)4/4$(D) :$(CYA)Failure test$(D) (receiving empty string)]"
 	./checker "" 1
 
+test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
+	@for size in $(SIZES); do \
+		rm -f $(TEMP_PATH)/ops.txt 2>/dev/null; \
+		echo "[$(YEL)Generating $(CYA)$(set) $(YEL)lists of size $(MAG)$$size$(D)]"; \
+		for i in {1..$(set)}; do \
+			./lib/randgen/randgen $$size > $(TEMP_PATH)/rand.txt; \
+			ARG=$$(cat $(TEMP_PATH)/rand.txt); \
+			./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt >/dev/null 2>&1; \
+			N_OPS=$$(wc -l < $(TEMP_PATH)/out.txt); \
+			echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+			echo $$N_OPS >> $(TEMP_PATH)/ops.txt; \
+			sleep 1s; \
+		done; \
+		echo "[$(YEL)$(_SEP)$(D)]"; \
+		make --no-print-directory get_stats; \
+	done
+
 test_checker_n: all bonus $(TEMP_PATH)	## Test bonus checker with n elements
 	./lib/randgen/randgen $(n) > $(TEMP_PATH)/rand.txt
 	@echo "[$(YEL)Running push_swap checker_linux$(D)]"
@@ -337,20 +355,6 @@ test_checker_n: all bonus $(TEMP_PATH)	## Test bonus checker with n elements
 	@ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 	./$(NAME) "$$ARG" | tee $(TEMP_PATH)/push_swap_out.txt | ./checker_linux "$$ARG"; \
 	make --no-print-directory print_test
-
-test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
-	@for size in $(SIZES); do \
-		echo "[$(YEL)Generating lists of size $(MAG)$$size$(D)]"; \
-		for i in {1..3}; do \
-			./lib/randgen/randgen $$size > $(TEMP_PATH)/rand.txt; \
-			ARG=$$(cat $(TEMP_PATH)/rand.txt); \
-			./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt >/dev/null 2>&1; \
-			N_OPS=$$(wc -l < $(TEMP_PATH)/out.txt); \
-			echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
-			sleep 1s; \
-		done; \
-		echo "[$(_SEP)]"; \
-	done
 
 ##@ Clean-up Rules 󰃢
 
