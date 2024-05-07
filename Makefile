@@ -254,15 +254,40 @@ print_test:
 
 test_subject: all	## Test push_swap with examples from subject
 	@echo "[$(YEL)Running push_swap tests from subject$(D)]"
-	@echo "[$(RED)1/3$(D) :$(CYA)Success test$(D) (correct args)]"
+	@echo "$(BGRN)*** Error Handling Tests ***$(D)"
+	@echo "[$(RED)1/5$(D) :$(CYA)Success test$(D) (correct args)]"
 	./push_swap 2 1 3 6 5 8
 	@echo "$(YEL)$(_SEP)$(D)"
-	@echo "[$(RED)2/3$(D) :$(CYA)Failure test$(D) (wrong args)]"
+	@echo "[$(RED)2/5$(D) :$(CYA)Failure test$(D) (wrong args)]"
 	./push_swap 0 one 2 3
 	@echo "$(YEL)$(_SEP)$(D)"
-	@echo "[$(RED)3/3$(D) :$(CYA)Failure test$(D) (wrong args)]"
+	@echo "[$(RED)3/5$(D) :$(CYA)Failure test$(D) (wrong args)]"
 	./push_swap 0 "" 2 3
 	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "[$(RED)4/5$(D) :$(CYA)Error handling$(D) (INT_MAX test)]"
+	./push_swap 2147483648 1 2
+	./push_swap 0 21474836848 1 2
+	./push_swap "0 1 2147483648 2"
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "[$(RED)5/5$(D) :$(CYA)Error handling$(D) (No args)]"
+	./push_swap
+	@echo "$(YEL)$(_SEP)$(D)"
+	@echo "$(BGRN)*** Identity Tests ***$(D)"
+	@echo "[$(RED)1/1$(D) :$(CYA)no output expected$(D) (Sorted stacks)]"
+	./push_swap 42
+	./push_swap 2 3 
+	./push_swap 0 1 2 3
+	./push_swap 0 1 2 3 4 5 6 7 8 9
+	./push_swap 1 3 5 6 8 9
+	@echo "$(BGRN)*** $ARG Tests ***$(D)"
+	@echo "[$(RED)1/4$(D) :$(CYA)Simple test$(D) (sort 3 elements)]"
+	ARG="2 1 0"; ./push_swap $$ARG | ./checker_linux $$ARG
+	@echo "[$(RED)2/4$(D) :$(CYA)Simple test$(D) (sort 4 elements)]"
+	ARG="2 1 0 3"; ./push_swap $$ARG | ./checker_linux $$ARG
+	@echo "[$(RED)3/4$(D) :$(CYA)Simple test$(D) (sort 5 elements)]"
+	ARG="1 5 2 4 3"; ./push_swap $$ARG | ./checker_linux $$ARG
+	@echo "[$(RED)4/4$(D) :$(CYA)Simple test$(D) (sort 5 elements)]"
+	ARG="7 3 9 11 0"; ./push_swap $$ARG | ./checker_linux $$ARG
 
 test_n:	all build_randgen $(TEMP_PATH)			## Test with n elements
 	make --no-print-directory randgen n=$(n)
