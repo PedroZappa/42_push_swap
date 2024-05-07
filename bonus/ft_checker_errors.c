@@ -79,7 +79,7 @@ static int	ft_is_duplicate(int argc, char **argv)
 	int	j;
 
 	if (argc == 2)
-		if (ft_atoi(argv[0]) == INT_MAX)
+		if (ft_atol(argv[0]) > INT_MAX)
 			return (-1);
 	i = 0;
 	while (i < argc)
@@ -87,9 +87,9 @@ static int	ft_is_duplicate(int argc, char **argv)
 		j = (i + 1);
 		while (j < (argc - 1))
 		{
-			if ((ft_atoi(argv[i]) == INT_MAX) || (ft_atoi(argv[j]) == INT_MAX))
+			if ((ft_atol(argv[i]) > INT_MAX) || (ft_atol(argv[j]) > INT_MAX))
 				return (-1);
-			if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+			if (ft_atol(argv[i]) == ft_atol(argv[j]))
 				return (-1);
 			++j;
 		}
