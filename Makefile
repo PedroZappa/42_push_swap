@@ -257,21 +257,16 @@ test_subject: all	## Test push_swap with examples from subject
 	@echo "$(BGRN)*** Error Handling Tests ***$(D)"
 	@echo "[$(RED)1/5$(D) :$(CYA)Success test$(D) (correct args)]"
 	./push_swap 2 1 3 6 5 8
-	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "[$(RED)2/5$(D) :$(CYA)Failure test$(D) (wrong args)]"
 	./push_swap 0 one 2 3
-	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "[$(RED)3/5$(D) :$(CYA)Failure test$(D) (wrong args)]"
 	./push_swap 0 "" 2 3
-	@echo "$(YEL)$(_SEP)$(D)"
-	@echo "[$(RED)4/5$(D) :$(CYA)Error handling$(D) (INT_MAX test)]"
+	@echo "[$(RED)4/5$(D) :$(CYA)Error handling$(D) (for n > INT_MAX test)]"
 	./push_swap 2147483648 1 2
 	./push_swap 0 21474836848 1 2
 	./push_swap "0 1 2147483648 2"
-	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "[$(RED)5/5$(D) :$(CYA)Error handling$(D) (No args)]"
 	./push_swap
-	@echo "$(YEL)$(_SEP)$(D)"
 	@echo "$(BGRN)*** Identity Tests ***$(D)"
 	@echo "[$(RED)1/1$(D) :$(CYA)no output expected$(D) (Sorted stacks)]"
 	./push_swap 42
@@ -346,16 +341,35 @@ get_stats:
 
 test_checker: all bonus $(TEMP_PATH)		## Test checker with examples from subject
 	@echo "[$(YEL)Running checker tests from subject$(D)]"
-	@echo "[$(RED)1/4$(D) :$(CYA)Success test$(D) (correct operations)]"
-	echo -e "rra\npb\nsa\nrra\npa" > $(TEMP_PATH)/input.txt
-	./checker 3 2 1 0 < $(TEMP_PATH)/input.txt
-	@echo "[$(RED)2/4$(D) :$(CYA)Failure test$(D) (wrong operations)]"
+	@echo "$(BGRN)*** Error Handling Tests ***$(D)"
+	@echo "[$(RED)1/5$(D) :$(CYA)Failure test$(D) (receiving chars)]"
+	./checker 3 2 one 0
+	@echo "[$(RED)2/5$(D) :$(CYA)Failure test$(D) (receiving empty string)]"
+	./checker "" 1
+	@echo "[$(RED)3/5$(D) :$(CYA)Error handling$(D) (no args)]"
+	./checker
+	@echo "[$(RED)4/6$(D) :$(CYA)Error handling$(D) (for n > INT_MAX test)]"
+	./checker 2147483648 1 2
+	./checker 0 21474836848 1 2
+	./checker "0 1 2147483648 2"
+	@echo "[$(RED)5/5$(D) :$(CYA)Error handling$(D) (No args)]"
+	./checker
+	@echo "$(BGRN)*** False Tests ***$(D)"
+	@echo "[$(RED)1/2$(D) :$(CYA)Error handling$(D) (wrong operations)]"
+	echo -e "sa\npb\nrrr" > $(TEMP_PATH)/input.txt
+	./checker 0 9 1 8 2 7 3 6 4 5 < $(TEMP_PATH)/input.txt
+	@echo "[$(RED)2/2$(D) :$(CYA)Failure test$(D) (wrong operations)]"
 	echo -e "sa\nrra\npb" > $(TEMP_PATH)/input.txt
 	./checker 3 2 1 0 < $(TEMP_PATH)/input.txt
-	@echo "[$(RED)3/4$(D) :$(CYA)Failure test$(D) (receiving chars)]"
-	./checker 3 2 one 0
-	@echo "[$(RED)4/4$(D) :$(CYA)Failure test$(D) (receiving empty string)]"
-	./checker "" 1
+	@echo "$(BGRN)*** Right Tests ***$(D)"
+	@echo "[$(RED)1/2$(D) :$(CYA)Success test$(D) (sorted stacks)]"
+	./checker 0 1 2 << EOF
+	@echo "[$(RED)2/2$(D) :$(CYA)Success test$(D) (sorted stacks)]"
+	echo -e "pb\nra\npb\nra\nsa\nra\npa\npa" > $(TEMP_PATH)/input.txt
+	./checker 0 9 1 8 2 < $(TEMP_PATH)/input.txt
+	@echo "[$(RED)3/3$(D) :$(CYA)Success test$(D) (correct operations)]"
+	echo -e "rra\npb\nsa\nrra\npa" > $(TEMP_PATH)/input.txt
+	./checker 3 2 1 0 < $(TEMP_PATH)/input.txt
 
 test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
 	@echo "[$(YEL)Running complexity tests$(D)]"
