@@ -407,18 +407,22 @@ test_checker_n: all bonus $(TEMP_PATH)	## Test bonus checker with n elements
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
-	@echo "* $(MAG)Removing push_swap$(D)"
-	@if [ -d "$(LIBS_PATH)" ]; then \
-		$(MAKE) $(LIBFT_PATH) clean; \
-		echo "* $(YEL)Removing $(CYA)$(LIBS_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
-	fi
-	@if [ -d "$(BUILD_PATH)" ]; then \
-		$(RM) $(BUILD_PATH); \
-		echo "* $(YEL)Removing $(CYA)$(BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
-	fi
-	@if [ -d "$(TEMP_PATH)" ]; then \
-		$(RM) $(TEMP_PATH); \
-		echo "* $(YEL)Removing $(CYA)$(TEMP_PATH)$(D) folder & files:$(D) $(_SUCCESS)"; \
+	@echo "* $(YEL)Removing $(MAG)$(NAME)$(D) and deps $(YEL)object files$(D)"
+	@if [ -d "$(LIBFT_PATH)/$(BUILD_PATH)" ] || [ -d "$(BUILD_PATH)" ] || [ -d "$(TEMP_PATH)" ]; then \
+		if [ -d "$(LIBFT_PATH)/$(BUILD_PATH)" ]; then \
+			$(MAKE) $(LIBFT_PATH) clean; \
+			echo "* $(YEL)Removing $(CYA)libft$(D) object files$(D): $(_SUCCESS)"; \
+		fi; \
+		if [ -d "$(BUILD_PATH)" ]; then \
+			$(RM) $(BUILD_PATH); \
+			echo "* $(YEL)Removing $(CYA)$(BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
+		fi; \
+		if [ -d "$(TEMP_PATH)" ]; then \
+			$(RM) $(TEMP_PATH); \
+			echo "* $(YEL)Removing $(CYA)$(TEMP_PATH)$(D) folder & files:$(D) $(_SUCCESS)"; \
+		fi; \
+	else \
+		echo " $(RED)$(D) [$(GRN)Nothing to clean!$(D)]"; \
 	fi
 
 fclean: clean	## Remove archives & executables
