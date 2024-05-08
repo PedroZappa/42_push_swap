@@ -431,7 +431,7 @@ fclean: clean	## Remove archives & executables
 	$(MAKE) $(LIBFT_PATH) fclean
 	@echo "* $(YEL)Removing libft archive$(D): $(_SUCCESS)"
 
-libclean: fclean	## Remove libft
+libclean: fclean	## Remove libs
 	$(RM) $(LIBS_PATH)
 	@echo "* $(YEL)Removing lib folder & files!$(D) : $(_SUCCESS)"
 
