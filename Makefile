@@ -407,13 +407,19 @@ test_checker_n: all bonus $(TEMP_PATH)	## Test bonus checker with n elements
 ##@ Clean-up Rules 󰃢
 
 clean: 				## Remove object files
-	$(MAKE) $(LIBFT_PATH) clean
-	@echo "* $(YEL)Cleaning Libft objects 󰃢:$(D) $(_SUCCESS)"
 	@echo "* $(MAG)Removing push_swap$(D)"
-	$(RM) $(BUILD_PATH)
-	@echo "* $(YEL)Removing $(CYA)$(BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"
-	$(RM) $(TEMP_PATH)
-	@echo "* $(YEL)Removing $(CYA)$(TEMP_PATH)$(D) folder & files:$(D) $(_SUCCESS)"
+	@if [ -d "$(LIBS_PATH)" ]; then \
+		$(MAKE) $(LIBFT_PATH) clean; \
+		echo "* $(YEL)Removing $(CYA)$(LIBS_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
+	fi
+	@if [ -d "$(BUILD_PATH)" ]; then \
+		$(RM) $(BUILD_PATH); \
+		echo "* $(YEL)Removing $(CYA)$(BUILD_PATH)$(D) folder & files$(D): $(_SUCCESS)"; \
+	fi
+	@if [ -d "$(TEMP_PATH)" ]; then \
+		$(RM) $(TEMP_PATH); \
+		echo "* $(YEL)Removing $(CYA)$(TEMP_PATH)$(D) folder & files:$(D) $(_SUCCESS)"; \
+	fi
 
 fclean: clean	## Remove archives & executables
 	$(RM) $(NAME) $(NAME_BONUS)
