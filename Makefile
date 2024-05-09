@@ -104,11 +104,11 @@ bonus: all $(NAME_BONUS)	## Compile push_swap checker
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
 
 $(BUILD_PATH)/%.o: $(BONUS_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
-	$(CC) $(CFLAGS) $(DFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) -MMD -MP -c $< -o $@
 
 $(BUILD_PATH):
 	$(MKDIR_P) $(BUILD_PATH)
@@ -136,7 +136,7 @@ deps: 			## Download/Update libft
 		else echo "$(YEL)[libft]$(D) folder found 🖔"; fi
 	@echo " $(RED)$(D) [$(GRN)Nothing to be done!$(D)]"
 
--include $(DEPS)
+-include $(BUILD_PATH)/*.d
 
 update_modules:
 	@echo "* $(CYA)Updating submodules$(D)]"
