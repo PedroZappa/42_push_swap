@@ -53,6 +53,7 @@ LIBS_PATH	= lib
 BUILD_PATH	= .build
 TEMP_PATH	= .temp
 
+# SRC			= $(wildcard $(SRC_PATH)/*.c)
 SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_assert_stack.c \
 			  ft_ops.c ft_create_stack.c ft_sort_three.c ft_sort_stack.c \
 			  ft_median.c ft_order.c ft_rotate.c)
