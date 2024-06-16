@@ -6,7 +6,7 @@
 #    By: passunca <passunca@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/05 20:18:57 by passunca          #+#    #+#              #
-#    Updated: 2024/04/26 12:51:48 by passunca         ###   ########.fr        #
+#    Updated: 2024/06/16 20:54:53 by passunca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,7 @@ TEMP_PATH	= .temp
 SRC			= $(addprefix $(SRC_PATH)/, main.c ft_errors.c ft_assert_stack.c \
 			  ft_ops.c ft_create_stack.c ft_sort_three.c ft_sort_stack.c \
 			  ft_median.c ft_order.c ft_rotate.c)
+# BONUS			= $(wildcard $(BONUS_PATH)/*.c)
 BONUS		= $(addprefix $(BONUS_PATH)/, main_checker.c ft_assert_stack.c \
 			  ft_create_stack.c ft_checker_errors.c ft_ops_checker.c \
 			  ft_ops_mult.c ft_check_stack.c)
@@ -102,6 +103,16 @@ MAKE		= make -C
 all: deps $(NAME)		## Compile push_swap
 
 bonus: all $(NAME_BONUS)	## Compile push_swap checker
+
+other: $(BUILD_PATH) $(OBJS)
+	@echo "[$(YEL)Compiling push_swap$(D)]"
+	$(CC) $(CFLAGS) $(DFLAGS) $(OBJS) -o $(NAME)
+	@echo "[$(_SUCCESS) compiling $(MAG)push_swap!$(D) $(YEL)🖔$(D)]"
+
+other_bonus: $(BUILD_PATH) $(BONUS_OBJS)
+	@echo "[$(YEL)Compiling push_swap checker$(D)]"
+	$(CC) $(CFLAGS) $(DFLAGS) $(BONUS_OBJS) -o $(NAME_BONUS)
+	@echo "[$(_SUCCESS) compiling $(MAG)push_swap checker!$(D) $(YEL)🖔$(D)]"
 
 $(BUILD_PATH)/%.o: $(SRC_PATH)/%.c
 	@echo -n "$(MAG)█$(D)"
