@@ -21,7 +21,7 @@ set		?= 10
 n		?= 100
 arg		?= "2 7 5 3 9 4 6 8 1"
 SIZES	:= 3 6 9
-# SIZES	+= 25 50 100
+SIZES	+= 25 50 100
 # SIZES	+= 200 250 500
 # SIZES	+= 1000 2000
 
@@ -395,7 +395,7 @@ test_complexity: all build_randgen $(TEMP_PATH)  	## Analyse Complexity
 			ARG=$$(cat $(TEMP_PATH)/rand.txt); \
 			./$(NAME) "$$ARG" | tee $(TEMP_PATH)/out.txt >/dev/null 2>&1; \
 			N_OPS=$$(wc -l < $(TEMP_PATH)/out.txt); \
-			echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \
+			echo "Sorted in: $(GRN)$$N_OPS$(D) ops"; \ 
 			echo $$N_OPS >> $(TEMP_PATH)/ops.txt; \
 			sleep 1s; \
 		done; \

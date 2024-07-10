@@ -14,7 +14,7 @@
 
 static char	**ft_get_elems(int *argc, char **argv, int *must_free);
 static int	ft_argv_count(char **argv);
-static void	ft_free(char **input_list, int must_free);
+static void	ft_free_ps(char **input_list, int must_free);
 
 /* push_swap checker */
 int	main(int argc, char **argv)
@@ -33,12 +33,12 @@ int	main(int argc, char **argv)
 	error = ft_errors(argc, input_list);
 	if (error <= 0)
 	{
-		ft_free(input_list, must_free);
+		ft_free_ps(input_list, must_free);
 		return (0);
 	}
 	stack_a = ft_create_stack(argc, input_list, 1);
 	stack_b = ft_create_stack(argc, input_list, 0);
-	ft_free(input_list, must_free);
+	ft_free_ps(input_list, must_free);
 	ft_check_stack(stack_a, stack_b);
 	free(stack_a);
 	free(stack_b);
@@ -75,10 +75,10 @@ static int	ft_argv_count(char **argv)
 	return (n);
 }
 
-/*	ft_free()
+/*	ft_free_ps()
 *	- Free allocated memory;
 *	*/
-static void	ft_free(char **input_list, int must_free)
+static void	ft_free_ps(char **input_list, int must_free)
 {
 	int	i;
 
